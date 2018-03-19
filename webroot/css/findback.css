@@ -1,0 +1,50 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+::-moz-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-moz-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+.tab-view-container::-webkit-scrollbar {
+  display: none; }
+
+.tab-view .fs-tb-item {
+  height: 80px;
+  line-height: 80px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 90px;
+  background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_xiaoxi.png") no-repeat 40px center; }
+.tab-view #fs-my-message.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_xiaoxi2.png"); }
+.tab-view #fs-send-text {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_wenzi.png"); }
+.tab-view #fs-send-text.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_wenzi2.png"); }
+.tab-view #fs-send-photo {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_photo.png"); }
+.tab-view #fs-send-photo.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_photo2.png"); }
+.tab-view #fs-my-space {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_MY.png"); }
+.tab-view #fs-my-space.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_MY2.png"); }
+
+/*# sourceMappingURL=findback.webroot.css.map */

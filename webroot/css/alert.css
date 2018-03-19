@@ -1,0 +1,431 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+::-moz-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-moz-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+.tab-view-container::-webkit-scrollbar {
+  display: none; }
+
+.alert-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 10; }
+  .alert-container .tab-inner, .alert-container .tab-inner2 {
+    border-radius: 8px;
+    width: 470px;
+    height: 640px;
+    box-sizing: border-box;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white; }
+    .alert-container .tab-inner .tb-header, .alert-container .tab-inner2 .tb-header {
+      background-color: #eee;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+      .alert-container .tab-inner .tb-header .tb-title, .alert-container .tab-inner2 .tb-header .tb-title {
+        width: 100%;
+        height: 22px;
+        line-height: 22px;
+        font-size: 20px;
+        padding: 20px 0 34px;
+        text-align: center; }
+        .alert-container .tab-inner .tb-header .tb-title .tb-close, .alert-container .tab-inner2 .tb-header .tb-title .tb-close {
+          position: absolute;
+          display: block;
+          background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delet.png") no-repeat center center;
+          width: 26px;
+          height: 24px;
+          top: 20px;
+          right: 20px;
+          cursor: pointer; }
+    .alert-container .tab-inner .tb-search-layout, .alert-container .tab-inner2 .tb-search-layout {
+      height: 50px;
+      width: 100%;
+      padding: 6px 0;
+      box-sizing: border-box;
+      border-radius: 17px;
+      background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_search.png") no-repeat 20px center;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 0 auto; }
+      .alert-container .tab-inner .tb-search-layout ::-webkit-input-placeholder, .alert-container .tab-inner2 .tb-search-layout ::-webkit-input-placeholder {
+        color: black; }
+      .alert-container .tab-inner .tb-search-layout :-moz-placeholder, .alert-container .tab-inner2 .tb-search-layout :-moz-placeholder {
+        color: black; }
+      .alert-container .tab-inner .tb-search-layout ::-moz-placeholder, .alert-container .tab-inner2 .tb-search-layout ::-moz-placeholder {
+        color: black; }
+      .alert-container .tab-inner .tb-search-layout :-ms-input-placeholder, .alert-container .tab-inner2 .tb-search-layout :-ms-input-placeholder {
+        color: black; }
+      .alert-container .tab-inner .tb-search-layout .tb-search, .alert-container .tab-inner2 .tb-search-layout .tb-search {
+        font-size: 14px;
+        display: block;
+        margin-left: 44px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 0 none;
+        outline: 0 none;
+        height: 20px;
+        line-height: 20px;
+        padding: 10px 0;
+        color: black; }
+    .alert-container .tab-inner .tb-tip-text, .alert-container .tab-inner2 .tb-tip-text {
+      padding: 45px 42px;
+      box-sizing: border-box;
+      width: 100%;
+      line-height: 20px;
+      font-size: 18px;
+      text-align: left; }
+    .alert-container .tab-inner .tb-avatar, .alert-container .tab-inner2 .tb-avatar {
+      width: 190px;
+      height: 190px;
+      line-height: 190px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 80px;
+      color: #fff;
+      background-color: #92aceb;
+      border-radius: 50%;
+      font-weight: 100; }
+      .alert-container .tab-inner .tb-avatar img, .alert-container .tab-inner2 .tb-avatar img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        display: block; }
+    .alert-container .tab-inner .tb-name, .alert-container .tab-inner2 .tb-name {
+      margin: 30px 0 60px 0;
+      text-align: center;
+      font-size: 24px; }
+    .alert-container .tab-inner .tb-list, .alert-container .tab-inner2 .tb-list {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+      height: 400px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #eee; }
+      .alert-container .tab-inner .tb-list .tb-item, .alert-container .tab-inner2 .tb-list .tb-item {
+        width: 100%;
+        box-sizing: border-box;
+        height: 80px;
+        cursor: pointer; }
+        .alert-container .tab-inner .tb-list .tb-item .tb-item-circle, .alert-container .tab-inner2 .tb-list .tb-item .tb-item-circle {
+          display: block;
+          float: left;
+          background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_normal.png") no-repeat center center;
+          width: 16px;
+          height: 16px;
+          margin: 32px 20px 0 10px;
+          background-size: cover;
+          cursor: pointer; }
+        .alert-container .tab-inner .tb-list .tb-item .tb-item-circle.selected, .alert-container .tab-inner2 .tb-list .tb-item .tb-item-circle.selected {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_selected.png"); }
+        .alert-container .tab-inner .tb-list .tb-item .tb-item-avatar, .alert-container .tab-inner2 .tb-list .tb-item .tb-item-avatar {
+          float: left;
+          width: 50px;
+          height: 50px;
+          margin: 15px 20px 0 0;
+          border-radius: 50%; }
+        .alert-container .tab-inner .tb-list .tb-item .tb-item-heading, .alert-container .tab-inner2 .tb-list .tb-item .tb-item-heading {
+          float: left;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          margin: 15px 20px 0 0;
+          border-radius: 50%;
+          background-color: #92aceb;
+          color: white;
+          font-size: 16px; }
+        .alert-container .tab-inner .tb-list .tb-item .tb-item-alias, .alert-container .tab-inner2 .tb-list .tb-item .tb-item-alias {
+          height: 80px;
+          line-height: 80px;
+          text-align: left;
+          font-size: 14px; }
+      .alert-container .tab-inner .tb-list .tb-item.selected .tb-item-circle, .alert-container .tab-inner2 .tb-list .tb-item.selected .tb-item-circle {
+        background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_selected.png"); }
+    .alert-container .tab-inner .dm-list, .alert-container .tab-inner2 .dm-list {
+      height: 430px; }
+    .alert-container .tab-inner .tb-submit, .alert-container .tab-inner2 .tb-submit {
+      display: block;
+      margin: 20px auto 0;
+      color: #fff;
+      text-align: center;
+      outline: 0 none;
+      border: 0 none;
+      background-color: #92aceb;
+      cursor: pointer;
+      width: 124px;
+      line-height: 46px;
+      height: 46px;
+      border-radius: 23px;
+      font-size: 18px; }
+  .alert-container .tab-inner2 {
+    border-radius: 8px;
+    width: 470px;
+    height: 200px;
+    box-sizing: border-box;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 24px 53px; }
+    .alert-container .tab-inner2 .tb-title {
+      width: 100%;
+      height: 48px;
+      line-height: 24px;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 14px; }
+    .alert-container .tab-inner2 .tb-percent {
+      margin-bottom: 50px; }
+    .alert-container .tab-inner2 .tb-text {
+      color: #b2b2b2;
+      font-size: 18px;
+      text-align: center;
+      height: 18px;
+      line-height: 18px; }
+    .alert-container .tab-inner2 .tb-close {
+      position: absolute;
+      display: block;
+      background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delet.png") no-repeat center center;
+      width: 26px;
+      height: 24px;
+      top: 20px;
+      right: 20px;
+      cursor: pointer; }
+    .alert-container .tab-inner2 .tb-search-layout {
+      margin-top: 24px;
+      border-radius: 25px;
+      background-color: #eee;
+      margin-bottom: 28px;
+      background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_seek.png");
+      height: 46px;
+      padding-top: 6px; }
+      .alert-container .tab-inner2 .tb-search-layout ::-webkit-input-placeholder {
+        color: #b2b2b2; }
+      .alert-container .tab-inner2 .tb-search-layout :-moz-placeholder {
+        color: #b2b2b2; }
+      .alert-container .tab-inner2 .tb-search-layout ::-moz-placeholder {
+        color: #b2b2b2; }
+      .alert-container .tab-inner2 .tb-search-layout :-ms-input-placeholder {
+        color: #b2b2b2; }
+      .alert-container .tab-inner2 .tb-search-layout .tb-search {
+        font-size: 18px;
+        margin-left: 56px;
+        padding: 8px 0; }
+    .alert-container .tab-inner2 .tb-submit {
+      width: 124px;
+      line-height: 46px;
+      height: 46px;
+      border-radius: 23px;
+      font-size: 18px; }
+    .alert-container .tab-inner2 .tb-tbn-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px; }
+      .alert-container .tab-inner2 .tb-tbn-container .tb-submit {
+        margin: 20px 20px; }
+  .alert-container .not-found-tab {
+    padding-top: 28px; }
+    .alert-container .not-found-tab .tb-submit {
+      margin-top: 30px; }
+
+.alert-container .tab-v .v-header {
+  height: 120px;
+  line-height: 120px; }
+  .alert-container .tab-v .v-header .v-title {
+    font-size: 24px;
+    height: 34px;
+    line-height: 80px; }
+
+.tab-layout {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 10; }
+  .tab-layout .choose-chatter {
+    width: 470px;
+    height: 640px;
+    box-sizing: border-box;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white; }
+    .tab-layout .choose-chatter .cc-line {
+      height: 20px;
+      width: 100%;
+      line-height: 20px;
+      text-indent: 20px;
+      font-size: 14px;
+      text-align: left;
+      color: white;
+      background-color: #eee; }
+    .tab-layout .choose-chatter .cc-header {
+      background-color: #eee; }
+      .tab-layout .choose-chatter .cc-header .cc-title {
+        width: 100%;
+        height: 22px;
+        line-height: 22px;
+        font-size: 20px;
+        padding: 20px 0 34px;
+        text-align: center; }
+        .tab-layout .choose-chatter .cc-header .cc-title .cc-close {
+          position: absolute;
+          display: block;
+          background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delet.png") no-repeat center center;
+          width: 26px;
+          height: 24px;
+          top: 20px;
+          right: 20px;
+          cursor: pointer; }
+      .tab-layout .choose-chatter .cc-header .cc-tab-choose {
+        width: 100%; }
+        .tab-layout .choose-chatter .cc-header .cc-tab-choose .cc-tab-item {
+          float: left;
+          width: 50%;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          color: #666;
+          cursor: pointer; }
+        .tab-layout .choose-chatter .cc-header .cc-tab-choose .cc-tab-item.cur {
+          color: #00b3ee; }
+    .tab-layout .choose-chatter .cc-search-layout {
+      height: 50px;
+      width: 100%;
+      padding: 6px 0;
+      box-sizing: border-box;
+      border-radius: 17px;
+      background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/search_black.png") no-repeat 20px center;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 0 auto; }
+      .tab-layout .choose-chatter .cc-search-layout ::-webkit-input-placeholder {
+        color: #565656; }
+      .tab-layout .choose-chatter .cc-search-layout :-moz-placeholder {
+        color: #565656; }
+      .tab-layout .choose-chatter .cc-search-layout ::-moz-placeholder {
+        color: #565656; }
+      .tab-layout .choose-chatter .cc-search-layout :-ms-input-placeholder {
+        color: #565656; }
+      .tab-layout .choose-chatter .cc-search-layout input {
+        font-size: 14px;
+        display: block;
+        margin-left: 44px;
+        background-color: rgba(255, 255, 255, 0);
+        border: 0 none;
+        outline: 0 none;
+        height: 20px;
+        line-height: 20px;
+        padding: 10px 0;
+        color: black; }
+    .tab-layout .choose-chatter .cc-tab-layout {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+      height: 400px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #eee; }
+      .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item {
+        width: 100%;
+        box-sizing: border-box;
+        height: 80px;
+        cursor: pointer; }
+        .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item .cc-item-circle {
+          display: block;
+          float: left;
+          background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_normal.png") no-repeat center center;
+          width: 16px;
+          height: 16px;
+          margin: 32px 20px 0 10px;
+          background-size: cover;
+          cursor: pointer; }
+        .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item .cc-item-circle.selected {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_selected.png"); }
+        .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item .cc-item-avatar {
+          float: left;
+          width: 50px;
+          height: 50px;
+          margin: 15px 20px 0 0;
+          border-radius: 50%; }
+        .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item .cc-item-heading {
+          float: left;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          margin: 15px 20px 0 0;
+          border-radius: 50%;
+          background-color: #92aceb;
+          color: white;
+          font-size: 16px; }
+        .tab-layout .choose-chatter .cc-tab-layout .cc-tl-list .cc-tl-item .cc-item-alias {
+          height: 80px;
+          line-height: 80px;
+          text-align: left;
+          font-size: 14px; }
+    .tab-layout .choose-chatter .cc-submit {
+      display: block;
+      margin: 20px auto 0;
+      color: #fff;
+      width: 96px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 18px;
+      text-align: center;
+      outline: 0 none;
+      border: 0 none;
+      background-color: #92aceb;
+      cursor: pointer; }
+
+.am-line {
+  height: 20px;
+  width: 100%;
+  line-height: 20px;
+  text-indent: 20px;
+  font-size: 14px;
+  text-align: left;
+  color: white;
+  background-color: #eee; }
+
+.dm-line {
+  height: 20px;
+  width: 100%;
+  line-height: 20px;
+  text-indent: 20px;
+  font-size: 14px;
+  text-align: left;
+  color: white;
+  background-color: #eee; }
+
+.dm-friend-item {
+  padding: 0 !important; }
+
+/*# sourceMappingURL=alert.webroot.css.map */

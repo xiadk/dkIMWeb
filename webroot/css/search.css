@@ -1,0 +1,85 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+::-moz-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-moz-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+.tab-view-container::-webkit-scrollbar {
+  display: none; }
+
+.search-container {
+  position: relative; }
+  .search-container .searched-list {
+    position: absolute;
+    top: 34px;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    max-height: 400px;
+    overflow-y: scroll; }
+    .search-container .searched-list .searched-line {
+      width: 100%;
+      height: 30px;
+      background-color: white;
+      color: #565656;
+      font-size: 14px;
+      text-indent: 24px;
+      line-height: 30px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-top: 8px; }
+    .search-container .searched-list .searched-item {
+      height: 80px;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      background-color: white;
+      border-bottom: 1px solid #ddd; }
+      .search-container .searched-list .searched-item .img-layout {
+        width: 50px;
+        float: left;
+        padding-bottom: 50px;
+        height: 0;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 15px 20px 15px 24px; }
+        .search-container .searched-list .searched-item .img-layout img {
+          display: block;
+          width: 50px;
+          height: 50px; }
+      .search-container .searched-list .searched-item .sit-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        float: left;
+        margin: 15px 20px 15px 24px;
+        background-color: #768dc3;
+        color: white;
+        text-align: center;
+        line-height: 50px; }
+      .search-container .searched-list .searched-item .to-name {
+        float: left;
+        color: #4d4d4d;
+        font-size: 16px;
+        width: 180px;
+        line-height: 80px; }
+    .search-container .searched-list .searched-item:hover {
+      background-color: #eee; }
+
+/*# sourceMappingURL=search.webroot.css.map */

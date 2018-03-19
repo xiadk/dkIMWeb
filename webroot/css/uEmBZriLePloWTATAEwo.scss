@@ -1,0 +1,22 @@
+@import "func";
+@import "scrollbar";
+
+@import "../plugin/css/lightgallery.css";
+@import "../plugin/css/perfect-scrollbar.min.css";
+@import "../plugin/css/prettify.css";
+@import "animate.css";
+
+@import "emoji";
+@import "main";
+@import "alert";
+@import "message";
+@import "friend_space";
+@import "search";
+@import "debugPlugin";
+@import "new_version_main";
+@import "findback";
+@import "commonUI";
+
+textarea{
+  background-color: white!important;
+}

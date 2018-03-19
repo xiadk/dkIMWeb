@@ -1,0 +1,534 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+::-moz-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-moz-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+.tab-view-container::-webkit-scrollbar {
+  display: none; }
+
+.main-layout .user-layout .tab-container .tab {
+  width: 33%;
+  position: relative; }
+.main-layout .user-layout .tab-container #friend-space {
+  width: 34%;
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_miquan3.png");
+  background-size: 28px 27px; }
+.main-layout .user-layout .tab-container #friend-space.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_miquan.png"); }
+.main-layout .user-layout .tab-view .fs-tb-item {
+  height: 80px;
+  line-height: 80px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 90px;
+  background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_xiaoxi.png") no-repeat 40px center; }
+.main-layout .user-layout .tab-view #fs-my-message.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_xiaoxi2.png"); }
+.main-layout .user-layout .tab-view #fs-send-text {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_wenzi.png"); }
+.main-layout .user-layout .tab-view #fs-send-text.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_wenzi2.png"); }
+.main-layout .user-layout .tab-view #fs-send-photo {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_photo.png"); }
+.main-layout .user-layout .tab-view #fs-send-photo.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_photo2.png"); }
+.main-layout .user-layout .tab-view #fs-my-space {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_MY.png"); }
+.main-layout .user-layout .tab-view #fs-my-space.cur {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_MY2.png"); }
+.main-layout #friend-space-wrapper {
+  overflow: hidden; }
+.main-layout .chat--layout-friend-space .friend-space-layout {
+  height: 600px; }
+  .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-title {
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: #000000;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #DDDDDD;
+    position: relative;
+    z-index: 2;
+    background-color: white; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-title .fst-discribe {
+      font-style: normal; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-title .fst-refresh {
+      position: absolute;
+      width: 30px;
+      height: 26px;
+      float: right;
+      right: 20px;
+      top: 12px;
+      background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/button_flush.png") no-repeat center center;
+      cursor: pointer;
+      transition: all 1s;
+      transform: rotate(0deg); }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-title .an-rotate {
+      transform: rotate(720deg); }
+  .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container {
+    width: 100%;
+    height: 550px;
+    min-height: 550px;
+    overflow-y: scroll;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+    padding-top: 30px; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list {
+      background-color: white;
+      width: 520px;
+      margin: 0 auto;
+      min-height: 520px; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item {
+        height: 110px;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 17px;
+        box-sizing: border-box;
+        border-bottom: 2px solid #f3f3f3;
+        cursor: pointer; }
+        .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-avater-wrapper {
+          float: left;
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin: 0 20px 0 20px;
+          text-align: center; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-avater-wrapper img {
+            height: 100%; }
+        .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper {
+          float: left;
+          width: 340px; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper .fsni-main-line {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            color: #a0a0a0;
+            box-sizing: border-box;
+            margin-bottom: 8px; }
+            .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper .fsni-main-line .fsni-alias {
+              font-size: 18px;
+              margin: 0 20px 0 0;
+              float: left;
+              color: #1c1c1c; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper .fsni-line2 {
+            height: 28px; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper .fsni-line3 {
+            height: 14px;
+            font-size: 14px;
+            color: #d7d7d7; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-main-wrapper .fsni-line4 {
+            color: #1c1c1c;
+            height: 28px;
+            line-height: 28px; }
+        .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-img-wrapper {
+          height: 54px;
+          width: 54px;
+          float: right;
+          margin-right: 20px;
+          overflow: hidden; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item .fsni-img-wrapper img {
+            width: 54px;
+            height: 54px;
+            display: block; }
+  .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container {
+    width: 100%;
+    height: 550px;
+    min-height: 550px;
+    overflow-y: scroll;
+    background-color: #f6f6f6;
+    box-sizing: border-box; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item {
+      width: 520px;
+      margin: 0 auto;
+      background-color: white;
+      padding-bottom: 20px;
+      transition: top 0.6s, height 0.6s;
+      position: absolute;
+      left: 50%;
+      margin-left: -260px;
+      top: -192px;
+      z-index: 1; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item ::-webkit-input-placeholder {
+        color: #b2b2b2; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item :-moz-placeholder {
+        color: #b2b2b2; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item ::-moz-placeholder {
+        color: #b2b2b2; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item :-ms-input-placeholder {
+        color: #b2b2b2; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-new-item-text {
+        height: 80px;
+        width: 100%;
+        border: 0 none;
+        outline: 0 none;
+        padding: 10px;
+        box-sizing: border-box; }
+      .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area {
+        padding: 0 10px;
+        position: relative;
+        min-height: 68px; }
+        .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-photo-area {
+          width: 374px;
+          float: left;
+          display: none; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-photo-area .fs-send-photo-wrapper {
+            width: 60px;
+            height: 60px;
+            float: left;
+            margin: 0 8px 8px 0;
+            position: relative; }
+            .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-photo-area .fs-send-photo-wrapper .fs-photo-for-send {
+              display: block;
+              width: 60px;
+              height: 60px;
+              cursor: pointer; }
+            .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-photo-area .fs-send-photo-wrapper .fs-photo-hover {
+              position: absolute;
+              display: none;
+              z-index: 2;
+              width: 60px;
+              height: 60px;
+              background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/photo-hover.png") no-repeat center center;
+              background-color: rgba(0, 0, 0, 0.5);
+              left: 0;
+              top: 0;
+              cursor: pointer; }
+          .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-photo-area .fs-send-photo-wrapper:hover .fs-photo-hover {
+            display: block; }
+        .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item .fs-send-area .fs-send-new-item-btn {
+          float: right;
+          margin-bottom: 0;
+          margin-top: 24px;
+          position: absolute;
+          right: 10px;
+          bottom: 0; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-new-item.show {
+      top: 26px; }
+    .main-layout .chat--layout-friend-space .friend-space-layout .friend-space-container .fs-send-photos .fs-send-area .fs-photo-area {
+      display: block; }
+
+.for-position {
+  width: 520px;
+  max-height: 580px;
+  overflow: hidden;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
+
+.ofs-wrapper {
+  width: 520px;
+  height: 580px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white; }
+
+.fsd-wrapper {
+  overflow-y: scroll;
+  max-height: 580px;
+  overflow-x: hidden; }
+
+.fs-list, .ofs-container, .fsd-container {
+  background-color: white;
+  width: 520px;
+  margin: 0 auto;
+  transition: margin 0.6s; }
+  .fs-list .fs-get-more-wrapper, .ofs-container .fs-get-more-wrapper, .fsd-container .fs-get-more-wrapper {
+    height: 50px;
+    line-height: 50px;
+    text-align: center; }
+    .fs-list .fs-get-more-wrapper .fs-get-more, .ofs-container .fs-get-more-wrapper .fs-get-more, .fsd-container .fs-get-more-wrapper .fs-get-more {
+      width: 200px;
+      height: 30px;
+      font-style: normal;
+      cursor: pointer;
+      display: inline;
+      padding: 3px 15px;
+      background-color: #e5f4ff;
+      color: #6b8299;
+      font-size: 12px;
+      line-height: 30px;
+      word-wrap: break-word;
+      word-break: break-all;
+      border-radius: 8px; }
+  .fs-list .fs-item-line, .ofs-container .fs-item-line, .fsd-container .fs-item-line {
+    width: 100%;
+    height: 30px;
+    background-color: #f6f6f6; }
+  .fs-list .fs-item, .ofs-container .fs-item, .fsd-container .fs-item {
+    width: 520px; }
+    .fs-list .fs-item .fs-item-header, .ofs-container .fs-item .fs-item-header, .fsd-container .fs-item .fs-item-header {
+      height: 68px;
+      box-sizing: border-box;
+      padding: 8px 22px 10px 10px;
+      color: #565656; }
+      .fs-list .fs-item .fs-item-header .fs-item-avatar-container, .ofs-container .fs-item .fs-item-header .fs-item-avatar-container, .fsd-container .fs-item .fs-item-header .fs-item-avatar-container {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+        margin-right: 20px; }
+        .fs-list .fs-item .fs-item-header .fs-item-avatar-container img, .ofs-container .fs-item .fs-item-header .fs-item-avatar-container img, .fsd-container .fs-item .fs-item-header .fs-item-avatar-container img {
+          width: 50px;
+          display: block; }
+      .fs-list .fs-item .fs-item-header .fs-item-alias, .ofs-container .fs-item .fs-item-header .fs-item-alias, .fsd-container .fs-item .fs-item-header .fs-item-alias {
+        font-style: normal;
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+        float: left; }
+      .fs-list .fs-item .fs-item-header .fs-item-release-time, .ofs-container .fs-item .fs-item-header .fs-item-release-time, .fsd-container .fs-item .fs-item-header .fs-item-release-time {
+        font-style: normal;
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+        float: right; }
+    .fs-list .fs-item .fs-item-main-layout, .ofs-container .fs-item .fs-item-main-layout, .fsd-container .fs-item .fs-item-main-layout {
+      width: 100%;
+      margin-bottom: 30px; }
+      .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout {
+        width: 100%;
+        margin-bottom: 12px; }
+        .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper {
+          float: left;
+          overflow: hidden;
+          text-align: center;
+          cursor: pointer; }
+          .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper img, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper img, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper img {
+            display: inline-block;
+            vertical-align: middle;
+            max-height: 100%; }
+          .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper span, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper span, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-wrapper span {
+            width: 1px;
+            height: 100%;
+            display: inline-block;
+            opacity: 0;
+            vertical-align: middle; }
+        .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-mult-wrapper, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-mult-wrapper, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-mult-wrapper {
+          width: 168px;
+          height: 115px;
+          margin-right: 4px;
+          margin-bottom: 4px; }
+        .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper {
+          height: 345px;
+          width: 100%; }
+          .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper span, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper span, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .fs-item-img-single-wrapper span {
+            width: 1px;
+            height: 100%;
+            display: inline-block;
+            opacity: 0;
+            vertical-align: middle; }
+        .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .img-single, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .img-single, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .img-single {
+          display: inline-block; }
+        .fs-list .fs-item .fs-item-main-layout .fs-item-photo-layout .img-mult, .ofs-container .fs-item .fs-item-main-layout .fs-item-photo-layout .img-mult, .fsd-container .fs-item .fs-item-main-layout .fs-item-photo-layout .img-mult {
+          display: inline-block; }
+      .fs-list .fs-item .fs-item-main-layout .fs-item-text-layout .fs-item-text, .ofs-container .fs-item .fs-item-main-layout .fs-item-text-layout .fs-item-text, .fsd-container .fs-item .fs-item-main-layout .fs-item-text-layout .fs-item-text {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 20px;
+        font-size: 18px;
+        text-align: left;
+        line-height: 24px;
+        color: #565656; }
+    .fs-list .fs-item .fs-item-icon-layout, .ofs-container .fs-item .fs-item-icon-layout, .fsd-container .fs-item .fs-item-icon-layout {
+      margin-bottom: 30px; }
+      .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group {
+        display: block;
+        float: left;
+        width: 68px;
+        box-sizing: border-box;
+        color: #b2b2b2;
+        text-align: center; }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon {
+          width: 28px;
+          height: 28px;
+          margin: 0 auto;
+          display: block;
+          background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_dianzan.png") no-repeat center center;
+          background-size: cover;
+          cursor: pointer; }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-hot.cur, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-hot.cur, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-hot.cur {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_dianzan2.png"); }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_comment.png"); }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment.cur, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment.cur, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-comment.cur {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_comment2.png"); }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe {
+          font-size: 14px; }
+          .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe em, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe em, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .fs-item-icon-describe em {
+            font-style: normal; }
+        .fs-list .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-delete, .ofs-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-delete, .fsd-container .fs-item .fs-item-icon-layout .fs-item-icon-group .icon-delete {
+          background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_delete .png"); }
+    .fs-list .fs-item .fs-item-user, .ofs-container .fs-item .fs-item-user, .fsd-container .fs-item .fs-item-user {
+      font-style: normal;
+      color: #b3c4f0;
+      font-size: 14px;
+      cursor: default;
+      padding: 0 2px; }
+    .fs-list .fs-item .fs-item-praised-users-layout, .ofs-container .fs-item .fs-item-praised-users-layout, .fsd-container .fs-item .fs-item-praised-users-layout {
+      padding-left: 18px;
+      margin-bottom: 16px; }
+      .fs-list .fs-item .fs-item-praised-users-layout p, .ofs-container .fs-item .fs-item-praised-users-layout p, .fsd-container .fs-item .fs-item-praised-users-layout p {
+        line-height: 18px;
+        text-align: left; }
+    .fs-list .fs-item .fs-item-comments-layout, .ofs-container .fs-item .fs-item-comments-layout, .fsd-container .fs-item .fs-item-comments-layout {
+      padding-bottom: 30px;
+      border-bottom: 1px solid #eee; }
+      .fs-list .fs-item .fs-item-comments-layout .fs-item-comment-list, .ofs-container .fs-item .fs-item-comments-layout .fs-item-comment-list, .fsd-container .fs-item .fs-item-comments-layout .fs-item-comment-list {
+        padding-left: 18px; }
+        .fs-list .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item, .ofs-container .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item, .fsd-container .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item {
+          line-height: 20px;
+          font-size: 14px;
+          color: #565656; }
+          .fs-list .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item .fs-item-commen-text, .ofs-container .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item .fs-item-commen-text, .fsd-container .fs-item .fs-item-comments-layout .fs-item-comment-list .fs-item-comment-item .fs-item-commen-text {
+            width: 420px;
+            font-style: normal;
+            padding-right: 20px;
+            cursor: pointer; }
+    .fs-list .fs-item .fs-item-add-comment-layout, .ofs-container .fs-item .fs-item-add-comment-layout, .fsd-container .fs-item .fs-item-add-comment-layout {
+      padding: 8px 0; }
+      .fs-list .fs-item .fs-item-add-comment-layout ::-webkit-input-placeholder, .ofs-container .fs-item .fs-item-add-comment-layout ::-webkit-input-placeholder, .fsd-container .fs-item .fs-item-add-comment-layout ::-webkit-input-placeholder {
+        color: #b2b2b2; }
+      .fs-list .fs-item .fs-item-add-comment-layout :-moz-placeholder, .ofs-container .fs-item .fs-item-add-comment-layout :-moz-placeholder, .fsd-container .fs-item .fs-item-add-comment-layout :-moz-placeholder {
+        color: #b2b2b2; }
+      .fs-list .fs-item .fs-item-add-comment-layout ::-moz-placeholder, .ofs-container .fs-item .fs-item-add-comment-layout ::-moz-placeholder, .fsd-container .fs-item .fs-item-add-comment-layout ::-moz-placeholder {
+        color: #b2b2b2; }
+      .fs-list .fs-item .fs-item-add-comment-layout :-ms-input-placeholder, .ofs-container .fs-item .fs-item-add-comment-layout :-ms-input-placeholder, .fsd-container .fs-item .fs-item-add-comment-layout :-ms-input-placeholder {
+        color: #b2b2b2; }
+      .fs-list .fs-item .fs-item-add-comment-layout .add-comment-ipt, .ofs-container .fs-item .fs-item-add-comment-layout .add-comment-ipt, .fsd-container .fs-item .fs-item-add-comment-layout .add-comment-ipt {
+        height: 24px;
+        box-sizing: border-box;
+        padding: 4px 4px;
+        width: 100%;
+        outline: 0 none;
+        border: 0 none; }
+      .fs-list .fs-item .fs-item-add-comment-layout .add-comment-view, .ofs-container .fs-item .fs-item-add-comment-layout .add-comment-view, .fsd-container .fs-item .fs-item-add-comment-layout .add-comment-view {
+        display: none; }
+    .fs-list .fs-item .fs-item-add-comment-layout.comment-status .add-comment-ipt, .ofs-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-ipt, .fsd-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-ipt {
+      display: none; }
+    .fs-list .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view, .ofs-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view, .fsd-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view {
+      display: block; }
+      .fs-list .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view textarea, .ofs-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view textarea, .fsd-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view textarea {
+        width: 100%;
+        outline: 0 none;
+        border: 0 none;
+        padding: 2px 4px;
+        box-sizing: border-box; }
+      .fs-list .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line, .ofs-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line, .fsd-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 0 18px; }
+        .fs-list .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line .fs-item-comment-btn, .ofs-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line .fs-item-comment-btn, .fsd-container .fs-item .fs-item-add-comment-layout.comment-status .add-comment-view .fs-item-bottom-line .fs-item-comment-btn {
+          font-size: 14px;
+          float: right;
+          color: #fff;
+          width: 96px;
+          height: 36px;
+          line-height: 36px;
+          border-radius: 16px;
+          text-align: center;
+          outline: 0 none;
+          border: 0 none;
+          background-color: #92aceb;
+          cursor: pointer; }
+
+.ofs-get-more-wrapper {
+  height: 28px;
+  line-height: 24px;
+  text-align: center; }
+  .ofs-get-more-wrapper .ofs-get-more {
+    width: 200px;
+    height: 30px;
+    font-style: normal;
+    cursor: pointer;
+    display: inline;
+    padding: 3px 15px;
+    background-color: #e5f4ff;
+    color: #6b8299;
+    font-size: 12px;
+    line-height: 30px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 8px; }
+
+.ofs-close {
+  position: absolute;
+  display: block;
+  background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delet.png") no-repeat center center;
+  width: 26px;
+  height: 24px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2; }
+
+#fs-detail-tab .fs-item-release-time {
+  display: none; }
+#fs-detail-tab .fsd-close {
+  position: absolute;
+  display: block;
+  background: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delet.png") no-repeat center center;
+  width: 26px;
+  height: 24px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2; }
+
+.tip-circle {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #F57373; }
+
+.fs-tip-friend-space {
+  top: 26px;
+  right: 38px; }
+
+.fs-tip-my-message {
+  right: 156px;
+  top: 26px; }
+
+.fs-item-video {
+  width: 100%;
+  margin-bottom: 12px;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  height: 345px; }
+
+/*# sourceMappingURL=friend_space.webroot.css.map */

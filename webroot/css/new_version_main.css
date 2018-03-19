@@ -1,0 +1,117 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+::-moz-scrollbar {
+  width: 6px;
+  background-color: transparent; }
+
+::-moz-scrollbar-thumb {
+  background-color: #8899a7;
+  border-radius: 4px; }
+
+.tab-view-container::-webkit-scrollbar {
+  display: none; }
+
+.left-tab {
+  width: 60px;
+  height: 100%;
+  background-color: #585e89;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  position: absolute;
+  left: -60px;
+  top: 0; }
+
+.chat--layout {
+  width: 720px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px; }
+
+.main-layout {
+  width: 1020px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px; }
+
+.chatting-history-layout {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px; }
+
+.avatar {
+  position: absolute;
+  left: -50px;
+  width: 40px;
+  height: 40px; }
+  .avatar img {
+    width: 40px !important;
+    height: 40px !important; }
+
+.tab-container {
+  position: absolute;
+  left: -60px;
+  width: 60px;
+  height: 40px;
+  top: 100px; }
+  .tab-container .tab {
+    width: 100% !important;
+    height: 70px !important; }
+
+.main-layout .user-layout .tab-view-container {
+  height: 428px; }
+
+.search-container {
+  margin-bottom: 30px; }
+
+.main-layout .user-layout {
+  background-color: #e3e8ff; }
+
+.main-layout .user-layout .user-msg .nickname-layout {
+  color: #000; }
+
+.main-layout .user-layout .tab-view-container .tab-view .cur, .main-layout .user-layout .tab-view-container .tab-view .session-item.cur {
+  background-color: #d1d6f8; }
+
+.main-layout .user-layout .search-container .main-search-layout {
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.main-layout .user-layout .tab-view-container .tab-view .friend-layout .ab-line {
+  color: #666;
+  background-color: white; }
+
+.main-layout .user-layout {
+  width: 300px; }
+
+.main-layout .user-layout .user-msg .menu span {
+  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/list.png"); }
+
+.fs-tip-friend-space {
+  top: 20px;
+  right: 14px; }
+
+.fs-tip-session {
+  top: 20px;
+  right: 14px; }
+
+.main-layout .info-content .info-de-info {
+  padding-left: 310px; }
+
+.main-layout .info-content .info-de-alias {
+  padding-left: 0; }
+
+.my-mobile .p2p-chatting-history {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px; }
+.my-mobile .change-friend-alias, .my-mobile .delete-friend {
+  display: none; }
+
+/*# sourceMappingURL=new_version_main.webroot.css.map */
