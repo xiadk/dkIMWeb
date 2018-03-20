@@ -10,8 +10,12 @@ function sendAjax(type,url,data,successCall) {
            type:type,
            url:url,
            dataType:"json",
+           headers:{
+             'token':readCookie("token")
+           },
            data:data,
            success:function (msg) {
+               console.log(msg);
                if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
                    alert(msg.msgId);
                } else {
@@ -21,9 +25,25 @@ function sendAjax(type,url,data,successCall) {
        });
 }
 
-function getAjax(url,data,successCall) {
-    $.get(url,data,successCall(data),"json");
+function sendAjax(type,url,successCall) {
+    $.ajax({
+           type:type,
+           url:url,
+           dataType:"json",
+           headers:{
+             "token":readCookie("token")
+           },
+           success:function (msg) {
+               console.log(msg);
+               if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
+                   alert(msg.msgId);
+               } else {
+                   successCall(msg);
+               }
+           }
+       });
 }
+
 
 
 //写cookies

@@ -11,7 +11,7 @@ function login() {
         } else if (REQUEST_NOT_EXIST == msg.msgId){
             $("#failMes").text(msg.message);
         } else {
-            setCookie(token,msg.token);
+            setCookie("token",msg.token);
             window.location.href="main.html";
         }
 

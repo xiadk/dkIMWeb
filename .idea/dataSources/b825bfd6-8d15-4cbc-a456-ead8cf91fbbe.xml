@@ -12,8 +12,8 @@
     </database>
     <schema id="4" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2018-03-18.13:48:57.383</IntrospectionTimestamp>
-      <IntrospectionStateNumber>597</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-03-21.00:42:05.044</IntrospectionTimestamp>
+      <IntrospectionStateNumber>610</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -87,7 +87,7 @@
     </table>
     <table id="22" parent="4" name="users">
       <ObjectId>16394</ObjectId>
-      <StateNumber>595</StateNumber>
+      <StateNumber>609</StateNumber>
     </table>
     <table id="23" parent="4" name="wallets">
       <ObjectId>16409</ObjectId>
@@ -534,7 +534,7 @@ emoji_id</ColNames>
     <column id="93" parent="22" name="phone">
       <Position>3</Position>
       <DataType>varchar(16)|0</DataType>
-      <StateNumber>575</StateNumber>
+      <StateNumber>610</StateNumber>
     </column>
     <column id="94" parent="22" name="password">
       <Position>4</Position>
@@ -576,33 +576,39 @@ emoji_id</ColNames>
       <StateNumber>575</StateNumber>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="101" parent="22" name="users_pkey">
+    <column id="101" parent="22" name="photo">
+      <Position>13</Position>
+      <DataType>varchar(256)|0</DataType>
+      <StateNumber>608</StateNumber>
+      <DefaultExpression>&apos;https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg&apos;::character varying</DefaultExpression>
+    </column>
+    <index id="102" parent="22" name="users_pkey">
       <ObjectId>16407</ObjectId>
       <ColNames>uid</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="102" parent="22" name="users_pkey">
+    <key id="103" parent="22" name="users_pkey">
       <ObjectId>16408</ObjectId>
       <ColNames>uid</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="103" parent="23" name="uid">
+    <column id="104" parent="23" name="uid">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>576</StateNumber>
     </column>
-    <column id="104" parent="23" name="money">
+    <column id="105" parent="23" name="money">
       <Position>2</Position>
       <DataType>numeric(10,2)|0</DataType>
       <StateNumber>576</StateNumber>
     </column>
-    <column id="105" parent="23" name="pay_passwd">
+    <column id="106" parent="23" name="pay_passwd">
       <Position>3</Position>
       <DataType>varchar(12)|0</DataType>
       <StateNumber>576</StateNumber>
     </column>
-    <foreign-key id="106" parent="23" name="wallets_uid_fkey">
+    <foreign-key id="107" parent="23" name="wallets_uid_fkey">
       <ObjectId>16412</ObjectId>
       <ColNames>uid</ColNames>
       <RefTableId>16394</RefTableId>
@@ -611,55 +617,55 @@ emoji_id</ColNames>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <column id="107" parent="24" name="wrid">
+    <column id="108" parent="24" name="wrid">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="108" parent="24" name="type">
+    <column id="109" parent="24" name="type">
       <Position>2</Position>
       <DataType>smallint|0</DataType>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="109" parent="24" name="money">
+    <column id="110" parent="24" name="money">
       <Position>3</Position>
       <DataType>numeric(10,2)|0</DataType>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="110" parent="24" name="previous_money">
+    <column id="111" parent="24" name="previous_money">
       <Position>4</Position>
       <DataType>numeric(10,2)|0</DataType>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="111" parent="24" name="uid">
+    <column id="112" parent="24" name="uid">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="112" parent="24" name="receive_uid">
+    <column id="113" parent="24" name="receive_uid">
       <Position>6</Position>
       <DataType>integer|0</DataType>
       <StateNumber>577</StateNumber>
     </column>
-    <column id="113" parent="24" name="create_time">
+    <column id="114" parent="24" name="create_time">
       <Position>7</Position>
       <DataType>timestamp|0</DataType>
       <StateNumber>577</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
     </column>
-    <index id="114" parent="24" name="wallets_record_pkey">
+    <index id="115" parent="24" name="wallets_record_pkey">
       <ObjectId>16421</ObjectId>
       <ColNames>wrid</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="115" parent="24" name="wallets_record_pkey">
+    <key id="116" parent="24" name="wallets_record_pkey">
       <ObjectId>16422</ObjectId>
       <ColNames>wrid</ColNames>
       <UnderlyingIndexName>wallets_record_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="116" parent="24" name="wallets_record_uid_fkey">
+    <foreign-key id="117" parent="24" name="wallets_record_uid_fkey">
       <ObjectId>16423</ObjectId>
       <ColNames>uid</ColNames>
       <RefTableId>16394</RefTableId>
@@ -668,7 +674,7 @@ emoji_id</ColNames>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <foreign-key id="117" parent="24" name="wallets_record_receive_uid_fkey">
+    <foreign-key id="118" parent="24" name="wallets_record_receive_uid_fkey">
       <ObjectId>16428</ObjectId>
       <ColNames>receive_uid</ColNames>
       <RefTableId>16394</RefTableId>
