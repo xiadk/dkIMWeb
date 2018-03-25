@@ -6,6 +6,7 @@ var REQUEST_EXIST = "1501"; // 请求保存的数据已存在
 var PWD_ERROR = "1406";//密码错误
 var REQUEST_NOT_EXIST = "1502"; // 请求数据不存在
 function sendAjax(type,url,data,successCall) {
+    console.log(data);
     $.ajax({
            type:type,
            url:url,
@@ -25,7 +26,7 @@ function sendAjax(type,url,data,successCall) {
        });
 }
 
-function sendAjax(type,url,successCall) {
+function sendAjaxNotData(type,url,successCall) {
     $.ajax({
            type:type,
            url:url,
@@ -60,7 +61,6 @@ function readCookie(name) {
 
         var c = arrCookie[i].split("=");
 
-        console.log(c[0]+"+"+name);
         if (c[0] == name) {
 
             return c[1];
