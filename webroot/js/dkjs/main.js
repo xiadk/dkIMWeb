@@ -36,6 +36,7 @@ function addFriend() {
     });
 }
 
+
 //切换打开和隐藏
 function menuToggle($obj) {
     if ($obj.css("display") == "none") {
@@ -48,14 +49,6 @@ function menuToggle($obj) {
 
 function getFriend($friends) {
     for(var i=0;i<$friends.length;i++) {
-       /* $("#search-result-container")
-            .append("<div class='srl-item clear' data-account='" + $friends[i] + "'>")
-            .append("<div class='srl-item-avatar'><img src='./images/add.png' alt='真善美'></div>")
-            .append("<div class='srl-item-text-container'>")
-            .append("<div class='srl-item-nickname'>真善美</div>")
-            .append("<div class='srl-item-mtnum'>mt_zsm</div></div>")
-            .append("<div class='srl-item-add-btn'></div>")
-            .append("</div>")*/
         $("#search-result-container").append("<div class='srl-item clear' data-account='11'><div class='srl-item-avatar'><img src='https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=587180231,3004218230&fm=27&gp=0.jpg' alt='真善美'></div><div class='srl-item-text-container'><div class='srl-item-nickname'>真善美</div><div class='srl-item-mtnum'>mt_zsm</div></div><div class='srl-item-add-btn'></div></div>")
 
     }
