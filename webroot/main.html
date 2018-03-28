@@ -307,25 +307,40 @@
                     <span class="tip-circle fs-tip-friend-space hide"></span>
                 </div>
 
-                <div class="tab" id="find-back" data-id="find-back"></div>
+               <!-- <div class="tab" id="find-back" data-id="find-back"></div>-->
             </div>
             <!-- tab-view -->
             <div class="tab-view-container" id="session-list-container">
-                <div class="tab-view cur" data-id="session" id="session-list"></div>
+                <div class="tab-view cur" data-id="session" id="session-list">
+                    <!--最近联系人列表-->
+                    <div class="session-item" data-scene="p2p" data-account="1472" data-id="p2p-1472" data-unread="0"><div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/18290252272/1498554355373/0.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar horizontal-middle"></div><span class="unread hide">0</span><div class="to-name">秘图专业段子手</div><div class="last-msg">[游戏分享消息]</div></div>
+                    <div class="session-item" data-scene="p2p" data-account="100326" data-id="p2p-100326" data-unread="0"><div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar vertical-middle"></div><span class="unread hide">0</span><div class="to-name">我的手机</div><div class="last-msg">对方是否是</div></div>
+
+                </div>
             </div>
             <div class="tab-view-container hide" id="address-book-list-container">
                 <div class="tab-view" data-id="address-book" id="address-book-list">
                     <!-- 我的手机/置顶 -->
-                    <div class="top-layout" id="top-layout"></div>
+                    <div class="top-layout" id="top-layout">
+                        <div class="ab-item" data-type="p" data-account="100326" data-id="p2p-100326"><div class="abf-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar vertical-middle"></div><div class="ab-name">我的手机</div></div>
+                    </div>
                     <!--  ab = adress book  -->
                     <div class="ab-tag hide" id="tag-team">群组</div>
 
-                    <div class="friend-layout" id="friend-layout"></div>
+                    <div class="friend-layout " id="friend-layout">
+
+                        <!-- 好友列表显示-->
+                        <div class="ab-line">A</div>
+                        <div class="ab-item cur" data-type="p" data-account="1007" data-id="p2p-1007"><div class="abf-avatar-container"> <img src="https://cdn.mitures.com/headings/4c6c3ea343f2f819f8ca8eb0808d02bc/1513849417315/8f5f631f-43f2-4235-8409-56738e874a24.webp" alt="" class="abf-avatar vertical-middle"></div><div class="ab-name">安广杰</div></div>
+                        <div class="ab-line">M</div>
+                        <div class="ab-item" data-type="p" data-account="1472" data-id="p2p-1472"><div class="abf-avatar-container"> <img src="https://cdn.mitures.com/headings/18290252272/1498554355373/0.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar horizontal-middle"></div><div class="ab-name">秘图专业段子手</div></div>
+
+                    </div>
                 </div>
             </div>
 
             <div class="tab-view-container hide" id="friend-space-view-container">
-                <div class="tab-view" data-id="friend-sapce" id="friend-space-view">
+                <div class="tab-view" data-id="friend-space" id="friend-space-view">
                     <div class="fs-line"></div>
                     <div class="fs-tb-list">
                         <div class="fs-tb-item" id="fs-my-space" data-id="3">
@@ -347,8 +362,8 @@
             </div>
 
             <!-- find-back -->
-            <div class="tab-view-container hide" id="find-back-view-container">
-                <div class="tab-view" data-id="find-back" id="find-back-view">
+            <!--<div class="tab-view-container hide" id="find-back-view-container">
+                <div class="tab-view hide" data-id="find-back" id="find-back-view">
                     <div class="fb-tb-list">
                         <div class="fb-tb-item" id="fb-refresh-location" data-id="0">
                             <div class="fb-refresh">刷新位置</div>
@@ -361,7 +376,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
         </div>
         <!-- chat-view -->
@@ -376,7 +391,7 @@
                 </div>
             </div>
         </div>
-        <div class="chat--layout clear" id="chatting-area-wrapper">
+        <div class="chat--layout clear hide" id="chatting-area-wrapper" data-id="session">
             <!-- 名片卡 -->
             <div id="info-box" class="info-box isNotFriend hide">
                 <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/default-icon.png" alt="" class="info-avatar" id="info-avatar">
@@ -442,22 +457,110 @@
             </div>
         </div>
         <!-- address book -->
-        <div class="chat--layout clear hide" id="address-book-wrapper">
+        <div class="chat--layout clear hide" id="address-book-wrapper" data-id="address-book">
             <div class="chat-title" id="info-detail">详细信息</div>
             <div class="info-view info-content" id="info-content">
 
             </div>
         </div>
         <!-- friend space -->
-        <div class="chat--layout clear chat--layout-friend-space hide" id="friend-space-wrapper">
+        <div class="chat--layout clear chat--layout-friend-space" id="friend-space-wrapper" data-id="friend-space">
             <div class="friend-space-layout">
                 <div class="friend-space-title">
                     <em class="fst-discribe">秘圈</em>
                     <div class="fst-refresh"></div>
                     <!--<div class="fst-back">返回</div>-->
                 </div>
-                <div class="fs-my-notation-container hide">
+                <div class="fs-my-notation-container">
                     <div class="fs-my-notation-list">
+
+
+                        <div class="fsn-item fsn-up" data-uid="1" data-mid="s">
+                            <div class="fsni-avater-wrapper">
+                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                            </div>
+                            <div class="fsni-main-wrapper">
+                                <div class="fsni-main-line fsni-line1">
+                                    <div class="fsni-alias">alias</div>
+                                    赞了你
+                                </div>
+                                <div class="fsni-main-line fsni-line2">
+
+                                    <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                                </div>
+                                <div class="fsni-main-line fsni-line3">
+                                    <div class="fsni-timetag">timeTag</div>
+                                </div>
+                                <div class="fsni-img-wrapper">
+                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fsn-item fsn-up" data-uid="1" data-mid="s">
+                            <div class="fsni-avater-wrapper">
+                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                            </div>
+                            <div class="fsni-main-wrapper">
+                                <div class="fsni-main-line fsni-line1">
+                                    <div class="fsni-alias">alias</div>
+                                    赞了你
+                                </div>
+                                <div class="fsni-main-line fsni-line2">
+
+                                    <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                                </div>
+                                <div class="fsni-main-line fsni-line3">
+                                    <div class="fsni-timetag">timeTag</div>
+                                </div>
+                                <div class="fsni-img-wrapper">
+                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fsn-item fsn-comment" data-uid="1" data-mid="2">
+                            <div class="fsni-avater-wrapper">
+                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                            </div>
+                            <div class="fsni-main-wrapper">
+                                <div class="fsni-main-line fsni-line1">
+                                    <div class="fsni-alias"> alias</div>
+
+                                </div>
+                                <div class="fsni-main-line fsni-line2">
+                                    <div class="fsni-comment-words">
+                                        不错不错
+                                    </div>
+                                </div>
+                                <div class="fsni-main-line fsni-line3">
+                                    <div class="fsni-timetag">2018-10-01</div>
+                                </div>
+                                <div class="fsni-img-wrapper">
+                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fsn-item fsn-comment" data-uid="' + moment.uid + '" data-mid="' + moment.mid + '">
+                            <div class="fsni-avater-wrapper">
+                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                            </div>
+                            <div class="fsni-main-wrapper">
+                                <div class="fsni-main-line fsni-line1">
+                                    <div class="fsni-alias">夏德康</div>
+                                    评论了你
+                                </div>
+                                <div class="fsni-main-line fsni-line2">
+                                    <div class="fsni-comment-words">
+                                        sliceName(words, 20)
+                                    </div>
+                                </div>
+                                <div class="fsni-main-line fsni-line3">
+                                    <div class="fsni-timetag">' + timeTag + '</div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
