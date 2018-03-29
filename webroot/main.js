@@ -42,7 +42,7 @@ function d() {
 }
 
 function form(uid, ope, fid, type, body) {
-    this.uid = uid;
+    this.token = uid;
     this.ope = ope;
     this.fid = fid;
     this.type = type;

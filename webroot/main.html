@@ -65,7 +65,7 @@
         </div>
 
     </div>
-    <!-- apply friend in team-->
+    <!-- 确认添加好友弹框-->
     <div class="alert-container hide" id="apply-friend-verify-tab">
         <div class="tab-inner tab-v  tab-afv">
             <div class="tb-header v-header  afv-header">
@@ -74,7 +74,7 @@
 
             <p class="tb-tip-text tip-text">您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。</p>
             <div class="tb-avatar afv-user-avatar">
-                <img class="tb-avatar-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png" alt="">
+                <img class="tb-avatar-img" src="https://cdn.mitures.com/headings/default/3.jpg?x-oss-process=image/format,webp" alt="">
             </div>
             <div class="tb-name user-name">真善美</div>
 
@@ -83,10 +83,10 @@
 
     </div>
 
-    <!-- usual-alert tab -->
+    <!-- 添加好友成功提示 -->
     <div class="alert-container usual-alert-tab hide" id="usual-alert-tab">
         <div class="tab-inner2">
-            <div class="tb-title tb-percent ua-text"></div>
+            <div class="tb-title tb-percent ua-text">好友申请已发送!</div>
             <button class="tb-submit" id="ua-submit">确定</button>
         </div>
     </div>
@@ -122,21 +122,12 @@
         </div>
     </div>
 
-    <!-- search results shown tab -->
+    <!-- 添加好友列表 -->
     <div class="alert-container hide" id="search-result-list-tab">
         <div class="tab-inner">
             <div class="tb-title srl-title">添加好友<span class="tb-close srl-close" id="srl-close"></span></div>
             <div class="search-result-container" id="search-result-container">
-                <!--<div class="srl-item clear" data-account="1383">-->
-                    <!--<div class="srl-item-avatar">-->
-                        <!--<img src="./images/add.png" alt="真善美">-->
-                    <!--</div>-->
-                    <!--<div class="srl-item-text-container">-->
-                        <!--<div class="srl-item-nickname">真善美</div>-->
-                        <!--<div class="srl-item-mtnum">mt_zsm</div>-->
-                    <!--</div>-->
-                    <!--<div class="srl-item-add-btn"></div>-->
-                <!--</div>-->
+
             </div>
         </div>
     </div>
@@ -295,7 +286,7 @@
 
                 <div class="searched-list" id="searched-list"></div>
             </div>
-            <!-- tabs -->
+            <!-- 最左侧选择项 -->
             <div class="tab-container clear">
                 <div class="tab cur" id="session" data-id="session">
                     <span class="tip-circle fs-tip-session hide"></span>
@@ -313,8 +304,27 @@
             <div class="tab-view-container" id="session-list-container">
                 <div class="tab-view cur" data-id="session" id="session-list">
                     <!--最近联系人列表-->
-                    <div class="session-item" data-scene="p2p" data-account="1472" data-id="p2p-1472" data-unread="0"><div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/18290252272/1498554355373/0.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar horizontal-middle"></div><span class="unread hide">0</span><div class="to-name">秘图专业段子手</div><div class="last-msg">[游戏分享消息]</div></div>
-                    <div class="session-item" data-scene="p2p" data-account="100326" data-id="p2p-100326" data-unread="0"><div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar vertical-middle"></div><span class="unread hide">0</span><div class="to-name">我的手机</div><div class="last-msg">对方是否是</div></div>
+
+                    <div class="session-item" data-scene="p2p" data-account="100326" data-id="p2p-100326" data-unread="0">
+                        <div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar vertical-middle"></div>
+                        <span class="unread">1</span>
+                        <div class="to-name">好友信息</div>
+                        <div class="last-msg">有新朋友</div>
+                    </div>
+
+                    <div class="session-item" data-scene="p2p" data-account="1472" data-id="p2p-1472" data-unread="0">
+                        <div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/18290252272/1498554355373/0.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar horizontal-middle"></div>
+                        <!--未读信息的提示-->
+                        <span class="unread hide">0</span>
+                        <div class="to-name">秘图专业段子手</div>
+                        <div class="last-msg">[游戏分享消息]</div>
+                    </div>
+                    <div class="session-item" data-scene="p2p" data-account="100326" data-id="p2p-100326" data-unread="0">
+                        <div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar vertical-middle"></div>
+                        <span class="unread hide">0</span>
+                        <div class="to-name">我的手机</div>
+                        <div class="last-msg">对方是否是</div>
+                    </div>
 
                 </div>
             </div>
@@ -322,7 +332,10 @@
                 <div class="tab-view" data-id="address-book" id="address-book-list">
                     <!-- 我的手机/置顶 -->
                     <div class="top-layout" id="top-layout">
-                        <div class="ab-item" data-type="p" data-account="100326" data-id="p2p-100326"><div class="abf-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar vertical-middle"></div><div class="ab-name">我的手机</div></div>
+                        <div class="ab-item" data-type="p" data-account="100326" data-id="p2p-100326">
+                            <div class="abf-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar vertical-middle"></div>
+                            <div class="ab-name">我的手机</div>
+                        </div>
                     </div>
                     <!--  ab = adress book  -->
                     <div class="ab-tag hide" id="tag-team">群组</div>
@@ -391,7 +404,7 @@
                 </div>
             </div>
         </div>
-        <div class="chat--layout clear hide" id="chatting-area-wrapper" data-id="session">
+        <div class="chat--layout clear" id="chatting-area-wrapper" data-id="session">
             <!-- 名片卡 -->
             <div id="info-box" class="info-box isNotFriend hide">
                 <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/default-icon.png" alt="" class="info-avatar" id="info-avatar">
@@ -436,6 +449,69 @@
 
             <div class="chat-view chat-content" id="chat-content">
 
+                <p class="u-msgTime">- - - - -&nbsp;03-26 19:52&nbsp;- -- - -</p>
+                <!--发送消息-->
+                <div data-time="1522065179070" data-id="1bcfe2193015c31d0460cb7aa8cc2baa" id="1bcfe2193015c31d0460cb7aa8cc2baa" data-idserver="12839877731" class="clear item item-me">
+                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                    <div class="msg msg-text j-msg">
+                        <div class="box">
+                            <div class="cnt">
+                                <div class="f-maxWid">对方是否是</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--发送表情包-->
+                <div data-time="1522326750425" data-id="88195d754cc550f565f99d11ec876c51" id="88195d754cc550f565f99d11ec876c51" data-idserver="12995841918" class="clear item item-me">
+                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                    <div class="msg msg-text j-msg">
+                        <div class="box">
+                            <div class="cnt">
+                                <div class="f-maxWid"><img class="emoji" src="https://cdn.mitures.com/web/assests/img/emoji/emoji_27.png"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--发送图片-->
+                <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-me">
+                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                    <div class="msg msg-text j-msg">
+                        <div class="box">
+                            <div class="cnt">
+                                <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--对方发送消息过来-->
+                <div data-time="1522328748882" data-id="18a7215834217fc0dd6b9f142a0c137f" id="18a7215834217fc0dd6b9f142a0c137f" data-idserver="12997361748" class="clear item item-you">
+                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://cdn.mitures.com/headings/default/3.jpg?x-oss-process=image/format,webp" data-account="601072"></div>
+                    <div class="msg msg-text j-msg">
+                        <div class="box">
+                            <div class="cnt">
+                                <div class="f-maxWid">好的</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--对方发送图片-->
+                <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-you">
+                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                    <div class="msg msg-text j-msg">
+                        <div class="box">
+                            <div class="cnt">
+                                <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="text-layout">
@@ -461,10 +537,19 @@
             <div class="chat-title" id="info-detail">详细信息</div>
             <div class="info-view info-content" id="info-content">
 
+                <div class="delete-friend" id="delete-friend" data-id="p2p-100255">移除好友</div>
+                <div class="info-de-avatar-container"><img class="info-de-avatar vertical-middle" id="info-de-avatar" src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" alt=""></div>
+                <div class="info-de-alias info-de-info" id="info-de-alias"><em>万鹏</em><input type="text" class="alias-edit-ipt hide" id="alias-edit-ipt" data-id="p2p-100255"><span class="change-friend-alias" id="change-friend-alias"></span></div>
+                <div class="info-de-nick info-de-info" id="info-de-nick"><span>昵称:</span><em>🙄</em></div>
+                <div class="info-de-area  info-de-info" id="info-de-area"><span>地区:</span><em>中国</em></div>
+                <div class="info-btn-container">
+                    <button class="info-btn info-de-send" id="info-de-send" data-id="p2p-100255">发消息</button>
+                </div>
+
             </div>
         </div>
         <!-- friend space -->
-        <div class="chat--layout clear chat--layout-friend-space" id="friend-space-wrapper" data-id="friend-space">
+        <div class="chat--layout clear chat--layout-friend-space hide" id="friend-space-wrapper" data-id="friend-space">
             <div class="friend-space-layout">
                 <div class="friend-space-title">
                     <em class="fst-discribe">秘圈</em>
@@ -657,6 +742,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
      <script type="text/javascript" src="js/dkjs/util.js"></script>
      <script type="text/javascript" src="js/dkjs/main.js"></script>
+<script type="text/javascript" src="js/dkjs/websocketUtil.js"></script>
 
 </body>
 </html>
