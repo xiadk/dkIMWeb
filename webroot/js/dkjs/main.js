@@ -25,6 +25,7 @@ function addFriend() {
         $("#search-person-tab").hide();
     });
     $("#sp-submit").click(function () {
+        $("#search-person-tab").hide();
         var data = {"condition":$("#tel-for-search").val()};
         sendAjax("get","/friend",data,function (msg) {
             $("#afv-close").show();
@@ -34,13 +35,13 @@ function addFriend() {
         });
     });
     $("#afv-close").click(function () {
-        $("#afv-close").hide();
+        $("#apply-friend-verify-tab").hide();
     });
     $("#srl-close").click(function () {
-        $("#srl-close").hide();
+        $("#search-result-list-tab").hide();
     });
-    $(".srl-item-add-btn").click(function () {
-        var fid = $(this).parent().attr("data-account");
+    $("#afv-submit").click(function () {
+        var fid = $("#afv-submit").attr("data-account");
         var token = readCookie("token");
         var message = new form(token,OPE_PERSONAL,fid,TYPE_ADD_FRIEND,"");
         wsSend(message);
@@ -65,9 +66,21 @@ function getFriend($friends) {
         var name = $friends[i].name;
         var phone = $friends[i].phone;
         var id = $friends[i].id;
+        $("#search-result-container").empty();
         $("#search-result-container").append("<div class='srl-item clear' data-account='" + id + "'><div class='srl-item-avatar'><img src='" + imgUrl + "' alt='"+name+"'></div><div class='srl-item-text-container'><div class='srl-item-nickname'>" + name + "</div><div class='srl-item-mtnum'>" + phone + "</div></div><div class='srl-item-add-btn'></div></div>")
 
     }
+    $(".srl-item-add-btn").click(function () {
+        $("#search-result-list-tab").hide();
+        var photo = $(this).parent().children("img").attr("src");
+        var name = $(this).parent().children("img").attr("alt");
+        $("#apply-friend-verify-tab").children("img").attr("src",photo);
+        $("#tb-name-user-name").html(name);
+        var fid = $(this).parent(".srl-item").attr("data-account");
+        alert(fid+name+photo);
+        $("#afv-submit").attr("data-account",fid);
+        $("#apply-friend-verify-tab").show();
+    });
 }
 
 $(".tab").click(function(event){

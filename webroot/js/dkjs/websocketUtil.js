@@ -32,14 +32,14 @@ function wsSend(message) {
     break;
 }
 }
-Socket.onopen = function (event) {
+ws.onopen = function (event) {
     //发送注册信息
 }
-Socket.onclose = function (event) {
+ws.onclose = function (event) {
     console.log('close'+event.code);
 }
 
-Socket.onmessage = function (event) {
+ws.onmessage = function (event) {
     console.log(event.data.valueOf())
 }
 /*function c() {
