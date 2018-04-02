@@ -6,6 +6,7 @@ var REQUEST_EXIST = "1501"; // 请求保存的数据已存在
 var PWD_ERROR = "1406";//密码错误
 var REQUEST_NOT_EXIST = "1502"; // 请求数据不存在
 function sendAjax(type,url,data,successCall) {
+   console.log("发送消息");
     console.log(data);
     $.ajax({
            type:type,
@@ -16,6 +17,7 @@ function sendAjax(type,url,data,successCall) {
            },
            data:data,
            success:function (msg) {
+               console.log("响应消息");
                console.log(msg);
                if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
                    alert(msg.msgId);
@@ -27,6 +29,7 @@ function sendAjax(type,url,data,successCall) {
 }
 
 function sendAjaxNotData(type,url,successCall) {
+    console.log("发送消息");
     $.ajax({
            type:type,
            url:url,
@@ -35,6 +38,7 @@ function sendAjaxNotData(type,url,successCall) {
              "token":readCookie("token")
            },
            success:function (msg) {
+               console.log("响应消息");
                console.log(msg);
                if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
                    alert(msg.msgId);
