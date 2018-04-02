@@ -33,7 +33,7 @@ function wsSend(message) {
 }
 }
 ws.onopen = function (event) {
-    //发送注册信息
+    wsSend();
 }
 ws.onclose = function (event) {
     console.log('close'+event.code);

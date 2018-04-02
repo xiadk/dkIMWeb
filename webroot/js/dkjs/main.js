@@ -2,13 +2,7 @@
 sendAjaxNotData("get", "/user", function (msg) {
     $("#avatar_img").attr("src", msg.photo);
     $("#nickname-layout-span").text(msg.name);
-     var friedns = msg.friends;
-     for(var i=0,j=friedns.length;i<j;i++){
-         var photo = friedns[i].photo;
-         var alias = friedns[i].alias;
-         var fid = friedns[i].fid;
-        $("#friend-layout").append("<div class='ab-item cur' data-type='p' data-account='1007' data-id='"+fid+"'><div class='abf-avatar-container'> <img src='"+photo+"' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>"+alias+"</div></div>");
-     }
+
 
 });
 $(function () {
@@ -33,8 +27,8 @@ function addFriend() {
     });
     $("#sp-submit").click(function () {
         $("#search-person-tab").hide();
-        var data = {"condition":$("#tel-for-search").val()};
-        sendAjax("get","/friend",data,function (msg) {
+        var data = {"condition": $("#tel-for-search").val()};
+        sendAjax("get", "/friend", data, function (msg) {
             $("#afv-close").show();
             $("#search-result-list-tab").show();
             var friends = msg.friends;
@@ -50,7 +44,7 @@ function addFriend() {
     $("#afv-submit").click(function () {
         var fid = $("#afv-submit").attr("data-account");
         var token = readCookie("token");
-        var message = new form(token,OPE_PERSONAL,fid,TYPE_ADD_FRIEND,"");
+        var message = new form(token, OPE_PERSONAL, fid, TYPE_ADD_FRIEND, "");
         wsSend(message);
         $("#apply-friend-verify-tab").hide();
         $("#usual-alert-tab").show();
@@ -71,43 +65,75 @@ function menuToggle($obj) {
 
 //获取添加好友列表
 function getFriend($friends) {
-    for(var i=0;i<$friends.length;i++) {
+    for (var i = 0; i < $friends.length; i++) {
         var imgUrl = $friends[i].photo;
         var name = $friends[i].name;
         var phone = $friends[i].phone;
         var id = $friends[i].uid;
         $("#search-result-container").empty();
-        $("#search-result-container").append("<div class='srl-item clear' data-account='" + id + "'><div class='srl-item-avatar'><img src='" + imgUrl + "' alt='"+name+"'></div><div class='srl-item-text-container'><div class='srl-item-nickname'>" + name + "</div><div class='srl-item-mtnum'>" + phone + "</div></div><div class='srl-item-add-btn'></div></div>")
+        $("#search-result-container").append("<div class='srl-item clear' data-account='" + id + "'><div class='srl-item-avatar'><img src='" + imgUrl + "' alt='" + name + "'></div><div class='srl-item-text-container'><div class='srl-item-nickname'>" + name + "</div><div class='srl-item-mtnum'>" + phone + "</div></div><div class='srl-item-add-btn'></div></div>")
 
     }
     $(".srl-item-add-btn").click(function () {
         $("#search-result-list-tab").hide();
         var photo = $(this).parent().children(".srl-item-avatar").children("img").attr("src");
         var name = $(this).parent().children(".srl-item-avatar").children("img").attr("alt");
-        $("#apply-friend-verify-tab").find("img").attr("src",photo);
+        $("#apply-friend-verify-tab").find("img").attr("src", photo);
         $("#tb-name-user-name").html(name);
         var fid = $(this).parent().attr("data-account");
-        $("#afv-submit").attr("data-account",fid);
+        $("#afv-submit").attr("data-account", fid);
         $("#apply-friend-verify-tab").show();
     });
 }
 
-$(".tab").click(function(event){
+$(".tab").click(function (event) {
     $(".tab").removeClass("cur");
     $(".tab-view-container").addClass("hide");
     $(".chat--layout").addClass("hide");
     $(this).addClass("cur");
     var data_id_val = $(this).attr("data-id");
-    $.each($(".tab-view-container"),function(i,n){
-         var childVal = $(n).children().attr("data-id");
-        if(data_id_val==childVal){
+    $.each($(".tab-view-container"), function (i, n) {
+        var childVal = $(n).children().attr("data-id");
+        if (data_id_val == childVal) {
             $(n).removeClass("hide");
         }
     });
-    $.each($(".chat--layout"),function(i,n){
-         var chat_id = $(n).attr("data-id");
-        if(data_id_val==chat_id){
+    $.each($(".chat--layout"), function (i, n) {
+        var chat_id = $(n).attr("data-id");
+        if (data_id_val == chat_id) {
             $(n).removeClass("hide");
         }
     });
+});
+//获取通讯录好友
+$("#address-book").click(function () {
+    sendAjaxNotData("get", "/friend/findFriends", function (msg) {
+        var friedns = msg.friends;
+        $("#friend-layout").empty();
+        for (var i = 0, j = friedns.length; i < j; i++) {
+            var photo = friedns[i].photo;
+            var alias = friedns[i].alias;
+            var fid = friedns[i].fid;
+            var name = friedns[i].name;
+            var address = friedns[i].address;
+            //当前用cur
+            $("#friend-layout").append("<div class='ab-item' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
+        }
+
+        $(".ab-item").click(function () {
+            $(".ab-item").removeClass("cur");
+            $(this).addClass("cur");
+            $(".chat--layout").addClass("hide");
+            $("#address-book-wrapper").removeClass("hide");
+            var photo = $(this).find("img").attr("src");
+            var alias = $(this).children(".ab-name").html();
+            var fid = $(this).attr("data-id");
+            var name = $(this).attr("data-name");
+            var address = $(this).attr("data-address");
+            $("#info-de-avatar").attr("src", photo);
+            $("#info-de-alias").children("em").html(alias);
+            $("#info-de-nick").children("em").html(name);
+            $("#info-de-area").children("em").html(address);
+        });
+    })
 });
