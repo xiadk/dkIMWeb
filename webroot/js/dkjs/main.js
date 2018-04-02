@@ -1,9 +1,16 @@
 //获取用户数据，初始化页面
 sendAjaxNotData("get", "/user", function (msg) {
-        $("#avatar_img").attr("src", msg.photo);
-        $("#nickname-layout-span").text(msg.name);
+    $("#avatar_img").attr("src", msg.photo);
+    $("#nickname-layout-span").text(msg.name);
+     var friedns = msg.friends;
+     for(var i=0,j=friedns.length;i<j;i++){
+         var photo = friedns[i].photo;
+         var alias = friedns[i].alias;
+         var fid = friedns[i].fid;
+        $("#friend-layout").append("<div class='ab-item cur' data-type='p' data-account='1007' data-id='"+fid+"'><div class='abf-avatar-container'> <img src='"+photo+"' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>"+alias+"</div></div>");
+     }
 
-    });
+});
 $(function () {
     //用户菜单显示
     $("#menu").click(function () {

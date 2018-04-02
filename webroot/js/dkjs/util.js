@@ -64,9 +64,7 @@ function readCookie(name) {
     for(var i=0;i<arrCookie.length;i++) {
 
         var c = arrCookie[i].split("=");
-
-        if (c[0] == name) {
-
+        if (c[0].trim() == name.trim()) {
             return c[1];
 
         }
