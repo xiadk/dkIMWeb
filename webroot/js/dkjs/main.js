@@ -41,6 +41,7 @@ function addFriend() {
     $("#srl-close").click(function () {
         $("#search-result-list-tab").hide();
     });
+    //发送好友请求
     $("#afv-submit").click(function () {
         var fid = $("#afv-submit").attr("data-account");
         var token = readCookie("token");
@@ -82,6 +83,8 @@ function getFriend($friends) {
         $("#tb-name-user-name").html(name);
         var fid = $(this).parent().attr("data-account");
         $("#afv-submit").attr("data-account", fid);
+        $("#title").text("添加好友");
+        $("#tip").text("您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。");
         $("#apply-friend-verify-tab").show();
     });
 }
@@ -137,3 +140,11 @@ $("#address-book").click(function () {
         });
     })
 });
+
+function friendApply(message) {
+    $("#title").text("好友请求");
+    $("#tip").text("你有一个新朋友想认识你。");
+    $("#apply-friend-verify-tab").find("img").attr("src",message.photo);
+    $("#tb-name-user-name").text(message.name);
+    $("#apply-friend-verify-tab").show();
+}

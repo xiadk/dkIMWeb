@@ -33,14 +33,37 @@ function wsSend(message) {
 }
 }
 ws.onopen = function (event) {
-    wsSend();
+    var message = new form(readCookie("token"));
+    wsSend(message);
 }
 ws.onclose = function (event) {
     console.log('close'+event.code);
 }
 
 ws.onmessage = function (event) {
-    console.log(event.data.valueOf())
+    console.log(event.data.valueOf());
+    var message = jQuery.parseJSON(event.data);
+    var type = message.type;
+    switch (type) {
+        case 0:
+            // do something
+            break;
+        case 1:
+            ws.send(JSON.stringify(message));
+            break;
+        case 2:
+            // 个人加好友请求
+            if(message.ope==OPE_PERSONAL){
+                friendApply(message);
+            }
+            break;
+        case 3:
+            // do something
+            break;
+        default:
+            // this never happens
+            break;
+    }
 }
 /*function c() {
     var commit = $("#commit").val();
