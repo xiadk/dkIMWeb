@@ -59,7 +59,7 @@
             <div class="tb-avatar dfv-user-avatar">
                 <img class="tb-avatar-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png" alt="">
             </div>
-            <div class="tb-name team-name">真善美</div>
+            <div class="tb-name team-name" id="delete_friend-name">真善美</div>
 
             <button class="tb-submit" id="dfv-submit" data-id="">确定</button>
         </div>
@@ -69,10 +69,10 @@
     <div class="alert-container hide" id="apply-friend-verify-tab">
         <div class="tab-inner tab-v  tab-afv">
             <div class="tb-header v-header  afv-header">
-                <div class="tb-title v-title  afv-title" id="title"> <span class="tb-close afv-close" id="afv-close"></span></div>
+                <div class="tb-title v-title  afv-title" id="title">添加好友 <span class="tb-close afv-close" id="afv-close"></span></div>
             </div>
 
-            <p class="tb-tip-text tip-text" id="tip"></p>
+            <p class="tb-tip-text tip-text" id="tip">您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。</p>
             <div class="tb-avatar afv-user-avatar">
                 <img class="tb-avatar-img" src="" alt="">
             </div>
@@ -83,11 +83,37 @@
 
     </div>
 
-    <!-- 添加好友成功提示 -->
-    <div class="alert-container usual-alert-tab hide" id="usual-alert-tab">
+    <!-- 好友申请弹框-->
+    <div class="alert-container hide" id="sure-friend-verify-tab">
+        <div class="tab-inner tab-v  tab-afv">
+            <div class="tb-header v-header  afv-header">
+                <div class="tb-title v-title  afv-title" id="sure-title">好友请求<span class="tb-close afv-close" id="sure-close"></span></div>
+            </div>
+
+            <p class="tb-tip-text tip-text" id="sure-tip">你有一个新朋友想认识你。</p>
+            <div class="tb-avatar afv-user-avatar">
+                <img class="tb-avatar-img" src="" alt="">
+            </div>
+            <div class="tb-name user-name" id="sure-tb-name-user-name">真善美</div>
+
+            <button class="tb-submit" id="sure-submit" data-account="">确定</button>
+        </div>
+
+    </div>
+
+    <!-- 添加好友申请成功提示 -->
+    <div class="alert-container usual-alert-tab hide" data-id="undefined" id="usual-alert-tab">
         <div class="tab-inner2">
-            <div class="tb-title tb-percent ua-text">好友申请已发送!</div>
-            <button class="tb-submit" id="ua-submit">确定</button>
+            <div class="tb-title tb-percent ua-text" id="usual-alert-tab-hint">好友申请已发送!</div>
+            <button class="tb-submit tb-usual-submit" id="apply-submit">确定</button>
+        </div>
+    </div>
+
+    <!-- 添加好友成功 -->
+    <div class="alert-container usual-alert-tab hide" data-id="undefined" id="success-alert-tab">
+        <div class="tab-inner2">
+            <div class="tb-title tb-percent ua-text">添加成功，开始认识吧!</div>
+            <button class="tb-submit tb-usual-submit" id="success-submit">确定</button>
         </div>
     </div>
 
@@ -103,7 +129,8 @@
         <div class="tab-inner2">
             <span class="tb-close sp-close" id="sp-close"></span>
             <div class="tb-search-layout">
-                <input type="text" class="tb-search" id="tel-for-search" placeholder="昵称、手机号或秘图号">
+                <input type="text" class="tb-search" id="tel-for-search" placeholder="昵称或者手机号">
+                <p style="color: red;margin-top: 10px">用户不存在</p>
             </div>
 
             <button class="tb-submit" id="sp-submit">确定</button>

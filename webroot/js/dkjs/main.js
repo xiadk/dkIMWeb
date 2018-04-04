@@ -11,6 +11,7 @@ $(function () {
         menuToggle($("#menu_list"));
     });
     addFriend();
+    delFriend();
 
 
 })
@@ -25,14 +26,24 @@ function addFriend() {
     $("#sp-close").click(function () {
         $("#search-person-tab").hide();
     });
+    $("#apply-submit").click(function () {
+        $("#usual-alert-tab").hide();
+    });
+    $("#tel-for-search").focus(function () {
+        $("#search-person-tab").find("p").hide();
+    });
     $("#sp-submit").click(function () {
-        $("#search-person-tab").hide();
         var data = {"condition": $("#tel-for-search").val()};
         sendAjax("get", "/friend", data, function (msg) {
-            $("#afv-close").show();
-            $("#search-result-list-tab").show();
-            var friends = msg.friends;
-            getFriend(friends);
+            if (msg.msgId == "1502") {
+                $("#search-person-tab").find("p").show();
+            } else {
+                $("#search-person-tab").hide();
+                $("#afv-close").show();
+                $("#search-result-list-tab").show();
+                var friends = msg.friends;
+                getFriend(friends);
+            }
         });
     });
     $("#afv-close").click(function () {
@@ -48,9 +59,13 @@ function addFriend() {
         var message = new form(token, OPE_PERSONAL, fid, TYPE_ADD_FRIEND, "");
         wsSend(message);
         $("#apply-friend-verify-tab").hide();
+        $("#usual-alert-tab-hint").text("好友申请已发送!");
         $("#usual-alert-tab").show();
     });
     $("#ua-submit").hide();
+    $("#success-submit").click(function () {
+        $("#success-alert-tab").hide();
+    });
 }
 
 
@@ -83,8 +98,6 @@ function getFriend($friends) {
         $("#tb-name-user-name").html(name);
         var fid = $(this).parent().attr("data-account");
         $("#afv-submit").attr("data-account", fid);
-        $("#title").text("添加好友");
-        $("#tip").text("您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。");
         $("#apply-friend-verify-tab").show();
     });
 }
@@ -137,14 +150,49 @@ $("#address-book").click(function () {
             $("#info-de-alias").children("em").html(alias);
             $("#info-de-nick").children("em").html(name);
             $("#info-de-area").children("em").html(address);
+            $("#delete-friend").attr("data-id", fid);
         });
     })
 });
 
 function friendApply(message) {
-    $("#title").text("好友请求");
-    $("#tip").text("你有一个新朋友想认识你。");
-    $("#apply-friend-verify-tab").find("img").attr("src",message.photo);
-    $("#tb-name-user-name").text(message.name);
-    $("#apply-friend-verify-tab").show();
+    $("#sure-friend-verify-tab").find("img").attr("src", message.photo);
+    $("#sure-tb-name-user-name").text(message.name);
+    $("#sure-friend-verify-tab").show();
+    //发送确认添加好友请求
+    $("#sure-submit").click(function () {
+        var data = {"uid": message.uid, "uidname": message.name, "fidname": $("#nickname-layout-span").text()};
+        sendAjax("post", "/friend", data, function (msg) {
+            $("#sure-friend-verify-tab").hide();
+            if (msg.msgId == "0200") {
+                $("#success-alert-tab").show();
+            }
+        })
+    });
+    $("#sure-close").click(function () {
+        $("#sure-friend-verify-tab").hide();
+    })
+}
+
+//删除好友
+function delFriend() {
+    $("#delete-friend").click(function () {
+        $("#delete-friend-verify-tab").find("img").attr("src", $("#info-de-avatar").attr("src"));
+        $("#delete_friend-name").text($("#info-de-alias").children("em").html());
+        $("#delete-friend-verify-tab").show();
+        $("#dfv-close").click(function () {
+            $("#delete-friend-verify-tab").hide();
+        });
+        $("#dfv-submit").click(function () {
+            var fid = $("#delete-friend").attr("data-id");
+            var data = {"fid": fid};
+            sendAjax("get", "/friend/del", data, function (msg) {
+
+                if(msg.msgId=="0200"){
+                    $("#usual-alert-tab-hint").text("好友申请已发送!");
+                    $("#usual-alert-tab").show();
+                }
+            })
+        });
+    });
 }

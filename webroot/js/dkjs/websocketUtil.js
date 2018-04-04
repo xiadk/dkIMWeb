@@ -42,27 +42,35 @@ ws.onclose = function (event) {
 
 ws.onmessage = function (event) {
     console.log(event.data.valueOf());
-    var message = jQuery.parseJSON(event.data);
-    var type = message.type;
-    switch (type) {
-        case 0:
-            // do something
-            break;
-        case 1:
-            ws.send(JSON.stringify(message));
-            break;
-        case 2:
-            // 个人加好友请求
-            if(message.ope==OPE_PERSONAL){
-                friendApply(message);
+    var res = jQuery.parseJSON(event.data.valueOf());
+    if(res.msgId=="0500"){
+        alert(res.message);
+    } else {
+        var body = res.body;
+        for (var i = 0, j = body.length; i < j; i++) {
+            var message = jQuery.parseJSON(body[i]);
+            var type = message.type;
+            switch (type) {
+                case 0:
+                    // do something
+                    break;
+                case 1:
+                    ws.send(JSON.stringify(message));
+                    break;
+                case 2:
+                    // 个人加好友请求
+                    if (message.ope == OPE_PERSONAL) {
+                        friendApply(message);
+                    }
+                    break;
+                case 3:
+                    // do something
+                    break;
+                default:
+                    // this never happens
+                    break;
             }
-            break;
-        case 3:
-            // do something
-            break;
-        default:
-            // this never happens
-            break;
+        }
     }
 }
 /*function c() {
