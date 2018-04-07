@@ -12,6 +12,40 @@ $(function () {
     });
     addFriend();
     delFriend();
+    change_friend_alias();//修改备注
+    //获取通讯录好友
+    $("#address-book").click(function () {
+        address_book();
+    });
+
+    //退出
+    $("#login_out").click(function () {
+        sendAjaxNotData("get", "/login_out", function (msg) {
+            if (msg.msgId == SUCCESS) {
+                window.location.href = "login.html";
+                delCookie("token");
+            }
+        })
+    });
+
+    //消息列表-点击好友消息
+    $("#new_friend_hint").click(function () {
+        var new_friend_hint_span = $("#new_friend_hint").find("span");
+        var messages_length = new_friend_hint_span.text();
+        if (messages_length <= 0) {
+            alert("暂无新朋友信息");
+        } else {
+            friendApply(add_messages[messages_length - 1]);
+            messages_length--;
+            if (messages_length == 0) {
+                new_friend_hint_span.addClass("hide");
+            }
+            new_friend_hint_span.text(messages_length);
+        }
+    })
+
+
+
 
 
 })
@@ -59,24 +93,12 @@ function addFriend() {
         var message = new form(token, OPE_PERSONAL, fid, TYPE_ADD_FRIEND, "");
         wsSend(message);
         $("#apply-friend-verify-tab").hide();
-        $("#usual-alert-tab-hint").text("好友申请已发送!");
-        $("#usual-alert-tab").show();
+        hint("好友申请已发送!");
     });
     $("#ua-submit").hide();
     $("#success-submit").click(function () {
         $("#success-alert-tab").hide();
     });
-}
-
-
-//切换打开和隐藏
-function menuToggle($obj) {
-    if ($obj.css("display") == "none") {
-        $obj.css("display", "block");
-    } else {
-        $obj.css("display", "none");
-    }
-
 }
 
 //获取添加好友列表
@@ -121,8 +143,9 @@ $(".tab").click(function (event) {
         }
     });
 });
+
 //获取通讯录好友
-$("#address-book").click(function () {
+function address_book() {
     sendAjaxNotData("get", "/friend/findFriends", function (msg) {
         var friedns = msg.friends;
         $("#friend-layout").empty();
@@ -135,6 +158,7 @@ $("#address-book").click(function () {
             //当前用cur
             $("#friend-layout").append("<div class='ab-item' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
         }
+        $("#info-content").hide();
 
         $(".ab-item").click(function () {
             $(".ab-item").removeClass("cur");
@@ -151,27 +175,37 @@ $("#address-book").click(function () {
             $("#info-de-nick").children("em").html(name);
             $("#info-de-area").children("em").html(address);
             $("#delete-friend").attr("data-id", fid);
+            $("#info-content").show();
         });
     })
-});
+}
 
+//显示好友信息
 function friendApply(message) {
-    $("#sure-friend-verify-tab").find("img").attr("src", message.photo);
-    $("#sure-tb-name-user-name").text(message.name);
-    $("#sure-friend-verify-tab").show();
-    //发送确认添加好友请求
-    $("#sure-submit").click(function () {
-        var data = {"uid": message.uid, "uidname": message.name, "fidname": $("#nickname-layout-span").text()};
-        sendAjax("post", "/friend", data, function (msg) {
-            $("#sure-friend-verify-tab").hide();
-            if (msg.msgId == "0200") {
-                $("#success-alert-tab").show();
-            }
-        })
+    var data = {"mid": message.mid};
+    sendAjax("post", "/messages/read", data, function (msg) {
+        if (msg.msgId == SUCCESS) {
+            $("#sure-friend-verify-tab").find("img").attr("src", message.photo);
+            $("#sure-tb-name-user-name").text(message.name);
+            $("#sure-friend-verify-tab").show();
+            //发送确认添加好友请求
+            $("#sure-submit").click(function () {
+                var data = {"uid": message.uid, "uidname": message.name, "fidname": $("#nickname-layout-span").text()};
+                sendAjax("post", "/friend", data, function (msg) {
+                    $("#sure-friend-verify-tab").hide();
+                    if (msg.msgId == "0200") {
+                        $("#success-alert-tab").show();
+                    }
+                })
+            });
+            $("#sure-close").click(function () {
+                $("#sure-friend-verify-tab").hide();
+            })
+        }else{
+            alert(msg.message);
+        }
     });
-    $("#sure-close").click(function () {
-        $("#sure-friend-verify-tab").hide();
-    })
+
 }
 
 //删除好友
@@ -187,12 +221,41 @@ function delFriend() {
             var fid = $("#delete-friend").attr("data-id");
             var data = {"fid": fid};
             sendAjax("get", "/friend/del", data, function (msg) {
-
-                if(msg.msgId=="0200"){
-                    $("#usual-alert-tab-hint").text("好友申请已发送!");
-                    $("#usual-alert-tab").show();
+                $("#delete-friend-verify-tab").hide();
+                if (msg.msgId == "0200") {
+                    hint("删除好友成功!");
                 }
             })
+        });
+    });
+}
+
+//修改备注
+function change_friend_alias() {
+    $("#change-friend-alias").click(function () {
+        var em = $("#info-de-alias").children("em");
+        var $alias_edit_ipt = $("#alias-edit-ipt");
+        em.addClass("hide");
+        var oldAlias = em.text();
+        $alias_edit_ipt.val(oldAlias);
+        $alias_edit_ipt.removeClass("hide");
+        $alias_edit_ipt.blur(function () {
+            var newAlias = $alias_edit_ipt.val();
+            if(oldAlias != newAlias) {
+
+                var fid = $("#delete-friend").attr("data-id");
+                var data = {"alias":newAlias,"fid":fid};
+                sendAjax("post","/friend/alias",data,function (msg) {
+                    if(msg.msgId==SUCCESS){
+                        hint("修改成功");
+                    } else {
+                        hint("修改失败");
+                    }
+                })
+            }
+            em.text($alias_edit_ipt.val());
+            $alias_edit_ipt.addClass("hide");
+            em.removeClass("hide");
         });
     });
 }

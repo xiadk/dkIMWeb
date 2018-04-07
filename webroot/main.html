@@ -130,7 +130,7 @@
             <span class="tb-close sp-close" id="sp-close"></span>
             <div class="tb-search-layout">
                 <input type="text" class="tb-search" id="tel-for-search" placeholder="昵称或者手机号">
-                <p style="color: red;margin-top: 10px">用户不存在</p>
+                <p class="hide" style="color: red;margin-top: 10px">用户不存在</p>
             </div>
 
             <button class="tb-submit" id="sp-submit">确定</button>
@@ -299,7 +299,7 @@
                     <div class="menu-item sound close" data-id="2" data-of="off">
                         关闭声音
                     </div>
-                    <div class="menu-item quit" data-id="3">
+                    <div class="menu-item quit" data-id="3" id="login_out">
                         退出
                     </div>
                 </div>
@@ -333,9 +333,9 @@
                 <div class="tab-view cur" data-id="session" id="session-list">
                     <!--最近联系人列表-->
 
-                    <div class="session-item" data-scene="p2p" data-account="100326" data-id="p2p-100326" data-unread="0">
+                    <div class="session-item" data-scene="p2p" data-account="-1" data-id="p2p-100326" data-unread="0" id="new_friend_hint">
                         <div class="session-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="session-avatar vertical-middle"></div>
-                        <span class="unread">1</span>
+                        <span class="unread hide">0</span>
                         <div class="to-name">好友信息</div>
                         <div class="last-msg">有新朋友</div>
                     </div>
@@ -557,7 +557,7 @@
         <!-- address book -->
         <div class="chat--layout clear hide" id="address-book-wrapper" data-id="address-book">
             <div class="chat-title" id="info-detail">详细信息</div>
-            <div class="info-view info-content" id="info-content">
+            <div class="info-view info-content hide" id="info-content">
 
                 <div class="delete-friend" id="delete-friend" data-id="p2p-100255">移除好友</div>
                 <div class="info-de-avatar-container"><img class="info-de-avatar vertical-middle" id="info-de-avatar" src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" alt=""></div>
@@ -753,11 +753,6 @@
             <div id="test-map"></div>
         </div>
 
-
-        <audio id="tip-music">
-            <source src="./audio/audio_end_tip.wav" type="audio/wav">
-            <!--<source  src="hangge.ogg" type="audio/ogg">-->
-        </audio>
     </div>
 
 

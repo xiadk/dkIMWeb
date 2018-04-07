@@ -13,42 +13,47 @@ var TYPE_ADD_FRIEND = 2;//添加好友请求
 var OPE_PERSONAL = 0;//个人消息
 var OPE_GROUP = 1;//群消息
 
+var add_messages=new Array();
+
 function wsSend(message) {
     switch (ws.readyState) {
-  case CONNECTING:
-    // do something
-    break;
-  case OPEN:
-    ws.send(JSON.stringify(message));
-    break;
-  case CLOSING:
-    // do something
-    break;
-  case CLOSED:
-    // do something
-    break;
-  default:
-    // this never happens
-    break;
+        case CONNECTING:
+            // do something
+            break;
+        case OPEN:
+            ws.send(JSON.stringify(message));
+            break;
+        case CLOSING:
+            // do something
+            break;
+        case CLOSED:
+            // do something
+            break;
+        default:
+            // this never happens
+            break;
+    }
 }
-}
+
 ws.onopen = function (event) {
     var message = new form(readCookie("token"));
     wsSend(message);
 }
 ws.onclose = function (event) {
-    console.log('close'+event.code);
+    console.log('close' + event.code);
 }
 
 ws.onmessage = function (event) {
     console.log(event.data.valueOf());
     var res = jQuery.parseJSON(event.data.valueOf());
-    if(res.msgId=="0500"){
-        alert(res.message);
+    if (res.msgId == AUTH_ERROR) {
+        window.location.href = "login.html";
+    } else if (res.msgId != "0200") {
+        hint(res.message);
     } else {
         var body = res.body;
         for (var i = 0, j = body.length; i < j; i++) {
-            var message = jQuery.parseJSON(body[i]);
+            var message = body[i];
             var type = message.type;
             switch (type) {
                 case 0:
@@ -60,7 +65,11 @@ ws.onmessage = function (event) {
                 case 2:
                     // 个人加好友请求
                     if (message.ope == OPE_PERSONAL) {
-                        friendApply(message);
+                        var new_friend_hint_span = $("#new_friend_hint").find("span");
+                        var messages_length = parseInt(new_friend_hint_span.text())+1;
+                        new_friend_hint_span.text(messages_length);
+                        new_friend_hint_span.removeClass("hide");
+                        add_messages[messages_length-1]=message;
                     }
                     break;
                 case 3:
