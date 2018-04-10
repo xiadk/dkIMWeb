@@ -13,6 +13,11 @@ $(function () {
     addFriend();
     delFriend();
     change_friend_alias();//修改备注
+
+    //联系人
+    $("#session").click(function () {
+        session();
+    })
     //获取通讯录好友
     $("#address-book").click(function () {
         address_book();
@@ -144,8 +149,26 @@ $(".tab").click(function (event) {
     });
 });
 
+//联系人
+function  session() {
+    sendAjax("get","/friend/getcontacts",function (msg) {
+        var contacts = msg.contacts;
+        for(var i=0,j=contacts.length;i<j;i++){
+            var photo = contacts[i].photo;
+            var alias = contacts[i].alias;
+            var new_content = contacts[i].new_content;
+            var fid = contacts[i].fid;
+            var unread = 0;
+            $("#session-list").append(" <div class='session-item' data-scene='p2p'  data-id='"+fid+"' data-unread='0' id='new_friend_hint"+fid+"'> <div class='session-avatar-container'><img src='"+photo+"' alt='' class='session-avatar vertical-middle'></div> <span class='unread hide'>"+unread+"</span> <div class='to-name'>"+alias+"</div> <div class='last-msg'>"+new_content+"</div> </div>")
+
+        }
+    })
+}
+
 //获取通讯录好友
 function address_book() {
+    $("#info-content").hide();
+    $(".ab-item").removeClass("cur");
     sendAjaxNotData("get", "/friend/findFriends", function (msg) {
         var friedns = msg.friends;
         $("#friend-layout").empty();
@@ -156,12 +179,11 @@ function address_book() {
             var name = friedns[i].name;
             var address = friedns[i].address;
             //当前用cur
-            $("#friend-layout").append("<div class='ab-item' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
+            $("#friend-layout").append("<div class='ab-item' id='ab-item"+fid+"' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
         }
-        $("#info-content").hide();
+
 
         $(".ab-item").click(function () {
-            $(".ab-item").removeClass("cur");
             $(this).addClass("cur");
             $(".chat--layout").addClass("hide");
             $("#address-book-wrapper").removeClass("hide");
@@ -254,6 +276,7 @@ function change_friend_alias() {
                 })
             }
             em.text($alias_edit_ipt.val());
+            $("#ab-item"+fid).children(".ab-name").text($alias_edit_ipt.val());
             $alias_edit_ipt.addClass("hide");
             em.removeClass("hide");
         });
