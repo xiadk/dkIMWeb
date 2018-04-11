@@ -1,15 +1,14 @@
-//获取用户数据，初始化页面
-sendAjaxNotData("get", "/user", function (msg) {
-    $("#avatar_img").attr("src", msg.photo);
-    $("#nickname-layout-span").text(msg.name);
-
-
-});
 $(function () {
+    //获取用户数据，初始化页面
+    sendAjaxNotData("get", "/user", function (msg) {
+        $("#avatar_img").attr("src", msg.photo);
+        $("#nickname-layout-span").text(msg.name);
+    });
     //用户菜单显示
     $("#menu").click(function () {
         menuToggle($("#menu_list"));
     });
+    session();
     addFriend();
     delFriend();
     change_friend_alias();//修改备注
@@ -48,9 +47,6 @@ $(function () {
             new_friend_hint_span.text(messages_length);
         }
     })
-
-
-
 
 
 })
@@ -149,20 +145,71 @@ $(".tab").click(function (event) {
     });
 });
 
-//联系人
-function  session() {
-    sendAjax("get","/friend/getcontacts",function (msg) {
+//获取联系人
+function session() {
+    $("#session-list").empty();
+    $("#session-list").append("<div class='session-item' data-scene='p2p'  data-id='-1' data-unread='0' id='new_friend_hint'> <div class='session-avatar-container'><img src='https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp' alt='' class='session-avatar vertical-middle'></div> <span class='unread hide'>0</span> <div class='to-name'>好友信息</div> <div class='last-msg'>有新朋友</div> </div>");
+    sendAjaxNotData("get", "/friend/getcontacts", function (msg) {
         var contacts = msg.contacts;
-        for(var i=0,j=contacts.length;i<j;i++){
+        for (var i = 0, j = contacts.length; i < j; i++) {
             var photo = contacts[i].photo;
             var alias = contacts[i].alias;
             var new_content = contacts[i].new_content;
             var fid = contacts[i].fid;
             var unread = 0;
-            $("#session-list").append(" <div class='session-item' data-scene='p2p'  data-id='"+fid+"' data-unread='0' id='new_friend_hint"+fid+"'> <div class='session-avatar-container'><img src='"+photo+"' alt='' class='session-avatar vertical-middle'></div> <span class='unread hide'>"+unread+"</span> <div class='to-name'>"+alias+"</div> <div class='last-msg'>"+new_content+"</div> </div>")
-
+            $("#session-list").append(" <div class='session-item' data-scene='p2p'  data-id='" + fid + "' data-unread='0' id='new_friend_hint" + fid + "'> <div class='session-avatar-container'><img src='" + photo + "' alt='' class='session-avatar vertical-middle'></div> <span class='unread hide'>" + unread + "</span> <div class='to-name'>" + alias + "</div> <div class='last-msg'>" + new_content + "</div> </div>");
         }
-    })
+
+        $(".session-item").click(function () {
+            comment($(this));
+        });
+        $("#info-de-send").click(function () {
+            var fid = $("#delete-friend").attr("data-id");
+            var id = "#new_friend_hint" + fid;
+
+            comment($(id));
+
+            $(".tab").removeClass("cur");
+            $("#session").addClass("cur");
+            $(".tab-view-container").addClass("hide");
+            $("#session-list-container").removeClass("hide");
+            $(".chat--layout").addClass("hide");
+            $("#chatting-area-wrapper").removeClass("hide");
+            session();
+
+        });
+    });
+}
+
+//与某个联系人聊天
+function comment(commentPeople) {
+    var oldfid = $("#team-setting").attr("data-id");
+    var fid = $(commentPeople).attr("data-id");
+    if (oldfid != fid && fid != "-1") {
+        var alias = $(commentPeople).find(".to-name").text();
+        $("#team-setting").removeClass("hide");
+        $("#nick-name").text(alias);
+        $("#team-setting").attr("data-id", fid);
+        $("#chat-content").append("<p class='u-msgTime'>- - - - -&nbsp;03-26 19:52&nbsp;- &#45;&#45; - -</p>");
+    }
+}
+
+//发消息，开始创建联系人
+function addContact() {
+    $("#info-de-send").click(function () {
+
+        $(".tab").removeClass("cur");
+        $("#session").addClass("cur");
+        $(".tab-view-container").addClass("hide");
+        $("#session-list-container").removeClass("hide");
+        $(".chat--layout").addClass("hide");
+        $("#chatting-area-wrapper").removeClass("hide");
+        session();
+        var fid = $("#delete-friend").attr("data-id");
+        var id = "#new_friend_hint" + fid;
+        alert($(id).attr("id"));
+        comment($(id));
+    });
 }
 
 //获取通讯录好友
@@ -179,7 +226,7 @@ function address_book() {
             var name = friedns[i].name;
             var address = friedns[i].address;
             //当前用cur
-            $("#friend-layout").append("<div class='ab-item' id='ab-item"+fid+"' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
+            $("#friend-layout").append("<div class='ab-item' id='ab-item" + fid + "' data-type='p' data-account='1' data-id='" + fid + "' data-address='" + address + "' data-name='" + name + "'><div class='abf-avatar-container'> <img src='" + photo + "' alt='' class='abf-avatar vertical-middle'></div><div class='ab-name'>" + alias + "</div></div>");
         }
 
 
@@ -223,7 +270,7 @@ function friendApply(message) {
             $("#sure-close").click(function () {
                 $("#sure-friend-verify-tab").hide();
             })
-        }else{
+        } else {
             alert(msg.message);
         }
     });
@@ -263,12 +310,12 @@ function change_friend_alias() {
         $alias_edit_ipt.removeClass("hide");
         $alias_edit_ipt.blur(function () {
             var newAlias = $alias_edit_ipt.val();
-            if(oldAlias != newAlias) {
+            if (oldAlias != newAlias) {
 
                 var fid = $("#delete-friend").attr("data-id");
-                var data = {"alias":newAlias,"fid":fid};
-                sendAjax("post","/friend/alias",data,function (msg) {
-                    if(msg.msgId==SUCCESS){
+                var data = {"alias": newAlias, "fid": fid};
+                sendAjax("post", "/friend/alias", data, function (msg) {
+                    if (msg.msgId == SUCCESS) {
                         hint("修改成功");
                     } else {
                         hint("修改失败");
@@ -276,7 +323,7 @@ function change_friend_alias() {
                 })
             }
             em.text($alias_edit_ipt.val());
-            $("#ab-item"+fid).children(".ab-name").text($alias_edit_ipt.val());
+            $("#ab-item" + fid).children(".ab-name").text($alias_edit_ipt.val());
             $alias_edit_ipt.addClass("hide");
             em.removeClass("hide");
         });
