@@ -191,6 +191,8 @@ function comment(commentPeople) {
         $("#nick-name").text(alias);
         $("#team-setting").attr("data-id", fid);
         $("#chat-content").append("<p class='u-msgTime'>- - - - -&nbsp;03-26 19:52&nbsp;- &#45;&#45; - -</p>");
+        var data={"fid":fid};
+        sendAjax("post","/friend/addcontact",data);
     }
 }
 
@@ -207,7 +209,6 @@ function addContact() {
         session();
         var fid = $("#delete-friend").attr("data-id");
         var id = "#new_friend_hint" + fid;
-        alert($(id).attr("id"));
         comment($(id));
     });
 }
