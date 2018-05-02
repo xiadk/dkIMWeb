@@ -5,7 +5,7 @@ $("#info-de-send").click(function () {
     var data = {"fid": fid};
     sendAjax("post", "/friend/addcontact", data, function () {
     });
-    StartChatInit(fid, alias,0);
+    StartChatInit(fid, alias, 0);
     session();
 });
 
@@ -15,8 +15,8 @@ function comment(fid, alias) {
     $("#moreMsg").addClass("hide");
 
     var page = $("#moreMsg").attr("data-page");
-    if(page==""||page==null){
-        page=1;
+    if (page == "" || page == null) {
+        page = 1;
     }
     //获取最新消息(分页，6条)
     var data = {"fid": fid, "page": page};
@@ -29,7 +29,7 @@ function comment(fid, alias) {
 
             if (fid == msg.messages[i].uid) {
                 //好友发的
-                var contentHtml = chat_content_append(msg.messages[i].body, 2,msg.messages[i].photo);
+                var contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo);
                 $("#moreMsg").after(contentHtml);
             } else {
                 //自己发的
@@ -99,7 +99,7 @@ $("#statrt_chat").click(function () {
                 var gid = msg.gid;
                 var gname = msg.gname;
                 //页面初始化
-                StartChatInit(gid, gname,1);
+                StartChatInit(gid, gname, 1);
                 //获取联系人列表
                 session();
                 menuToggle($("#tab_layout"));
@@ -222,8 +222,8 @@ $("#add_team_member").click(function () {
                     for (var i = 0, j = members.length; i < j; i++) {
                         var html = "<div class=\"tb-item am-friend-item\" data-account=\"1007\">" +
                             "<span class=\"tb-item-circle am-item-circle\" data-id=" + members[i].fid + "></span>" +
-                            "<img src="+members[i].photo+" class=\"tb-item-avatar dm-item-avatar\" >\n" +
-                            "<div class=\"tb-item-alias am-item-alias\">"+members[i].alias+"</div>\n" +
+                            "<img src=" + members[i].photo + " class=\"tb-item-avatar dm-item-avatar\" >\n" +
+                            "<div class=\"tb-item-alias am-item-alias\">" + members[i].alias + "</div>\n" +
                             "</div>";
                         $("#am-friend-list").append(html);
                     }
@@ -292,17 +292,25 @@ $("#send").click(function () {
 });
 
 
-//fm=1自己发，fm=2别人发
-function chat_content_append(body, fm,src) {
+//fm=1自己发，fm=2别人发 type=0文本消息，1为图片,默认文本
+function chat_content_append(body, fm, src, type) {
+    if (type == undefined) {
+        type = 0;
+    }
     var content = "";
     if (fm == 2) {
         content = "<div data-time=\"1522328748882\" data-id=\"18a7215834217fc0dd6b9f142a0c137f\" id=\"18a7215834217fc0dd6b9f142a0c137f\" data-idserver=\"12997361748\" class=\"clear item item-you\">\n" +
             "                    <div class=\"j-img-container\"><img class=\"img j-img vertical-middle\" src=" + src + " data-account=\"601072\"></div>\n" +
             "                    <div class=\"msg msg-text j-msg\">\n" +
             "                        <div class=\"box\">\n" +
-            "                            <div class=\"cnt\">\n" +
-            "                                <div class=\"f-maxWid\">" + body + "</div>\n" +
-            "                            </div>\n" +
+            "                            <div class=\"cnt\">";
+        if (type == 0) {
+            content = content + " <div class=\"f-maxWid\">" + body + "</div>";
+        } else {
+            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + src + "></div>";
+        }
+
+        content = content + "         </div>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
             "                </div>";
@@ -312,9 +320,14 @@ function chat_content_append(body, fm,src) {
             "                    <div class=\"j-img-container\"><img class=\"img j-img vertical-middle\" src=" + src + " data-account=\"100326\"></div>\n" +
             "                    <div class=\"msg msg-text j-msg\">\n" +
             "                        <div class=\"box\">\n" +
-            "                            <div class=\"cnt\">\n" +
-            "                                <div class=\"f-maxWid\">" + body + "</div>\n" +
-            "                            </div>\n" +
+            "                            <div class=\"cnt\">";
+        if (type == 0) {
+            content = content + " <div class=\"f-maxWid\">" + body + "</div>";
+        } else {
+            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + src + "></div>";
+        }
+
+        content = content + "         </div>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
             "                </div>";
@@ -325,13 +338,13 @@ function chat_content_append(body, fm,src) {
 }
 
 //发起聊天
-function StartChatInit(fid, alias,ope) {
+function StartChatInit(fid, alias, ope) {
     $("#team-setting").removeClass("hide");
     $("#add_team_member").addClass("hide");
     if (ope == 1) {
         $("#add_team_member").removeClass("hide");
     }
-    $("#nick-name-layout").attr("data-show",ope);
+    $("#nick-name-layout").attr("data-show", ope);
     $("#team-setting").attr("data-id", fid);
     var id = "#new_friend_hint" + fid;
     $(".session-item").removeClass("cur");
@@ -376,16 +389,27 @@ function selectedAndCancle($obj) {
     }
 }
 
-//上传文件弹框
-$("#emoji").click(function () {
-    alert("ss")
-    sendAjaxNotData("post","/messages/downFile",function (msg) {
+//显示表情
+$("#showEmoji").click(function (e) {
+
+    e.stopPropagation();
+    $("#emojiTag").children(".m-emoji-wrapper").css("display", "block");
+    /*sendAjaxNotData("post","/messages/downFile",function (msg) {
         console.log(msg);
-    })
+    })*/
 });
 
+//点击发送表情
+$(".m-emoji-picCol-ul").children("span").click(function (e) {
+    e.stopPropagation();
+    var image = $(this).children("img").attr("src");
+
+    chat_content_append(image,1,-1,1);
+});
+
+
 //上传文件弹框
-$("#chooseFile").click(function () {
+$("#chooseFileBtn").click(function () {
     $("#upload").click();
 });
 
@@ -434,36 +458,36 @@ function handlerFiles(files) {
     formData.append("file", files);
     // formData.append("token", token_value);
     $.ajax({
-    url: "/upload",
-    type: "POST",
-    data: formData,
-    processData: false, // 不要对data参数进行序列化处理，默认为true
-    contentType: false, // 不要设置Content-Type请求头，因为文件数据是以 multipart/form-data 来编码
-    xhr: function(){
-        myXhr = $.ajaxSettings.xhr();
-        if(myXhr.upload){
-          myXhr.upload.addEventListener('progress',function(e) {
-            if (e.lengthComputable) {
-              var percent = Math.floor(e.loaded/e.total*100);
-              if(percent <= 100) {
-                $("#J_progress_bar").progress('set progress', percent);
-                $("#J_progress_label").html('已上传：'+percent+'%');
-              }
-              if(percent >= 100) {
-                $("#J_progress_label").html('文件上传完毕，请等待...');
-                $("#J_progress_label").addClass('success');
-              }
+        url: "/upload",
+        type: "POST",
+        data: formData,
+        processData: false, // 不要对data参数进行序列化处理，默认为true
+        contentType: false, // 不要设置Content-Type请求头，因为文件数据是以 multipart/form-data 来编码
+        xhr: function () {
+            myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) {
+                myXhr.upload.addEventListener('progress', function (e) {
+                    if (e.lengthComputable) {
+                        var percent = Math.floor(e.loaded / e.total * 100);
+                        if (percent <= 100) {
+                            $("#J_progress_bar").progress('set progress', percent);
+                            $("#J_progress_label").html('已上传：' + percent + '%');
+                        }
+                        if (percent >= 100) {
+                            $("#J_progress_label").html('文件上传完毕，请等待...');
+                            $("#J_progress_label").addClass('success');
+                        }
+                    }
+                }, false);
             }
-          }, false);
+            return myXhr;
+        },
+        success: function (res) {
+            // 请求成功
+        },
+        error: function (res) {
+            // 请求失败
+            console.log(res);
         }
-        return myXhr;
-    },
-    success: function(res){
-        // 请求成功
-    },
-    error: function(res) {
-        // 请求失败
-        console.log(res);
-    }
-});
+    });
 }

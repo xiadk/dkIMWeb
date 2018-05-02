@@ -138,6 +138,7 @@ $(document).click(function(){
        $("#team_setting_menu_layout").addClass("hide");
        $("#p2p_setting_menu_layout").addClass("hide");
        $("#menu_list").addClass("hide");
+       $("#emojiTag").children(".m-emoji-wrapper").css("display","none");
 });
 
 

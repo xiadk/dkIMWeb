@@ -57,32 +57,35 @@ function sendAjaxNotData(type, url, successCall) {
 
 //写cookies
 function setCookie(name, value) {
-    var days = 1;
-    var exp = new Date();
-    exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    sessionStorage.name=value;
+    // var days = 1;
+    // var exp = new Date();
+    // exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
+    // document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
 }
 
 function readCookie(name) {
-    var arrCookie = document.cookie.split(";");
-    for (var i = 0; i < arrCookie.length; i++) {
-
-        var c = arrCookie[i].split("=");
-        if (c[0].trim() == name.trim()) {
-            return c[1];
-
-        }
-    }
-    return "";
+    return sessionStorage.name;
+    // var arrCookie = document.cookie.split(";");
+    // for (var i = 0; i < arrCookie.length; i++) {
+    //
+    //     var c = arrCookie[i].split("=");
+    //     if (c[0].trim() == name.trim()) {
+    //         return c[1];
+    //
+    //     }
+    // }
+    // return "";
 
 }
 
 //删除cookies
 function delCookie(name) {
-    var cval = readCookie(name);
-    if (cval != null) {
-        document.cookie = name + "=" + cval + ";expires=" + (new Date(0)).toGMTString();
-    }
+    sessionStorage.name="";
+    // var cval = readCookie(name);
+    // if (cval != null) {
+    //     document.cookie = name + "=" + cval + ";expires=" + (new Date(0)).toGMTString();
+    // }
 }
 
 //提示框
