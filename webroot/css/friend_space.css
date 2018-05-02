@@ -26,12 +26,6 @@
 .main-layout .user-layout .tab-container .tab {
   width: 33%;
   position: relative; }
-.main-layout .user-layout .tab-container #friend-space {
-  width: 34%;
-  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_miquan3.png");
-  background-size: 28px 27px; }
-.main-layout .user-layout .tab-container #friend-space.cur {
-  background-image: url("http://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/icon_miquan.png"); }
 .main-layout .user-layout .tab-view .fs-tb-item {
   height: 80px;
   line-height: 80px;
@@ -100,7 +94,6 @@
       margin: 0 auto;
       min-height: 520px; }
       .main-layout .chat--layout-friend-space .friend-space-layout .fs-my-notation-container .fs-my-notation-list .fsn-item {
-        height: 110px;
         overflow: hidden;
         width: 100%;
         padding-top: 17px;

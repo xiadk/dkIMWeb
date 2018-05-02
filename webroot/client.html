@@ -4,6 +4,92 @@
     <meta charset="UTF-8">
     <script src="main.js" type="text/javascript"></script>
     <script src="js/jquery.min.js" type="text/javascript"></script>
+    <style type='text/css'>
+        .commentguest{
+    width: 2em;
+    height: 2em;
+    top: 2.2em;
+    position: relative;
+}
+.commentguest img{
+    width:100%;
+    height: auto;
+}
+.comment-input{
+        transition: all 0.5s ease 0s;
+        font-family: "微软雅黑";
+        font-size: 1.1em;
+        position: relative;
+        left: 3.1em;
+}
+.commentarea{
+    position:absolute;
+    padding: 0.6em 1em;
+    border: 0.1em solid black;
+    background: #fff none repeat scroll 0 0;
+    width:34em;
+    z-index: 2;
+}
+.commentarea textarea{
+    border: 0 none;
+    display: block;
+    outline: 0 none;
+    resize: none;
+    width:32em;
+    height: 2em;
+
+}
+.comment-input:hover .commentarea{
+    height: 11.37em;
+}
+.comment-input:hover .commentarea textarea{
+    height:7em;
+}
+.comment-input:hover .commentbtn{
+    top:6em;
+    z-index: 3;
+}
+.commentbtn{
+    border: 0 none;
+    bottom: 2em;
+    height: 3.3em;
+    padding: 0;
+    left: 0.1em;
+    width:33.9em;
+    position: relative;
+    transition:top 0.1s ease 0s;
+
+}
+.commentmask{
+    border: 0 none;
+    top:2em;
+    height: 100%;
+    padding: 0;
+    right: 0;
+    width:33.9em;
+    background-color: #f4f5f6;
+    position: relative;
+    z-index: 1;
+}
+.getcomment{
+    width:6em;
+    float: right;
+    bottom: 1.2em;
+    position: relative;
+    width:6.7em;
+    height: 100%;
+    z-index:3;
+    background-color:#3f404c;
+    color: #fff;
+    line-height: 1.9em;
+    text-align: center;
+    font-size: 1.1em;
+}
+.getcomment:hover{
+    background-color: #AC2925;
+    color: #fff;
+}
+    </style>
     <title>我爱奶茶</title>
 </head>
 <body>
@@ -13,5 +99,71 @@
 <input type="text" id="commit2"/>
 <input type="button" id="b2" value="异步请求" onclick="d()"/>
 <input type="button" id="b3" value="关闭请求" onclick="e()"/>
+
+<a mm-action-track="" track-type="['click']" ng-click="sendClick($event)" track-opt="{'target':'发文件'}" class="web_wechat_pic js_fileupload ng-isolate-scope webuploader-container" ng-hide="noflash" href="javascript:;" title="图片和文件">
+    <div class="webuploader-pick"></div>
+    <div id="rt_rt_1cca4fghl1kp61gj25oq1h92kqv8" style="position: absolute; top: 0px; left: 0px; width: 30px; height: 30px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div>
+</a>
+<input type="file" id="upload" name="upload"/>　　
+<progress id="progress" min="0" max="100" value="0">0</progress>
+<div class="comment-add">
+     <div class="commentguest">
+           <img src="img/guest.png" class="img-circle">
+     </div>
+     <div id="comment-input" class="comment-input">
+       <div class="commentarea">
+             <textarea  id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight> 80)this.style.posHeight=this.scrollHeight+5" placeholder="请写下您的评论"></textarea>
+           </div>
+       <div class="commentbtn">
+         <div class="commentmask"></div>
+         <a href="javascript:;" class="getcomment btn btn-block" role="button">评论</a>
+           </div>
+      </div>
+</div>
+<script type="text/javascript">
+form.on('submit',function() {
+
+　　　　// 此处进行ajax上传
+
+　　});
+    /*var formData = new FormData();
+formData.append("file", document.getElementById('file').files[0]);
+formData.append("token", token_value);
+
+$.ajax({
+    url: "/uploadurl",
+    type: "POST",
+    data: formData,
+    processData: false, // 不要对data参数进行序列化处理，默认为true
+    contentType: false, // 不要设置Content-Type请求头，因为文件数据是以 multipart/form-data 来编码
+    xhr: function(){
+        myXhr = $.ajaxSettings.xhr();
+        if(myXhr.upload){
+          myXhr.upload.addEventListener('progress',function(e) {
+            if (e.lengthComputable) {
+              var percent = Math.floor(e.loaded/e.total*100);
+              if(percent <= 100) {
+                $("#J_progress_bar").progress('set progress', percent);
+                $("#J_progress_label").html('已上传：'+percent+'%');
+              }
+              if(percent >= 100) {
+                $("#J_progress_label").html('文件上传完毕，请等待...');
+                $("#J_progress_label").addClass('success');
+              }
+            }
+          }, false);
+        }
+        return myXhr;
+    },
+    success: function(res){
+        // 请求成功
+    },
+    error: function(res) {
+        // 请求失败
+        console.log(res);
+    }
+});*/
+</script>
 </body>
+
 </html>

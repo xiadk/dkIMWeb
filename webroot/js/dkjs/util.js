@@ -21,7 +21,7 @@ function sendAjax(type, url, data, successCall) {
             console.log("响应消息");
             console.log(msg);
             if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
-                alert(msg.msgId);
+                alert(msg.message);
             } else if (msg.msgId == AUTH_ERROR) {
                 window.location.href = "login.html";
             } else {
@@ -44,7 +44,7 @@ function sendAjaxNotData(type, url, successCall) {
             console.log("响应消息");
             console.log(msg);
             if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
-                alert(msg.msgId);
+                alert(msg.message);
             } else if (msg.msgId == AUTH_ERROR) {
                 window.location.href = "login.html";
             } else {
@@ -99,4 +99,29 @@ function menuToggle($obj) {
         $obj.css("display", "none");
     }
 
+}
+
+function addScrollbr($layout) {
+    var htl = "<div class=\"ps__scrollbar-x-rail\" style=\"left: 0px; bottom: -3400px;\">" +
+        "<div class=\"ps__scrollbar-x\" tabindex=\"0\" style=\"left: 0px; width: 0px;\"></div>" +
+        "</div>" +
+        "<div class=\"ps__scrollbar-y-rail\" style=\"top: 3400px; right: 0px; height: 360px;\">" +
+        "<div class=\"ps__scrollbar-y\" tabindex=\"0\" style=\"top: 326px; height: 34px;\"></div>" +
+        "</div>";
+    $layout.append(htl);
+}
+
+//替换class
+function classToggle($obj,oldClass,newClass) {
+
+    $obj.removeClass(oldClass);
+    $obj.addClass(newClass);
+}
+
+//聊天提示
+function chatHint(content) {
+    var html="<p class=\"u-notice tc item\" data-time=\"1524147029530\" data-id=\"0106d7d1-320a-4892-ba67-b278c3845dd3\" data-idserver=\"29321917085253634\">" +
+        "<span class=\"radius5px\">"+content+"</span>" +
+        "</p>";
+    $("#chat-content").append(html);
 }

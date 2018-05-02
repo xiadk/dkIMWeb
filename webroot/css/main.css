@@ -1,118 +1,143 @@
 @charset "UTF-8";
 * {
-  margin: 0;
-  padding: 0; }
+    margin: 0;
+    padding: 0;
+}
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {
-  width: 6px;
-  background-color: transparent; }
+    width: 6px;
+    background-color: transparent;
+}
 
 ::-webkit-scrollbar-thumb {
-  background-color: #8899a7;
-  border-radius: 4px; }
+    background-color: #8899a7;
+    border-radius: 4px;
+}
 
 ::-moz-scrollbar {
-  width: 6px;
-  background-color: transparent; }
+    width: 6px;
+    background-color: transparent;
+}
 
 ::-moz-scrollbar-thumb {
-  background-color: #8899a7;
-  border-radius: 4px; }
+    background-color: #8899a7;
+    border-radius: 4px;
+}
 
 .tab-view-container::-webkit-scrollbar {
-  display: none; }
+    display: none;
+}
 
 * {
-  margin: 0;
-  padding: 0; }
+    margin: 0;
+    padding: 0;
+}
 
 .clear:after {
-  content: '.';
-  height: 0;
-  visibility: hidden;
-  overflow: hidden;
-  clear: both;
-  display: block; }
+    content: '.';
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    clear: both;
+    display: block;
+}
 
 .hide {
-  display: none; }
+    display: none;
+}
 
 .btn-send {
-  width: 96px;
-  height: 36px;
-  box-sizing: border-box;
-  font-size: 16px;
-  background-color: #92aceb;
-  line-height: 36px;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 16px;
-  border: 0 none;
-  border-radius: 18px;
-  outline: 0 none;
-  cursor: pointer; }
+    width: 96px;
+    height: 36px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #92aceb;
+    line-height: 36px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 16px;
+    border: 0 none;
+    border-radius: 18px;
+    outline: 0 none;
+    cursor: pointer;
+}
 
 .log {
-  width: 200px;
-  line-height: 50px;
-  height: 50px;
-  position: absolute;
-  top: 70px;
-  left: 14%;
-  z-index: 1001; }
-  .log img {
+    width: 200px;
+    line-height: 50px;
+    height: 50px;
+    position: absolute;
+    top: 70px;
+    left: 14%;
+    z-index: 1001;
+}
+
+.log img {
     display: inline-block;
     width: 50px;
     height: 50px;
-    float: left; }
-  .log span {
+    float: left;
+}
+
+.log span {
     display: inline-block;
     height: 50px;
     line-height: 50px;
     font-size: 28px;
     float: left;
     padding-left: 10%;
-    color: white; }
+    color: white;
+}
 
 html {
-  width: 100%;
-  height: 100%; }
+    width: 100%;
+    height: 100%;
+}
 
 body {
-  width: 100%;
-  height: 100%;
-  background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png") no-repeat center center;
-  background-size: cover; }
+    width: 100%;
+    height: 100%;
+    background: url("/images/background.png") no-repeat center center;
+    background-size: cover;
+}
 
 .tc {
-  text-align: center;
-  margin: 10px 0 10px; }
+    text-align: center;
+    margin: 10px 0 10px;
+}
 
 .radius5px {
-  border-radius: 5px; }
+    border-radius: 5px;
+}
 
 .over {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  position: absolute;
-  z-index: 9999; }
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    z-index: 9999;
+}
 
 .split .qrcode-tab {
-  margin-left: -400px !important; }
+    margin-left: -400px !important;
+}
+
 .split .login-tab {
-  margin-left: -100px !important; }
+    margin-left: -100px !important;
+}
 
 .login-container {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png") no-repeat center center;
-  background-size: cover;
-  position: absolute;
-  z-index: 1000; }
-  .login-container .qrcode-tab {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    z-index: 1000;
+}
+
+.login-container .qrcode-tab {
     width: 438px;
     height: 500px;
     box-shadow: rgba(0, 0, 0, 0.2) 10px 2px 20px;
@@ -122,66 +147,86 @@ body {
     z-index: 9;
     margin-left: -220px;
     top: 50%;
-    margin-top: -250px; }
-    .login-container .qrcode-tab .qr-header {
-      margin: 70px 0 30px;
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-      color: #666; }
-    .login-container .qrcode-tab #qrcode {
-      width: 250px;
-      height: 250px;
-      margin: 0 auto 50px; }
-    .login-container .qrcode-tab .login-tab {
-      transition: all 1s; }
-    .login-container .qrcode-tab .qr-footer {
-      width: 100%;
-      text-align: center;
-      line-height: 22px;
-      height: 22px;
-      font-size: 16px;
-      transition: all 1s; }
-      .login-container .qrcode-tab .qr-footer em {
-        font-style: normal;
-        height: 100%;
-        display: inline-block;
-        vertical-align: middle;
-        color: #92aceb;
-        cursor: pointer; }
-      .login-container .qrcode-tab .qr-footer span {
-        display: inline-block;
-        padding-left: 10px;
-        vertical-align: middle;
-        width: 22px;
-        height: 100%;
-        background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/right.png") no-repeat right center;
-        cursor: pointer; }
-  .login-container .login-footer {
+    margin-top: -250px;
+}
+
+.login-container .qrcode-tab .qr-header {
+    margin: 70px 0 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #666;
+}
+
+.login-container .qrcode-tab #qrcode {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 50px;
+}
+
+.login-container .qrcode-tab .login-tab {
+    transition: all 1s;
+}
+
+.login-container .qrcode-tab .qr-footer {
+    width: 100%;
+    text-align: center;
+    line-height: 22px;
+    height: 22px;
+    font-size: 16px;
+    transition: all 1s;
+}
+
+.login-container .qrcode-tab .qr-footer em {
+    font-style: normal;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    color: #92aceb;
+    cursor: pointer;
+}
+
+.login-container .qrcode-tab .qr-footer span {
+    display: inline-block;
+    padding-left: 10px;
+    vertical-align: middle;
+    width: 22px;
+    height: 100%;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/right.png") no-repeat right center;
+    cursor: pointer;
+}
+
+.login-container .login-footer {
     width: 100%;
     text-align: left;
     margin-top: 76px;
     line-height: 22px;
     height: 22px;
     font-size: 16px;
-    transition: all 1s; }
-    .login-container .login-footer em {
-      font-style: normal;
-      height: 100%;
-      display: inline-block;
-      vertical-align: middle;
-      color: #92aceb;
-      cursor: pointer;
-      padding-left: 10px; }
-    .login-container .login-footer span {
-      display: inline-block;
-      padding-right: 10px;
-      vertical-align: middle;
-      width: 22px;
-      height: 100%;
-      background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/left.png") no-repeat right center;
-      cursor: pointer; }
-  .login-container .login-tab {
+    transition: all 1s;
+}
+
+.login-container .login-footer em {
+    font-style: normal;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    color: #92aceb;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.login-container .login-footer span {
+    display: inline-block;
+    padding-right: 10px;
+    vertical-align: middle;
+    width: 22px;
+    height: 100%;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/left.png") no-repeat right center;
+    cursor: pointer;
+}
+
+.login-container .login-tab {
     width: 408px;
     height: 480px;
     margin-left: -204px;
@@ -191,388 +236,538 @@ body {
     left: 50%;
     top: 50%;
     background-color: #585e89;
-    padding-left: 50px; }
-    .login-container .login-tab .login-header {
-      line-height: 200px;
-      height: 110px;
-      width: 100%;
-      color: #fff;
-      font-size: 20px;
-      text-align: left; }
-    .login-container .login-tab .login-form {
-      background-color: #585e89;
-      width: 100%;
-      height: 280px;
-      margin-top: 50px;
-      box-sizing: border-box; }
-      .login-container .login-tab .login-form .tip-layout {
-        width: 332px;
-        height: 26px;
-        line-height: 26px;
-        box-sizing: border-box;
-        padding-left: 30px; }
-        .login-container .login-tab .login-form .tip-layout .tip {
-          text-align: left;
-          color: #f00;
-          width: 100%;
-          height: 100%; }
-      .login-container .login-tab .login-form .login-ipt-container {
-        width: 306px;
-        height: 36px;
-        line-height: 16px;
-        box-sizing: border-box;
-        padding: 10px 20px 10px 34px;
-        border: 1px solid #ddd;
-        border-radius: 18px;
-        margin-bottom: 16px; }
-        .login-container .login-tab .login-form .login-ipt-container ::-webkit-input-placeholder {
-          color: #fff; }
-        .login-container .login-tab .login-form .login-ipt-container :-moz-placeholder {
-          color: #fff; }
-        .login-container .login-tab .login-form .login-ipt-container ::-moz-placeholder {
-          color: #fff; }
-        .login-container .login-tab .login-form .login-ipt-container :-ms-input-placeholder {
-          color: #fff; }
-        .login-container .login-tab .login-form .login-ipt-container .login-ipt {
-          height: 16px;
-          line-height: 16px;
-          font-size: 16px;
-          box-sizing: border-box;
-          padding-left: 10px;
-          border: 0 none;
-          border-left: 1px solid #ddd;
-          outline: 0 none;
-          color: #fff;
-          background-color: #585e89; }
-      .login-container .login-tab .login-form .uipt-container {
-        background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/sign-in.png") no-repeat 12px center;
-        margin-bottom: 0; }
-      .login-container .login-tab .login-form .pipt-container {
-        background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/password.png") no-repeat 12px center;
-        margin-bottom: 36px; }
-      .login-container .login-tab .login-form .login-btn {
-        width: 306px;
-        height: 36px;
-        box-sizing: border-box;
-        font-size: 16px;
-        background-color: #92aceb;
-        line-height: 36px;
-        color: #fff;
-        text-align: center;
-        margin-bottom: 16px;
-        border: 0 none;
-        border-radius: 18px;
-        outline: 0 none;
-        cursor: pointer; }
+    padding-left: 50px;
+}
+
+.login-container .login-tab .login-header {
+    line-height: 200px;
+    height: 110px;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    text-align: left;
+}
+
+.login-container .login-tab .login-form {
+    background-color: #585e89;
+    width: 100%;
+    height: 280px;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+
+.login-container .login-tab .login-form .tip-layout {
+    width: 332px;
+    height: 26px;
+    line-height: 26px;
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+
+.login-container .login-tab .login-form .tip-layout .tip {
+    text-align: left;
+    color: #f00;
+    width: 100%;
+    height: 100%;
+}
+
+.login-container .login-tab .login-form .login-ipt-container {
+    width: 306px;
+    height: 36px;
+    line-height: 16px;
+    box-sizing: border-box;
+    padding: 10px 20px 10px 34px;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    margin-bottom: 16px;
+}
+
+.login-container .login-tab .login-form .login-ipt-container ::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.login-container .login-tab .login-form .login-ipt-container :-moz-placeholder {
+    color: #fff;
+}
+
+.login-container .login-tab .login-form .login-ipt-container ::-moz-placeholder {
+    color: #fff;
+}
+
+.login-container .login-tab .login-form .login-ipt-container :-ms-input-placeholder {
+    color: #fff;
+}
+
+.login-container .login-tab .login-form .login-ipt-container .login-ipt {
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border: 0 none;
+    border-left: 1px solid #ddd;
+    outline: 0 none;
+    color: #fff;
+    background-color: #585e89;
+}
+
+.login-container .login-tab .login-form .uipt-container {
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/sign-in.png") no-repeat 12px center;
+    margin-bottom: 0;
+}
+
+.login-container .login-tab .login-form .pipt-container {
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/password.png") no-repeat 12px center;
+    margin-bottom: 36px;
+}
+
+.login-container .login-tab .login-form .login-btn {
+    width: 306px;
+    height: 36px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #92aceb;
+    line-height: 36px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 16px;
+    border: 0 none;
+    border-radius: 18px;
+    outline: 0 none;
+    cursor: pointer;
+}
 
 .main-layout {
-  width: 1200px;
-  height: 600px;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-  .main-layout .user-layout {
+    width: 1200px;
+    height: 600px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main-layout .user-layout {
     height: 100%;
     width: 320px;
     float: left;
-    background-color: #92aceb; }
-    .main-layout .user-layout .user-msg {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 24px;
-      position: relative; }
-      .main-layout .user-layout .user-msg .avatar {
-        float: left;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        margin-right: 10px; }
-        .main-layout .user-layout .user-msg .avatar img {
-          width: 60px;
-          height: 60px;
-          display: block;
-          border-radius: 50%; }
-      .main-layout .user-layout .user-msg .nickname-layout {
-        float: left;
-        line-height: 60px;
-        font-size: 16px;
-        color: #fff; }
-      .main-layout .user-layout .user-msg .menu {
-        line-height: 60px;
-        float: right; }
-        .main-layout .user-layout .user-msg .menu span {
-          margin-top: 16px;
-          width: 26px;
-          height: 26px;
-          display: block;
-          background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_list.png") no-repeat center center;
-          cursor: pointer; }
-      .main-layout .user-layout .user-msg .menu-list {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        z-index: 9; }
-        .main-layout .user-layout .user-msg .menu-list .menu-item {
-          width: 194px;
-          height: 50px;
-          line-height: 50px;
-          box-sizing: border-box;
-          color: white;
-          font-size: 16px;
-          padding-left: 60px;
-          background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_chat.png") no-repeat 20px center;
-          background-color: #393939;
-          cursor: pointer; }
-        .main-layout .user-layout .user-msg .menu-list .menu-item + .menu-item {
-          border-top: 1px solid #414141; }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.start-chat {
-          border-top-left-radius: 8px;
-          /* 左上角 */
-          border-top-right-radius: 8px;
-          /* 右上角 */
-          margin-bottom: -1px; }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.desktop-notification.close {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_tongzhi .png"); }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.desktop-notification.open {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/tongzhi_down.png"); }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.sound.close {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_voice.png"); }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.sound.open {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/voice_down.png"); }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.quit {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_uiteq.png");
-          border-bottom-right-radius: 8px;
-          /* 右下角 */
-          border-bottom-left-radius: 8px;
-          /* 左下角 */ }
-        .main-layout .user-layout .user-msg .menu-list .menu-item.add-friend {
-          background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_add.png"); }
-    .main-layout .user-layout .search-container .main-search-layout {
-      width: 270px;
-      height: 34px;
-      padding: 6px 0;
-      box-sizing: border-box;
-      border-radius: 17px;
-      background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_search.png") no-repeat 20px center;
-      background-color: rgba(255, 255, 255, 0.2);
-      margin: 0 auto; }
-      .main-layout .user-layout .search-container .main-search-layout ::-webkit-input-placeholder {
-        color: #fff; }
-      .main-layout .user-layout .search-container .main-search-layout :-moz-placeholder {
-        color: #fff; }
-      .main-layout .user-layout .search-container .main-search-layout ::-moz-placeholder {
-        color: #fff; }
-      .main-layout .user-layout .search-container .main-search-layout :-ms-input-placeholder {
-        color: #fff; }
-      .main-layout .user-layout .search-container .main-search-layout #search {
-        font-size: 14px;
-        display: block;
-        margin-left: 44px;
-        background-color: rgba(255, 255, 255, 0);
-        border: 0 none;
-        outline: 0 none;
-        height: 20px;
-        line-height: 20px;
-        color: white; }
-    .main-layout .user-layout .tab-container .tab {
-      width: 50%;
-      height: 80px;
-      float: left;
-      background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/chatting_normal.png") no-repeat center center;
-      cursor: pointer; }
-    .main-layout .user-layout .tab-container #session.cur {
-      background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_chatting.png"); }
-    .main-layout .user-layout .tab-container #address-book {
-      background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/address_normal.png"); }
-    .main-layout .user-layout .tab-container #address-book.cur {
-      background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/address list.png"); }
-    .main-layout .user-layout .tab-view-container {
-      overflow-y: scroll;
-      height: 378px;
-      overflow-x: hidden; }
-      .main-layout .user-layout .tab-view-container .tab-view .session-item {
-        height: 80px;
-        width: 100%;
-        cursor: pointer;
-        position: relative; }
-        .main-layout .user-layout .tab-view-container .tab-view .session-item .unread {
-          padding: 2px 6px;
-          background-color: red;
-          color: white;
-          font-size: 12px;
-          height: 14px;
-          line-height: 14px;
-          top: 10px;
-          left: 56px;
-          position: absolute;
-          border-radius: 50%;
-          text-align: center; }
-        .main-layout .user-layout .tab-view-container .tab-view .session-item img {
-          display: block;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          float: left;
-          margin: 15px 20px 15px 24px; }
-        .main-layout .user-layout .tab-view-container .tab-view .session-item .team-avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          float: left;
-          margin: 15px 20px 15px 24px;
-          background-color: #768dc3;
-          color: white;
-          text-align: center;
-          line-height: 50px; }
-        .main-layout .user-layout .tab-view-container .tab-view .session-item .to-name {
-          float: left;
-          color: #4d4d4d;
-          font-size: 16px;
-          width: 180px;
-          margin: 15px 0 10px; }
-        .main-layout .user-layout .tab-view-container .tab-view .session-item .last-msg {
-          float: left;
-          width: 150px;
-          color: #4d4d4d;
-          font-size: 12px; }
-      .main-layout .user-layout .tab-view-container .tab-view .session-item.cur {
-        background-color: #819bd9; }
-      .main-layout .user-layout .tab-view-container .tab-view .ab-tag {
-        padding-left: 24px;
-        background-color: #afc5fa;
-        color: #768dc3;
-        font-size: 14px;
-        text-align: left;
-        box-sizing: border-box;
-        width: 100%;
-        height: 34px;
-        line-height: 34px; }
-      .main-layout .user-layout .tab-view-container .tab-view .ab-item {
-        height: 80px;
-        width: 100%;
-        cursor: pointer; }
-        .main-layout .user-layout .tab-view-container .tab-view .ab-item .abt-avatar {
-          background-color: #768dc3;
-          color: white;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          float: left;
-          margin: 15px 20px 15px 24px;
-          text-align: center;
-          line-height: 50px; }
-        .main-layout .user-layout .tab-view-container .tab-view .ab-item .abf-avatar {
-          display: block;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          float: left;
-          margin: 15px 20px 15px 24px; }
-        .main-layout .user-layout .tab-view-container .tab-view .ab-item .ab-name {
-          float: left;
-          color: #4d4d4d;
-          font-size: 16px;
-          width: 180px;
-          height: 80px;
-          line-height: 80px; }
-      .main-layout .user-layout .tab-view-container .tab-view .cur {
-        background-color: #819bd9; }
-      .main-layout .user-layout .tab-view-container .tab-view .friend-layout .ab-line {
-        background-color: #afc5fa;
-        height: 30px;
-        color: white;
-        font-size: 14px;
-        text-indent: 24px;
-        line-height: 30px; }
-  .main-layout .chat--layout-history {
+    background-color: #92aceb;
+}
+
+.main-layout .user-layout .user-msg {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px;
+    position: relative;
+}
+
+.main-layout .user-layout .user-msg .avatar {
+    float: left;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.main-layout .user-layout .user-msg .avatar img {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border-radius: 50%;
+}
+
+.main-layout .user-layout .user-msg .nickname-layout {
+    float: left;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.main-layout .user-layout .user-msg .menu {
+    line-height: 60px;
+    float: right;
+}
+
+.main-layout .user-layout .user-msg .menu span {
+    margin-top: 16px;
+    width: 26px;
+    height: 26px;
+    display: block;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_list.png") no-repeat center center;
+    cursor: pointer;
+}
+
+.main-layout .user-layout .user-msg .menu-list {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    z-index: 9;
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item {
+    width: 194px;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 16px;
+    padding-left: 60px;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_chat.png") no-repeat 20px center;
+    background-color: #393939;
+    cursor: pointer;
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item + .menu-item {
+    border-top: 1px solid #414141;
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.start-chat {
+    border-top-left-radius: 8px;
+    /* 左上角 */
+    border-top-right-radius: 8px;
+    /* 右上角 */
+    margin-bottom: -1px;
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.desktop-notification.close {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_tongzhi .png");
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.desktop-notification.open {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/tongzhi_down.png");
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.sound.close {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_voice.png");
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.sound.open {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/voice_down.png");
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.quit {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_uiteq.png");
+    border-bottom-right-radius: 8px;
+    /* 右下角 */
+    border-bottom-left-radius: 8px;
+    /* 左下角 */
+}
+
+.main-layout .user-layout .user-msg .menu-list .menu-item.add-friend {
+    background-image: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_add.png");
+}
+
+.main-layout .user-layout .search-container .main-search-layout {
+    width: 270px;
+    height: 34px;
+    padding: 6px 0;
+    box-sizing: border-box;
+    border-radius: 17px;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_search.png") no-repeat 20px center;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+}
+
+.main-layout .user-layout .search-container .main-search-layout ::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.main-layout .user-layout .search-container .main-search-layout :-moz-placeholder {
+    color: #fff;
+}
+
+.main-layout .user-layout .search-container .main-search-layout ::-moz-placeholder {
+    color: #fff;
+}
+
+.main-layout .user-layout .search-container .main-search-layout :-ms-input-placeholder {
+    color: #fff;
+}
+
+.main-layout .user-layout .search-container .main-search-layout #search {
+    font-size: 14px;
+    display: block;
+    margin-left: 44px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0 none;
+    outline: 0 none;
+    height: 20px;
+    line-height: 20px;
+    color: white;
+}
+
+.main-layout .user-layout .tab-container .tab {
+    width: 50%;
+    height: 80px;
+    float: left;
+    background: url("/images/session_cur.png") no-repeat center center;
+    cursor: pointer;
+}
+
+.main-layout .user-layout .tab-container #session.cur {
+    background-image: url("/images/session.png");
+}
+
+.main-layout .user-layout .tab-container #address-book {
+    background-image: url("/images/address.png");
+}
+
+.main-layout .user-layout .tab-container #address-book.cur {
+    background-image: url("/images/address_cur.png");
+}
+
+.main-layout .user-layout .tab-container #friend-space {
+    width: 34%;
+    background-image: url("/images/space.png");
+    background-size: 28px 27px;
+}
+
+.main-layout .user-layout .tab-container #friend-space.cur {
+    background-image: url("/images/space_cur.png");
+}
+
+.main-layout .user-layout .tab-view-container {
+    overflow-y: scroll;
+    height: 378px;
+    overflow-x: hidden;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item {
+    height: 80px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item .unread {
+    padding: 2px 6px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    height: 14px;
+    line-height: 14px;
+    top: 10px;
+    left: 56px;
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin: 15px 20px 15px 24px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item .team-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin: 15px 20px 15px 24px;
+    background-color: #768dc3;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item .to-name {
+    float: left;
+    color: #4d4d4d;
+    font-size: 16px;
+    width: 180px;
+    margin: 15px 0 10px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item .last-msg {
+    float: left;
+    width: 150px;
+    color: #4d4d4d;
+    font-size: 12px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .session-item.cur {
+    background-color: #819bd9;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .ab-tag {
+    padding-left: 24px;
+    background-color: #afc5fa;
+    color: #768dc3;
+    font-size: 14px;
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .ab-item {
+    height: 80px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .ab-item .abt-avatar {
+    background-color: #768dc3;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin: 15px 20px 15px 24px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .ab-item .abf-avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin: 15px 20px 15px 24px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .ab-item .ab-name {
+    float: left;
+    color: #4d4d4d;
+    font-size: 16px;
+    width: 180px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .cur {
+    background-color: #819bd9;
+}
+
+.main-layout .user-layout .tab-view-container .tab-view .friend-layout .ab-line {
+    background-color: #afc5fa;
+    height: 30px;
+    color: white;
+    font-size: 14px;
+    text-indent: 24px;
+    line-height: 30px;
+}
+
+.main-layout .chat--layout-history {
     position: absolute;
     right: 0;
-    top: 0; }
-  .main-layout .info-content {
+    top: 0;
+}
+
+.main-layout .info-content {
     width: 100%;
     height: 550px;
     box-sizing: border-box;
     position: relative;
-    padding-top: 80px; }
-    .main-layout .info-content .delete-friend {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delete-friend.png") no-repeat right center;
-      line-height: 20px;
-      height: 20px;
-      font-size: 14px;
-      width: 74px;
-      cursor: pointer; }
-    .main-layout .info-content .info-de-avatar {
-      width: 190px;
-      height: 190px;
-      margin: 0 auto 0;
-      display: block;
-      border-radius: 50%; }
-    .main-layout .info-content .info-de-info {
-      height: 30px;
-      line-height: 30px;
-      width: 100%;
-      box-sizing: border-box;
-      padding-left: 400px;
-      text-align: left;
-      color: #666;
-      font-size: 14px; }
-      .main-layout .info-content .info-de-info em {
-        font-style: normal; }
-    .main-layout .info-content .info-de-alias {
-      width: 100%;
-      text-align: center;
-      height: 80px;
-      line-height: 22px;
-      font-size: 20px;
-      padding-left: 0;
-      padding-top: 16px; }
-      .main-layout .info-content .info-de-alias em {
-        font-style: normal; }
-      .main-layout .info-content .info-de-alias .alias-edit-ipt {
-        box-sizing: border-box;
-        padding: 4px 0;
-        width: 140px;
-        height: 26px;
-        font-size: 20px; }
-      .main-layout .info-content .info-de-alias .change-friend-alias {
-        background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_modify.png") no-repeat center center;
-        background-size: cover;
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        margin-top: 4px;
-        vertical-align: bottom;
-        cursor: pointer; }
-    .main-layout .info-content .info-btn-container {
-      display: flex;
-      justify-content: center; }
-    .main-layout .info-content .info-btn {
-      display: block;
-      margin: 28px 20px 20px 20px;
-      color: #fff;
-      width: 96px;
-      height: 36px;
-      line-height: 36px;
-      border-radius: 18px;
-      text-align: center;
-      outline: 0 none;
-      border: 0 none;
-      background-color: #92aceb;
-      cursor: pointer; }
-    .main-layout .info-content .info-de-send {
-      margin-top: 28px; }
+    padding-top: 80px;
+}
+
+.main-layout .info-content .delete-friend {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_delete-friend.png") no-repeat right center;
+    line-height: 20px;
+    height: 20px;
+    font-size: 14px;
+    width: 74px;
+    cursor: pointer;
+}
+
+.main-layout .info-content .info-de-avatar {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 0;
+    display: block;
+    border-radius: 50%;
+}
+
+.main-layout .info-content .info-de-info {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 400px;
+    text-align: left;
+    color: #666;
+    font-size: 14px;
+}
+
+.main-layout .info-content .info-de-info em {
+    font-style: normal;
+}
+
+.main-layout .info-content .info-de-alias {
+    width: 100%;
+    text-align: center;
+    height: 80px;
+    line-height: 22px;
+    font-size: 20px;
+    padding-left: 0;
+    padding-top: 16px;
+}
+
+.main-layout .info-content .info-de-alias em {
+    font-style: normal;
+}
+
+.main-layout .info-content .info-de-alias .alias-edit-ipt {
+    box-sizing: border-box;
+    padding: 4px 0;
+    width: 140px;
+    height: 26px;
+    font-size: 20px;
+}
+
+.main-layout .info-content .info-de-alias .change-friend-alias {
+    background: url("https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_modify.png") no-repeat center center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-top: 4px;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.main-layout .info-content .info-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.main-layout .info-content .info-btn {
+    display: block;
+    margin: 28px 20px 20px 20px;
+    color: #fff;
+    width: 96px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 18px;
+    text-align: center;
+    outline: 0 none;
+    border: 0 none;
+    background-color: #92aceb;
+    cursor: pointer;
+}
+
+.main-layout .info-content .info-de-send {
+    margin-top: 28px;
+}
 
 .get-more-wrapper {
-  height: 24px;
-  line-height: 24px;
-  text-align: center; }
-  .get-more-wrapper #get-more {
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.get-more-wrapper #get-more {
     width: 200px;
     height: 30px;
     font-style: normal;
@@ -585,10 +780,12 @@ body {
     line-height: 30px;
     word-wrap: break-word;
     word-break: break-all;
-    border-radius: 8px; }
+    border-radius: 8px;
+}
 
 p {
-  word-wrap: break-word;
-  word-break: break-all; }
+    word-wrap: break-word;
+    word-break: break-all;
+}
 
 /*# sourceMappingURL=main.webroot.css.map */

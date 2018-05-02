@@ -7,416 +7,448 @@
     <meta name="description" content="风轮科技（上海）有限公司 秘图APP网页版">
     <title>秘图网页版</title>
 
-    <link rel="stylesheet" href="./css/uEmBZriLePloWTATAEwo.css">
+    <!--<link rel="stylesheet" href="./css/scrollbar.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/emoji.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/alert.css">
+    <link rel="stylesheet" href="./css/message.css">
+    <link rel="stylesheet" href="./css/friend_space.css">
+    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/debugPlugin.css">
+    <link rel="stylesheet" href="./css/version1.css">
+    <link rel="stylesheet" href="./css/new_version_main.css">-->
+     <link rel="stylesheet" href="./css/uEmBZriLePloWTATAEwo.css">
 
 </head>
 <body>
-    <div class="alert-container hide" id="merge-msgs-tab">
-        <div class="merge-msg-inner" id="merge-msg-inner">
-            <div class="mm-title">
-                转发消息详情
-                <div id="mm-close" class="mm-close"></div>
-            </div>
-            <div class="mm-for-position">
-                <div class="mm-list" id="mm-list">
+<div class="alert-container hide" id="merge-msgs-tab">
+    <div class="merge-msg-inner" id="merge-msg-inner">
+        <div class="mm-title">
+            转发消息详情
+            <div id="mm-close" class="mm-close"></div>
+        </div>
+        <div class="mm-for-position">
+            <div class="mm-list" id="mm-list">
 
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- fsItem detail -->
+<div class="alert-container hide" id="fs-detail-tab">
+    <div class="for-position">
+        <div id="fsd-close" class="fsd-close"></div>
+        <div class="fsd-wrapper clear">
+            <div class="fs-common-con fsd-container">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- friends' friendSpace -->
+<div class="alert-container hide" id="other-fs-tab">
+    <div class="for-position">
+        <div id="ofs-close" class="ofs-close"></div>
+        <div class="ofs-wrapper">
+            <div class="fs-common-con ofs-container"></div>
+        </div>
+    </div>
+
+</div>
+<!-- delete friend -->
+<div class="alert-container hide" id="delete-friend-verify-tab">
+    <div class="tab-inner tab-v  tab-dfv">
+        <div class="tb-header v-header  dfv-header">
+            <div class="tb-title v-title  dfv-title">移除好友<span class="tb-close dfv-close" id="dfv-close"></span></div>
+        </div>
+
+        <p class="tb-tip-text tip-text">移除后该好友将在您的通讯录列表中消失，您将无法再接收到此人的任何消息。</p>
+        <div class="tb-avatar dfv-user-avatar">
+            <img class="tb-avatar-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png" alt="">
+        </div>
+        <div class="tb-name team-name" id="delete_friend-name">真善美</div>
+
+        <button class="tb-submit" id="dfv-submit" data-id="">确定</button>
+    </div>
+
+</div>
+<!-- 确认添加好友弹框-->
+<div class="alert-container hide" id="apply-friend-verify-tab">
+    <div class="tab-inner tab-v  tab-afv">
+        <div class="tb-header v-header  afv-header">
+            <div class="tb-title v-title  afv-title" id="title">添加好友 <span class="tb-close afv-close" id="afv-close"></span></div>
+        </div>
+
+        <p class="tb-tip-text tip-text" id="tip">您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。</p>
+        <div class="tb-avatar afv-user-avatar">
+            <img class="tb-avatar-img" src="" alt="">
+        </div>
+        <div class="tb-name user-name" id="tb-name-user-name">真善美</div>
+
+        <button class="tb-submit" id="afv-submit" data-account="">确定</button>
+    </div>
+
+</div>
+
+<!-- 好友申请弹框-->
+<div class="alert-container hide" id="sure-friend-verify-tab">
+    <div class="tab-inner tab-v  tab-afv">
+        <div class="tb-header v-header  afv-header">
+            <div class="tb-title v-title  afv-title" id="sure-title">好友请求<span class="tb-close afv-close" id="sure-close"></span></div>
+        </div>
+
+        <p class="tb-tip-text tip-text" id="sure-tip">你有一个新朋友想认识你。</p>
+        <div class="tb-avatar afv-user-avatar">
+            <img class="tb-avatar-img" src="" alt="">
+        </div>
+        <div class="tb-name user-name" id="sure-tb-name-user-name">真善美</div>
+
+        <button class="tb-submit" id="sure-submit" data-account="">确定</button>
+    </div>
+
+</div>
+
+<!-- 添加好友申请成功提示 -->
+<div class="alert-container usual-alert-tab hide" data-id="undefined" id="usual-alert-tab">
+    <div class="tab-inner2">
+        <div class="tb-title tb-percent ua-text" id="usual-alert-tab-hint">好友申请已发送!</div>
+        <button class="tb-submit tb-usual-submit" id="apply-submit">确定</button>
+    </div>
+</div>
+
+<!-- 添加好友成功 -->
+<div class="alert-container usual-alert-tab hide" data-id="undefined" id="success-alert-tab">
+    <div class="tab-inner2">
+        <div class="tb-title tb-percent ua-text">添加成功，开始认识吧!</div>
+        <button class="tb-submit tb-usual-submit" id="success-submit">确定</button>
+    </div>
+</div>
+
+<!-- upload percentage -->
+<div class="alert-container upload-percentage-tab hide" id="upload-percentage-tab">
+    <div class="tab-inner2">
+        <div class="tb-title tb-percent">文件上传中：<span id="percentage">0%</span></div>
+        <button class="tb-submit" id="up-submit">确定</button>
+    </div>
+</div>
+<!-- search person to apply as friend -->
+<div class="alert-container hide" id="search-person-tab">
+    <div class="tab-inner2">
+        <span class="tb-close sp-close" id="sp-close"></span>
+        <div class="tb-search-layout">
+            <input type="text" class="tb-search" id="tel-for-search" placeholder="昵称或者手机号">
+            <p class="hide" style="color: red;margin-top: 10px">用户不存在</p>
+        </div>
+
+        <button class="tb-submit" id="sp-submit">确定</button>
+    </div>
+</div>
+
+<!-- search person to apply as friend -->
+<div class="alert-container hide" data-sid="" id="comment-person-tab">
+    <div class="tab-inner2">
+        <span class="tb-close sp-close" id="comment-close"></span>
+        <div class="tb-search-layout">
+            <input type="text" class="tb-search" id="comment_content" placeholder="评论内容">
+        </div>
+
+        <button class="tb-submit" id="comment-submit">确定</button>
+    </div>
+</div>
+
+<!-- check password before browser chatting history -->
+<div class="alert-container hide" id="check-ch-pwd-tab">
+    <div class="tab-inner2">
+        <span class="tb-close ccp-close" id="ccp-close"></span>
+        <div class="tb-search-layout">
+            <input type="password" class="tb-search" id="pwd-for-checking" placeholder="登录密码">
+        </div>
+
+        <button class="tb-submit" id="ccp-submit" data-sessionid="">确定</button>
+    </div>
+</div>
+
+<!-- 添加好友列表 -->
+<div class="alert-container hide" id="search-result-list-tab">
+    <div class="tab-inner">
+        <div class="tb-title srl-title">添加好友<span class="tb-close srl-close" id="srl-close"></span></div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+<!-- delete space item -->
+<div class="alert-container delete-space-item-tab hide" id="delete-space-item-tab">
+    <div class="tab-inner2">
+        <div class="tb-title">删除秘圈</div>
+        <div class="tb-text">您确定要删除该条秘圈吗？</div>
+
+        <div class="tb-tbn-container">
+            <button class="tb-submit" id="dsi-concel">取消</button>
+            <button class="tb-submit" id="dsi-submit">确定</button>
+        </div>
+
+    </div>
+</div>
+<!-- delete comment -->
+<div class="alert-container delete-space-item-tab hide" id="delete-comment-tab">
+    <div class="tab-inner2">
+        <div class="tb-title">删除评论</div>
+        <div class="tb-text">您确定要删除该条评论吗？</div>
+
+        <div class="tb-tbn-container">
+            <button class="tb-submit" id="dc-concel">取消</button>
+            <button class="tb-submit" id="dc-submit">确定</button>
+        </div>
+
+    </div>
+</div>
+<!-- search person not found -->
+<div class="alert-container not-found-tab hide" id="not-found-tab">
+    <div class="tab-inner2">
+        <div class="tb-title">该用户不存在</div>
+        <div class="tb-text">请检查输入的内容是否正确</div>
+
+        <button class="tb-submit" id="nf-submit">确定</button>
+    </div>
+</div>
+
+<!-- leave team -->
+<div class="alert-container hide" id="leave-team-verify-tab">
+    <div class="tab-inner tab-v tab-ltv">
+        <div class="tb-header v-header ltv-header">
+            <div class="tb-title v-title ltv-title">退出群聊 <span class="tb-close ltv-close" id="ltv-close"></span></div>
+        </div>
+
+        <p class="tb-tip-text tip-text">退出后该群聊将在您的群组列表中消失，您将无法再接收到此群聊的任何消息。</p>
+        <div class="tb-avatar team-heading">真</div>
+        <div class="tb-name team-name">真善美</div>
+
+        <button class="tb-submit" id="ltv-submit" data-id="">确定</button>
+    </div>
+
+</div>
+<!-- add member -->
+<div class="alert-container hide" id="add-member-tab">
+    <div class="tab-inner tab-am">
+        <div class="tb-header am-header">
+            <div class="tb-title am-title">添加成员 <span class="tb-close am-close" id="am-close"></span></div>
+        </div>
+
+        <div class="tb-search-layout am-search-layout" id="am-search-layout">
+            <input type="text" id="am-search" class="tb-search am-search" placeholder="搜索">
+        </div>
+
+        <div class="tb-list am-list ps ps--theme_default" id="am-friend-list" data-ps-id="e092d353-bc1b-a754-fe86-a6fb3f32b83a">
+
+        </div>
+
+        <button class="tb-submit" id="am-submit">确定</button>
+    </div>
+
+</div>
+<!-- delete member -->
+<div class="alert-container hide" id="delete-member-tab">
+    <div class="tab-inner tab-dm">
+        <div class="tb-header dm-header">
+            <div class="tb-title dm-title">移除成员 <span class="tb-close dm-close" id="dm-close"></span></div>
+        </div>
+
+        <div class="tb-search-layout am-search-layout" id="dm-search-layout">
+            <input type="text" id="dm-search" class="tb-search dm-search" placeholder="搜索">
+        </div>
+
+        <div class="tb-list dm-list ps ps--theme_default ps--active-y" id="dm-friend-list" data-ps-id="64d04888-5d8c-af7b-dc63-018b52d633fd">
+
+        </div>
+
+        <button class="tb-submit" id="dm-submit">确定</button>
+    </div>
+
+</div>
+<!-- start chat -->
+<div class="tab-layout hide" id="tab_layout">
+    <div class="choose-chatter">
+        <div class="cc-header clear">
+            <div class="cc-title">发起聊天 <span id="cc-close" class="cc-close"></span></div>
+            <div class="cc-tab-choose clear">
+                <div class="cc-tab-item cc-tab-friend cur" id="cc-tab-friend">选择联系人</div>
+                <div class="cc-tab-item cc-tab-team" id="cc-tab-team">选择群组</div>
+            </div>
+        </div>
+
+        <div class="cc-search-layout">
+            <input type="text" id="cc-search" class="cc-search" placeholder="搜索">
+        </div>
+
+        <div class="cc-tab-layout">
+            <div class="cc-tl-list cc-tl-friend-list" id="cc-tl-friend-list"></div>
+
+            <div class="cc-tl-list cc-tl-team-list hide" id="cc-tl-team-list"></div>
+        </div>
+
+        <button class="cc-submit" id="cc_submit">确定</button>
+    </div>
+</div>
+
+<div class="main-layout">
+    <div class="left-tab">
+
+    </div>
+    <div class="user-layout">
+        <div class="user-msg clear">
+            <div class="avatar">
+                <img src="" alt="" id="avatar_img"/>
+            </div>
+            <div class="nickname-layout">
+                <span id="nickname-layout-span" style="width: 200px;overflow: hidden;word-break: keep-all;text-overflow: ellipsis;white-space: nowrap;display: block;"></span>
+            </div>
+            <div class="menu clear" id="menu">
+                <img class="comment_cls" src="images/more2.png"  style="height:25px;width:25px;cursor: pointer;">
+            </div>
+
+            <!-- main menu -->
+            <div class="menu-list hide clear" id="menu_list">
+                <div class="menu-item start-chat" data-id="0" id="statrt_chat">
+                    发起聊天
+                </div>
+                <div class="menu-item add-friend" data-id="4" id="add_friend">
+                    添加好友
+                </div>
+                <div class="menu-item desktop-notification close" data-id="1" data-of="off">
+                    关闭桌面通知
+                </div>
+                <div class="menu-item sound close" data-id="2" data-of="off">
+                    关闭声音
+                </div>
+                <div class="menu-item quit" data-id="3" id="login_out">
+                    退出
                 </div>
             </div>
 
         </div>
-    </div>
 
-    <!-- fsItem detail -->
-    <div class="alert-container hide" id="fs-detail-tab">
-        <div class="for-position">
-            <div id="fsd-close" class="fsd-close"></div>
-            <div class="fsd-wrapper clear">
-                <div class="fs-common-con fsd-container">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- friends' friendSpace -->
-    <div class="alert-container hide" id="other-fs-tab">
-        <div class="for-position">
-            <div id="ofs-close" class="ofs-close"></div>
-            <div class="ofs-wrapper">
-                <div class="fs-common-con ofs-container"></div>
-            </div>
-        </div>
-
-    </div>
-    <!-- delete friend -->
-    <div class="alert-container hide" id="delete-friend-verify-tab">
-        <div class="tab-inner tab-v  tab-dfv">
-            <div class="tb-header v-header  dfv-header">
-                <div class="tb-title v-title  dfv-title">移除好友<span class="tb-close dfv-close" id="dfv-close"></span></div>
+        <div class="search-container">
+            <div class="main-search-layout">
+                <input type="text" placeholder="搜索" id="search">
             </div>
 
-            <p class="tb-tip-text tip-text">移除后该好友将在您的通讯录列表中消失，您将无法再接收到此人的任何消息。</p>
-            <div class="tb-avatar dfv-user-avatar">
-                <img class="tb-avatar-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png" alt="">
-            </div>
-            <div class="tb-name team-name" id="delete_friend-name">真善美</div>
-
-            <button class="tb-submit" id="dfv-submit" data-id="">确定</button>
+            <div class="searched-list" id="searched-list"></div>
         </div>
+        <!-- 最左侧选择项 -->
+        <div class="tab-container clear">
 
-    </div>
-    <!-- 确认添加好友弹框-->
-    <div class="alert-container hide" id="apply-friend-verify-tab">
-        <div class="tab-inner tab-v  tab-afv">
-            <div class="tb-header v-header  afv-header">
-                <div class="tb-title v-title  afv-title" id="title">添加好友 <span class="tb-close afv-close" id="afv-close"></span></div>
+            <!-- 联系人 -->
+            <div class="tab cur" id="session" data-id="session">
+                <span class="tip-circle fs-tip-session hide"></span>
             </div>
 
-            <p class="tb-tip-text tip-text" id="tip">您确定要将该陌生人添加至个人通讯录中？添加好友后需等待对方同意。</p>
-            <div class="tb-avatar afv-user-avatar">
-                <img class="tb-avatar-img" src="" alt="">
-            </div>
-            <div class="tb-name user-name" id="tb-name-user-name">真善美</div>
-
-            <button class="tb-submit" id="afv-submit" data-account="">确定</button>
-        </div>
-
-    </div>
-
-    <!-- 好友申请弹框-->
-    <div class="alert-container hide" id="sure-friend-verify-tab">
-        <div class="tab-inner tab-v  tab-afv">
-            <div class="tb-header v-header  afv-header">
-                <div class="tb-title v-title  afv-title" id="sure-title">好友请求<span class="tb-close afv-close" id="sure-close"></span></div>
+            <!-- 通讯录 -->
+            <div class="tab" id="address-book" data-id="address-book">
             </div>
 
-            <p class="tb-tip-text tip-text" id="sure-tip">你有一个新朋友想认识你。</p>
-            <div class="tb-avatar afv-user-avatar">
-                <img class="tb-avatar-img" src="" alt="">
-            </div>
-            <div class="tb-name user-name" id="sure-tb-name-user-name">真善美</div>
+           <!-- <div class="tab" id="find-back" data-id="find-back"></div>-->
 
-            <button class="tb-submit" id="sure-submit" data-account="">确定</button>
-        </div>
-
-    </div>
-
-    <!-- 添加好友申请成功提示 -->
-    <div class="alert-container usual-alert-tab hide" data-id="undefined" id="usual-alert-tab">
-        <div class="tab-inner2">
-            <div class="tb-title tb-percent ua-text" id="usual-alert-tab-hint">好友申请已发送!</div>
-            <button class="tb-submit tb-usual-submit" id="apply-submit">确定</button>
-        </div>
-    </div>
-
-    <!-- 添加好友成功 -->
-    <div class="alert-container usual-alert-tab hide" data-id="undefined" id="success-alert-tab">
-        <div class="tab-inner2">
-            <div class="tb-title tb-percent ua-text">添加成功，开始认识吧!</div>
-            <button class="tb-submit tb-usual-submit" id="success-submit">确定</button>
-        </div>
-    </div>
-
-    <!-- upload percentage -->
-    <div class="alert-container upload-percentage-tab hide" id="upload-percentage-tab">
-        <div class="tab-inner2">
-            <div class="tb-title tb-percent">文件上传中：<span id="percentage">0%</span></div>
-            <button class="tb-submit" id="up-submit">确定</button>
-        </div>
-    </div>
-    <!-- search person to apply as friend -->
-    <div class="alert-container hide" id="search-person-tab">
-        <div class="tab-inner2">
-            <span class="tb-close sp-close" id="sp-close"></span>
-            <div class="tb-search-layout">
-                <input type="text" class="tb-search" id="tel-for-search" placeholder="昵称或者手机号">
-                <p class="hide" style="color: red;margin-top: 10px">用户不存在</p>
-            </div>
-
-            <button class="tb-submit" id="sp-submit">确定</button>
-        </div>
-    </div>
-
-    <!-- check password before browser chatting history -->
-    <div class="alert-container hide" id="check-ch-pwd-tab">
-        <div class="tab-inner2">
-            <span class="tb-close ccp-close" id="ccp-close"></span>
-            <div class="tb-search-layout">
-                <input type="password" class="tb-search" id="pwd-for-checking" placeholder="登录密码">
-            </div>
-
-            <button class="tb-submit" id="ccp-submit" data-sessionid="">确定</button>
-        </div>
-    </div>
-
-    <!-- 添加好友列表 -->
-    <div class="alert-container hide" id="search-result-list-tab">
-        <div class="tab-inner">
-            <div class="tb-title srl-title">添加好友<span class="tb-close srl-close" id="srl-close"></span></div>
-            <div class="search-result-container" id="search-result-container">
-
-            </div>
-        </div>
-    </div>
-
-    <!-- delete space item -->
-    <div class="alert-container delete-space-item-tab hide" id="delete-space-item-tab">
-        <div class="tab-inner2">
-            <div class="tb-title">删除秘圈</div>
-            <div class="tb-text">您确定要删除该条秘圈吗？</div>
-
-            <div class="tb-tbn-container">
-                <button class="tb-submit" id="dsi-concel">取消</button>
-                <button class="tb-submit" id="dsi-submit">确定</button>
+            <div class="tab" id="friend-space" data-id="friend-space">
+                <span class="tip-circle fs-tip-friend-space hide"></span>
             </div>
 
         </div>
-    </div>
-    <!-- delete comment -->
-    <div class="alert-container delete-space-item-tab hide" id="delete-comment-tab">
-        <div class="tab-inner2">
-            <div class="tb-title">删除评论</div>
-            <div class="tb-text">您确定要删除该条评论吗？</div>
 
-            <div class="tb-tbn-container">
-                <button class="tb-submit" id="dc-concel">取消</button>
-                <button class="tb-submit" id="dc-submit">确定</button>
+
+        <!-- 最中间展示栏 -->
+        <div class="tab-view-container" id="session-list-container">
+            <div class="tab-view cur" data-id="session" id="session-list">
+                <!--最近联系人列表-->
+
+
             </div>
-
         </div>
-    </div>
-    <!-- search person not found -->
-    <div class="alert-container not-found-tab hide" id="not-found-tab">
-        <div class="tab-inner2">
-            <div class="tb-title">该用户不存在</div>
-            <div class="tb-text">请检查输入的内容是否正确</div>
+        <div class="tab-view-container hide" id="address-book-list-container">
+            <div class="tab-view" data-id="address-book" id="address-book-list">
+                <!-- 我的手机/置顶 -->
+                <!--<div class="top-layout" id="top-layout">
+                    <div class="ab-item" data-type="p" data-account="100326" data-id="p2p-100326">
+                        <div class="abf-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar vertical-middle"></div>
+                        <div class="ab-name">我的手机</div>
 
-            <button class="tb-submit" id="nf-submit">确定</button>
-        </div>
-    </div>
-
-    <!-- leave team -->
-    <div class="alert-container hide" id="leave-team-verify-tab">
-        <div class="tab-inner tab-v tab-ltv">
-            <div class="tb-header v-header ltv-header">
-                <div class="tb-title v-title ltv-title">退出群聊 <span class="tb-close ltv-close" id="ltv-close"></span></div>
-            </div>
-
-            <p class="tb-tip-text tip-text">退出后该群聊将在您的群组列表中消失，您将无法再接收到此群聊的任何消息。</p>
-            <div class="tb-avatar team-heading">真</div>
-            <div class="tb-name team-name">真善美</div>
-
-            <button class="tb-submit" id="ltv-submit" data-id="">确定</button>
-        </div>
-
-    </div>
-    <!-- add member -->
-    <div class="alert-container hide" id="add-member-tab">
-        <div class="tab-inner tab-am">
-            <div class="tb-header am-header">
-                <div class="tb-title am-title">添加成员 <span class="tb-close am-close" id="am-close"></span></div>
-            </div>
-
-            <div class="tb-search-layout am-search-layout" id="am-search-layout">
-                <input type="text" id="am-search" class="tb-search am-search" placeholder="搜索">
-            </div>
-
-            <div class="tb-list am-list" id="am-friend-list"></div>
-
-            <button class="tb-submit" id="am-submit">确定</button>
-        </div>
-
-    </div>
-    <!-- delete member -->
-    <div class="alert-container hide" id="delete-member-tab">
-        <div class="tab-inner tab-dm">
-            <div class="tb-header dm-header">
-                <div class="tb-title dm-title">移除成员 <span class="tb-close dm-close" id="dm-close"></span></div>
-            </div>
-
-            <div class="tb-search-layout am-search-layout" id="dm-search-layout">
-                <input type="text" id="dm-search" class="tb-search dm-search" placeholder="搜索">
-            </div>
-
-            <div class="tb-list dm-list" id="dm-friend-list"></div>
-
-            <button class="tb-submit" id="dm-submit">确定</button>
-        </div>
-
-    </div>
-    <!-- start chat -->
-    <div class="tab-layout hide">
-        <div class="choose-chatter">
-            <div class="cc-header clear">
-                <div class="cc-title">发起聊天 <span id="cc-close" class="cc-close"></span></div>
-                <div class="cc-tab-choose clear">
-                    <div class="cc-tab-item cc-tab-friend cur" id="cc-tab-friend">选择联系人</div>
-                    <div class="cc-tab-item cc-tab-team" id="cc-tab-team">选择群组</div>
-                </div>
-            </div>
-
-            <div class="cc-search-layout">
-                <input type="text" id="cc-search" class="cc-search" placeholder="搜索">
-            </div>
-
-            <div class="cc-tab-layout">
-                <div class="cc-tl-list cc-tl-friend-list" id="cc-tl-friend-list"></div>
-
-                <div class="cc-tl-list cc-tl-team-list hide" id="cc-tl-team-list"></div>
-            </div>
-
-            <button class="cc-submit" id="cc-submit">确定</button>
-        </div>
-    </div>
-
-    <div class="main-layout">
-        <div class="left-tab">
-
-        </div>
-        <div class="user-layout">
-            <div class="user-msg clear">
-                <div class="avatar">
-                    <img src="" alt="" id="avatar_img"/>
-                </div>
-                <div class="nickname-layout">
-                    <span id="nickname-layout-span" style="width: 200px;overflow: hidden;word-break: keep-all;text-overflow: ellipsis;white-space: nowrap;display: block;"></span>
-                </div>
-                <div class="menu clear" id="menu">
-                    <span></span>
-                </div>
-
-                <!-- main menu -->
-                <div class="menu-list hide clear" id="menu_list">
-                    <div class="menu-item start-chat" data-id="0">
-                        发起聊天
                     </div>
-                    <div class="menu-item add-friend" data-id="4" id="add_friend">
-                        添加好友
-                    </div>
-                    <div class="menu-item desktop-notification close" data-id="1" data-of="off">
-                        关闭桌面通知
-                    </div>
-                    <div class="menu-item sound close" data-id="2" data-of="off">
-                        关闭声音
-                    </div>
-                    <div class="menu-item quit" data-id="3" id="login_out">
-                        退出
-                    </div>
-                </div>
+                </div>-->
+                <!--  ab = adress book  -->
+                <div class="ab-tag hide" id="tag-team">群组</div>
 
-            </div>
-
-            <div class="search-container">
-                <div class="main-search-layout">
-                    <input type="text" placeholder="搜索" id="search">
-                </div>
-
-                <div class="searched-list" id="searched-list"></div>
-            </div>
-            <!-- 最左侧选择项 -->
-            <div class="tab-container clear">
-
-                <!-- 联系人 -->
-                <div class="tab cur" id="session" data-id="session">
-                    <span class="tip-circle fs-tip-session hide"></span>
-                </div>
-
-                <!-- 通讯录 -->
-                <div class="tab" id="address-book" data-id="address-book"></div>
-
-                <div class="tab" id="friend-space" data-id="friend-space">
-                    <span class="tip-circle fs-tip-friend-space hide"></span>
-                </div>
-
-               <!-- <div class="tab" id="find-back" data-id="find-back"></div>-->
-            </div>
-
-
-
-            <!-- 最中间展示栏 -->
-            <div class="tab-view-container" id="session-list-container">
-                <div class="tab-view cur" data-id="session" id="session-list">
-                    <!--最近联系人列表-->
-
-
-                </div>
-            </div>
-            <div class="tab-view-container hide" id="address-book-list-container">
-                <div class="tab-view" data-id="address-book" id="address-book-list">
-                    <!-- 我的手机/置顶 -->
-                    <div class="top-layout" id="top-layout">
-                        <div class="ab-item" data-type="p" data-account="100326" data-id="p2p-100326">
-                            <div class="abf-avatar-container"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" alt="" class="abf-avatar vertical-middle"></div>
-                            <div class="ab-name">我的手机</div>
-                        </div>
-                    </div>
-                    <!--  ab = adress book  -->
-                    <div class="ab-tag hide" id="tag-team">群组</div>
-
-                    <div class="friend-layout " id="friend-layout">
-                        <!-- 好友列表显示-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-view-container hide" id="friend-space-view-container">
-                <div class="tab-view" data-id="friend-space" id="friend-space-view">
-                    <div class="fs-line"></div>
-                    <div class="fs-tb-list">
-                        <div class="fs-tb-item" id="fs-my-space" data-id="3">
-                            <div class="fs-space">我的秘圈</div>
-                        </div>
-                        <div class="fs-tb-item" id="fs-my-message" data-id="0">
-                            <div class="fs-txt">我的消息</div>
-                            <span class="tip-circle fs-tip-my-message hide"></span>
-                        </div>
-                        <div class="fs-tb-item" id="fs-send-text" data-id="1">
-                            <div class="fs-txt">发文字</div>
-                        </div>
-                        <div class="fs-tb-item" id="fs-send-photo" data-id="2">
-                            <div class="fs-txt">发照片</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- find-back -->
-            <!--<div class="tab-view-container hide" id="find-back-view-container">
-                <div class="tab-view hide" data-id="find-back" id="find-back-view">
-                    <div class="fb-tb-list">
-                        <div class="fb-tb-item" id="fb-refresh-location" data-id="0">
-                            <div class="fb-refresh">刷新位置</div>
-                        </div>
-                        <div class="fb-tb-item" id="fb-fire-alarm" data-id="1">
-                            <div class="fb-alarm">发送警报</div>
-                        </div>
-                        <div class="fb-tb-item" id="fb-send-message" data-id="2">
-                            <div class="fb-sendMsg">通知紧急联系人</div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-
-        </div>
-        <!-- 最右边展示栏 -->
-        <div class="chat--layout clear chat--layout-history hide" id="chatting-history-wrapper">
-            <div class="chatting-history-layout">
-                <div class="chatting-history-title">
-                    <em class="cht-discribe">聊天记录</em>
-                    <div class="cht-back">返回</div>
-                </div>
-                <div class="chatting-history-container">
-
+                <div class="friend-layout " id="friend-layout">
+                    <!-- 好友列表显示-->
                 </div>
             </div>
         </div>
-        <div class="chat--layout clear" id="chatting-area-wrapper" data-id="session">
-            <!-- 名片卡 -->
-            <div id="info-box" class="info-box isNotFriend hide">
-                <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/default-icon.png" alt="" class="info-avatar" id="info-avatar">
+
+        <div class="tab-view-container hide" id="friend-space-view-container">
+            <div class="tab-view" data-id="friend-space" id="friend-space-view">
+                <div class="fs-line"></div>
+                <div class="fs-tb-list">
+                    <div class="fs-tb-item" id="fs-my-space" data-id="3" onclick="mySpace()">
+                        <div class="fs-space">我的秘圈</div>
+                    </div>
+                    <div class="fs-tb-item" id="fs-my-message" data-id="0" onclick="myMessage()">
+                        <div class="fs-txt">我的消息</div>
+                        <span class="tip-circle fs-tip-my-message hide"></span>
+                    </div>
+                    <div class="fs-tb-item" id="fs-send-text" data-id="1" onclick="sendText()">
+                        <div class="fs-txt">发文字</div>
+                    </div>
+                    <div class="fs-tb-item" id="fs-send-photo" data-id="2" onclick="sendImg()">
+                        <div class="fs-txt">发照片</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- find-back -->
+        <!--<div class="tab-view-container hide" id="find-back-view-container">
+            <div class="tab-view hide" data-id="find-back" id="find-back-view">
+                <div class="fb-tb-list">
+                    <div class="fb-tb-item" id="fb-refresh-location" data-id="0">
+                        <div class="fb-refresh">刷新位置</div>
+                    </div>
+                    <div class="fb-tb-item" id="fb-fire-alarm" data-id="1">
+                        <div class="fb-alarm">发送警报</div>
+                    </div>
+                    <div class="fb-tb-item" id="fb-send-message" data-id="2">
+                        <div class="fb-sendMsg">通知紧急联系人</div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+    <!-- 最右边展示栏 -->
+    <div class="chat--layout clear chat--layout-history hide" id="chatting-history-wrapper">
+        <div class="chatting-history-layout">
+            <div class="chatting-history-title">
+                <em class="cht-discribe">聊天记录</em>
+                <div class="cht-back">返回</div>
+            </div>
+            <div class="chatting-history-container">
+
+            </div>
+        </div>
+    </div>
+    <div class="chat--layout clear" id="chatting-area-wrapper" data-id="session">
+        <!-- 名片卡 -->
+        <div id="info-box" class="info-box hide" style="top: 112px; left: 234.125px;">
+                <div class="info-avatar-container" id="info_avatar_container">
+                    <img src="" alt="" class="info-avatar vertical-middle" id="info-avatar">
+                </div>
+
                 <div class="info-alias" id="info-alias"></div>
-                <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/icon_women.png" alt="" class="info-gender" id="info-gender">
+                <img src="" alt="" class="info-gender" id="info-gender">
                 <div class="info-layout">
                     <span>昵称：</span><em id="info-name"></em>
                 </div>
@@ -424,241 +456,280 @@
                     <span>地区：</span><em id="info-area"></em>
                 </div>
                 <button class="apply-friend-btn" id="apply-friend-in-team" data-account="">添加好友</button>
+        </div>
+
+        <div class="chat-title" id="nick-name-layout" data-show="0">
+            <div class="team-options setting-layout hide" id="team-setting" data-id="-2">
+                设置
+            </div>
+            <div class="setting-menu-layout team-setting-menu-layout hide" id="team_setting_menu_layout">
+                <div class="setting-menu-item team-setting-menu-item chatting-history" data-id="0" id="delete_chat">删除聊天记录</div>
+                <div class="setting-menu-item team-setting-menu-item change-team-name" data-id="1" id="change_team_name">修改群名</div>
+                <div class="setting-menu-item team-setting-menu-item quit-team" data-id="2" id="quit_team">退出群聊</div>
             </div>
 
-            <div class="chat-title" id="nick-name-layout" data-show="0">
-                <div class="team-options setting-layout hide" id="team-setting" data-id="-2">
-                    设置
-                </div>
-                <div class="setting-menu-layout team-setting-menu-layout hide">
-                    <div class="setting-menu-item team-setting-menu-item chatting-history" data-id="0">聊天记录</div>
-                    <div class="setting-menu-item team-setting-menu-item change-team-name" data-id="1">修改群名</div>
-                    <div class="setting-menu-item team-setting-menu-item quit-team" data-id="2">退出群聊</div>
-                </div>
-
-                <div class="setting-menu-layout p2p-setting-menu-layout hide">
-                    <div class="setting-menu-item p2p-setting-menu-item p2p-chatting-history" data-id="0">聊天记录</div>
-                    <div class="setting-menu-item p2p-setting-menu-item change-friend-alias" data-id="1">修改备注</div>
-                    <div class="setting-menu-item p2p-setting-menu-item delete-friend" data-id="2">删除好友</div>
-                </div>
-
-                <em class="nick-name" id="nick-name">未选择聊天对象</em>
-                <input type="text" class="edit-team-name-ipt hide" id="edit-team-name-ipt">
-                <div class="arrows-layout"><span class="team-options add-team-member hide"></span></div>
-                <!--<div class="team-options leave-team-layout hide" id="leave-team">-->
-                <!--退出群聊-->
-                <!--</div>-->
+            <div class="setting-menu-layout p2p-setting-menu-layout hide" id="p2p_setting_menu_layout">
+                <div class="setting-menu-item p2p-setting-menu-item p2p-chatting-history" data-id="0" id="p2p_delete_chat">删除聊天记录</div>
+                <div class="setting-menu-item p2p-setting-menu-item change-friend-alias" data-id="1" id="change_friend_alias">修改备注</div>
+                <div class="setting-menu-item p2p-setting-menu-item delete-friend" data-id="2" id="delete_friend">删除好友</div>
             </div>
 
-            <p class="team-member-layout an0" id="team-member-layout">
-                <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/button_add.png" class="member-item" id="add-item">
-            </p>
+            <em class="nick-name" id="nick-name">未选择聊天对象</em>
+            <input type="text" class="edit-team-name-ipt hide" id="edit-team-name-ipt">
+            <div class="arrows-layout"><span class="team-options add-team-member hide" id="add_team_member"></span></div>
+            <!--<div class="team-options leave-team-layout hide" id="leave-team">-->
+            <!--退出群聊-->
+            <!--</div>-->
+        </div>
 
-            <div class="chat-view chat-content" id="chat-content">
+        <p class="team-member-layout ps ps--theme_default ps--active-y an0" id="team-member-layout" data-ps-id="ace279e4-2b53-36f8-374e-d526c76463d2" style="height: 0px;">
 
-                <!--<p class="u-msgTime">- - - - -&nbsp;03-26 19:52&nbsp;- &#45;&#45; - -</p>
-                &lt;!&ndash;发送消息&ndash;&gt;
-                <div data-time="1522065179070" data-id="1bcfe2193015c31d0460cb7aa8cc2baa" id="1bcfe2193015c31d0460cb7aa8cc2baa" data-idserver="12839877731" class="clear item item-me">
-                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
-                    <div class="msg msg-text j-msg">
-                        <div class="box">
-                            <div class="cnt">
-                                <div class="f-maxWid">对方是否是</div>
-                            </div>
+        </p>
+
+        <!--<p class="team-member-layout ps ps&#45;&#45;theme_default ps&#45;&#45;active-y an1" id="team-member-layout" data-ps-id="ace279e4-2b53-36f8-374e-d526c76463d2" style="height: 90px;">
+            <img src="https://cdn.mitures.com/web/assests/img/button_add-min.png" class="member-item" id="add-item"><img src="https://cdn.mitures.com/web/assests/img/button_delete-min.png" class="member-item" id="delete-member-item"><img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" title="国际花都韩" class="member-item" data-account="100326"><img src="https://cdn.mitures.com/headings/4c6c3ea343f2f819f8ca8eb0808d02bc/1513849417315/8f5f631f-43f2-4235-8409-56738e874a24.webp" title="安广h" class="member-item" data-account="1007"><img src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" title="万鹏sb" class="member-item" data-account="100255">
+        </p>-->
+
+        <div class="chat-view chat-content" id="chat-content">
+
+            <p class='u-msgTime hide' id='moreMsg' data-page="1" style="cursor: pointer">- - - - -&nbsp;加载更多&nbsp;- &#45;&#45; - -</p>
+            <!--<p class="u-msgTime">- - - - -&nbsp;03-26 19:52&nbsp;- &#45;&#45; - -</p>
+
+            <div data-time="1525067946152" data-id="6134b93f3233114564f8b5956f986278" id="6134b93f3233114564f8b5956f986278" data-idserver="14764578537" class="clear item item-me"><div class="j-img-container"><img class="img j-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div><div class="msg msg-text j-msg"><div class="box"><div class="cnt"><a href="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTA2Nzk0NTMzNF9jNGNkY2IwZS04YmVhLTQwYjQtODM0MS0wZWMzMWIzZmYyOWU=?download=server3.txt" target="_blank" class="download-file f-maxWid"><span class="icon icon-file2"></span>server3.txt</a></div></div></div></div>
+
+            <div data-time="1525067927096" data-id="eeb88a3671d91e47a7a8ed75a144a9a6" id="eeb88a3671d91e47a7a8ed75a144a9a6" data-idserver="14764427539" class="clear item item-me"><div class="j-img-container"><img class="img j-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div><div class="msg msg-text j-msg"><div class="box"><div class="cnt"><a class="f-maxWid" href="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTA2NzkyNjI1OF9jNTc3MThjMi0wNjY3LTQ3ZjEtYmIxOC1lZmQ1MGJlY2M3OTE=?x-oss-process=image/format,webp?imageView" target="_blank"><img data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTA2NzkyNjI1OF9jNTc3MThjMi0wNjY3LTQ3ZjEtYmIxOC1lZmQ1MGJlY2M3OTE=?x-oss-process=image/format,webp" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTA2NzkyNjI1OF9jNTc3MThjMi0wNjY3LTQ3ZjEtYmIxOC1lZmQ1MGJlY2M3OTE=?x-oss-process=image/format,webp?imageView&amp;thumbnail=200x0&amp;quality=85"></a></div></div></div></div>
+            &lt;!&ndash;发送消息&ndash;&gt;
+            <div data-time="1522065179070" data-id="1bcfe2193015c31d0460cb7aa8cc2baa" id="1bcfe2193015c31d0460cb7aa8cc2baa" data-idserver="12839877731" class="clear item item-me">
+                <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                            <div class="f-maxWid">对方是否是</div>
                         </div>
                     </div>
                 </div>
-
-                &lt;!&ndash;发送表情包&ndash;&gt;
-                <div data-time="1522326750425" data-id="88195d754cc550f565f99d11ec876c51" id="88195d754cc550f565f99d11ec876c51" data-idserver="12995841918" class="clear item item-me">
-                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
-                    <div class="msg msg-text j-msg">
-                        <div class="box">
-                            <div class="cnt">
-                                <div class="f-maxWid"><img class="emoji" src="https://cdn.mitures.com/web/assests/img/emoji/emoji_27.png"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                &lt;!&ndash;发送图片&ndash;&gt;
-                <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-me">
-                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
-                    <div class="msg msg-text j-msg">
-                        <div class="box">
-                            <div class="cnt">
-                                <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                &lt;!&ndash;对方发送消息过来&ndash;&gt;
-                <div data-time="1522328748882" data-id="18a7215834217fc0dd6b9f142a0c137f" id="18a7215834217fc0dd6b9f142a0c137f" data-idserver="12997361748" class="clear item item-you">
-                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://cdn.mitures.com/headings/default/3.jpg?x-oss-process=image/format,webp" data-account="601072"></div>
-                    <div class="msg msg-text j-msg">
-                        <div class="box">
-                            <div class="cnt">
-                                <div class="f-maxWid">好的</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                &lt;!&ndash;对方发送图片&ndash;&gt;
-                <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-you">
-                    <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
-                    <div class="msg msg-text j-msg">
-                        <div class="box">
-                            <div class="cnt">
-                                <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-
             </div>
 
-            <div class="text-layout">
-                <div class="choose-staff clear">
-                    <div id="emojiTag" class="m-emojiTag"></div>
-                    <span id="showEmoji"></span>
-                    <span id="chooseFileBtn"></span>
+            &lt;!&ndash;发送表情包&ndash;&gt;
+            <div data-time="1522326750425" data-id="88195d754cc550f565f99d11ec876c51" id="88195d754cc550f565f99d11ec876c51" data-idserver="12995841918" class="clear item item-me">
+                <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                            <div class="f-maxWid"><img class="emoji" src="https://cdn.mitures.com/web/assests/img/emoji/emoji_27.png"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-container">
-                    <textarea name="send-text" id="send-text" cols="30" rows="10"></textarea>
+            </div>
+
+            &lt;!&ndash;发送图片&ndash;&gt;
+            <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-me">
+                <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                            <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="send-container">
-                    <button id="send">发送</button>
-                    <span id="ctrl">按下ctrl+enter键换行</span>
-                    <form action="#" id="uploadForm">
-                        <input multiple="multiple" type="file" name="file" id="uploadFile" class="hide" />
-                    </form>
+            </div>
+
+            &lt;!&ndash;对方发送消息过来&ndash;&gt;
+            <div data-time="1522328748882" data-id="18a7215834217fc0dd6b9f142a0c137f" id="18a7215834217fc0dd6b9f142a0c137f" data-idserver="12997361748" class="clear item item-you">
+                <div class="j-img-container"><img class="img j-img vertical-middle" src="https://cdn.mitures.com/headings/default/3.jpg?x-oss-process=image/format,webp" data-account="601072"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                            <div class="f-maxWid">好的</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+
+            &lt;!&ndash;对方发送图片&ndash;&gt;
+            <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-you">
+                <div class="j-img-container"><img class="img j-img vertical-middle" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                            <a href="#" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyMjMyODI3OTYxOV8wNWI3Mzg5Yy1kYmMxLTQwMmItODA1MS0yODE2NDM2ZjRkZDk=?imageView&amp;thumbnail=200x0&amp;quality=85"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+
+        </div>
+
+        <div class="text-layout">
+            <div class="choose-staff clear">
+                <div id="emojiTag" class="m-emojiTag"></div>
+                <span id="emoji"><img src="images/emoji.png" style="width: 23px;height: 23px;"></span>
+                <span id="chooseFile"><img src="images/chooseFile.png" style="width: 22px;height: 20px; margin-left: 30px;"></span>
+            </div>
+            <div class="text-container" id="text_container">
+                <textarea name="send-text" id="send-text" cols="30" rows="10"></textarea>
+            </div>
+            <div class="send-container">
+                <button id="send">发送</button>
+                <span id="ctrl">按下ctrl+enter键换行</span>
+                <form action="#" id="uploadForm">
+                    <input multiple="multiple" type="file" name="file" id="uploadFile" class="hide"/>
+                </form>
             </div>
         </div>
-        <!-- address book -->
-        <div class="chat--layout clear hide" id="address-book-wrapper" data-id="address-book">
-            <div class="chat-title" id="info-detail">详细信息</div>
-            <div class="info-view info-content hide" id="info-content">
+    </div>
+    <!-- address book -->
+    <div class="chat--layout clear hide" id="address-book-wrapper" data-id="address-book">
+        <div class="chat-title" id="info-detail">详细信息</div>
+        <div class="info-view info-content hide" id="info-content">
 
-                <div class="delete-friend" id="delete-friend" data-id="p2p-100255">移除好友</div>
-                <div class="info-de-avatar-container"><img class="info-de-avatar vertical-middle" id="info-de-avatar" src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" alt=""></div>
-                <div class="info-de-alias info-de-info" id="info-de-alias"><em>万鹏</em><input type="text" class="alias-edit-ipt hide" id="alias-edit-ipt" data-id="p2p-100255"><span class="change-friend-alias" id="change-friend-alias"></span></div>
-                <div class="info-de-nick info-de-info" id="info-de-nick"><span>昵称:</span><em>🙄</em></div>
-                <div class="info-de-area  info-de-info" id="info-de-area"><span>地区:</span><em>中国</em></div>
-                <div class="info-btn-container">
-                    <button class="info-btn info-de-send" id="info-de-send" data-id="p2p-100255">发消息</button>
-                </div>
-
+            <div class="delete-friend" id="delete-friend" data-id="p2p-100255">移除好友</div>
+            <div class="info-de-avatar-container"><img class="info-de-avatar vertical-middle" id="info-de-avatar" src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" alt=""></div>
+            <div class="info-de-alias info-de-info" id="info-de-alias"><em>万鹏</em><input type="text" class="alias-edit-ipt hide" id="alias-edit-ipt" data-id="p2p-100255"><span class="change-friend-alias" id="change-friend-alias"></span></div>
+            <div class="info-de-nick info-de-info" id="info-de-nick"><span>昵称:</span><em>🙄</em></div>
+            <div class="info-de-area  info-de-info" id="info-de-area"><span>地区:</span><em>中国</em></div>
+            <div class="info-btn-container">
+                <button class="info-btn info-de-send" id="info-de-send" data-id="p2p-100255">发消息</button>
             </div>
+
         </div>
-        <!-- friend space -->
-        <div class="chat--layout clear chat--layout-friend-space hide" id="friend-space-wrapper" data-id="friend-space">
-            <div class="friend-space-layout">
-                <div class="friend-space-title">
-                    <em class="fst-discribe">秘圈</em>
-                    <div class="fst-refresh"></div>
-                    <!--<div class="fst-back">返回</div>-->
-                </div>
-                <div class="fs-my-notation-container">
-                    <div class="fs-my-notation-list">
+    </div>
+    <!-- friend space -->
+    <div class="chat--layout clear chat--layout-friend-space hide" id="friend-space-wrapper" data-id="friend-space">
+        <div class="friend-space-layout">
+            <div class="friend-space-title">
+                <em class="fst-discribe">朋友圈</em>
+                <div class="fst-refresh"></div>
+            </div>
+            <div class="fs-my-notation-container" id="fs_my_notation_container">
+                <div class="fs-my-notation-list">
 
-
-                        <div class="fsn-item fsn-up" data-uid="1" data-mid="s">
-                            <div class="fsni-avater-wrapper">
-                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                    <div class="fsn-item fsn-up" data-uid="1" data-mid="s" style="width: 100%; max-height: 300px">
+                        <div class="fsni-avater-wrapper">
+                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                        </div>
+                        <div class="fsni-main-wrapper">
+                            <div class="fsni-main-line fsni-line1">
+                                <div class="fsni-alias">夏德康</div>
                             </div>
-                            <div class="fsni-main-wrapper">
-                                <div class="fsni-main-line fsni-line1">
-                                    <div class="fsni-alias">alias</div>
-                                    赞了你
+                            <div class="fsni-main-line fsni-line2" style="overflow: hidden;height:60px;">
+                                <div class="fsni-timetag">今天我很开心,我吃了发给你圣诞节分的说法大地方安德森啊手动阀的撒范德萨范德萨范德萨的房贷首付安抚厘卡撒飞机螺丝sdfa dfs dsfdas fas的说法范德萨都市钉解放老师付了首付了发生的收到</div>
+                            </div>
+                            <div class="fsni-main-line fsni-line3">
+                                <div class="fsni-timetag">一天前</div>
+                            </div>
+                            <div class="fsni-main-line fsni-line4">
+                                <img class="good_cls" src="images/good.png"  style="height:25px;width:25px;cursor: pointer;">
+                                <img class="comment_cls" src="images/comment.png"  style="height:25px;width:25px;cursor: pointer;">
+                            </div>
+                                <div style="width: 100%;background-color: #dbdbdb;border-bottom: 1px #e6e6e6 solid;">
+                                    <span style="border-bottom: 5px">好友1</span>
                                 </div>
-                                <div class="fsni-main-line fsni-line2">
-
-                                    <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                                </div>
-                                <div class="fsni-main-line fsni-line3">
-                                    <div class="fsni-timetag">timeTag</div>
-                                </div>
-                                <div class="fsni-img-wrapper">
-                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                                </div>
+                            <div style="width: 100%;background-color: #dbdbdb">
+                                <p>小王:<span>sssss</span></p>
                             </div>
                         </div>
-
-                        <div class="fsn-item fsn-up" data-uid="1" data-mid="s">
-                            <div class="fsni-avater-wrapper">
-                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                            </div>
-                            <div class="fsni-main-wrapper">
-                                <div class="fsni-main-line fsni-line1">
-                                    <div class="fsni-alias">alias</div>
-                                    赞了你
-                                </div>
-                                <div class="fsni-main-line fsni-line2">
-
-                                    <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                                </div>
-                                <div class="fsni-main-line fsni-line3">
-                                    <div class="fsni-timetag">timeTag</div>
-                                </div>
-                                <div class="fsni-img-wrapper">
-                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="fsn-item fsn-comment" data-uid="1" data-mid="2">
-                            <div class="fsni-avater-wrapper">
-                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                            </div>
-                            <div class="fsni-main-wrapper">
-                                <div class="fsni-main-line fsni-line1">
-                                    <div class="fsni-alias"> alias</div>
-
-                                </div>
-                                <div class="fsni-main-line fsni-line2">
-                                    <div class="fsni-comment-words">
-                                        不错不错
-                                    </div>
-                                </div>
-                                <div class="fsni-main-line fsni-line3">
-                                    <div class="fsni-timetag">2018-10-01</div>
-                                </div>
-                                <div class="fsni-img-wrapper">
-                                    <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="fsn-item fsn-comment" data-uid="' + moment.uid + '" data-mid="' + moment.mid + '">
-                            <div class="fsni-avater-wrapper">
-                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                            </div>
-                            <div class="fsni-main-wrapper">
-                                <div class="fsni-main-line fsni-line1">
-                                    <div class="fsni-alias">夏德康</div>
-                                    评论了你
-                                </div>
-                                <div class="fsni-main-line fsni-line2">
-                                    <div class="fsni-comment-words">
-                                        sliceName(words, 20)
-                                    </div>
-                                </div>
-                                <div class="fsni-main-line fsni-line3">
-                                    <div class="fsni-timetag">' + timeTag + '</div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+
+                    <!--<div class="fsn-item fsn-up" data-uid="1" data-mid="s">
+                        <div class="fsni-avater-wrapper">
+                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                        </div>
+                        <div class="fsni-main-wrapper">
+                            <div class="fsni-main-line fsni-line1">
+                                <div class="fsni-alias">alias</div>
+                                赞了你
+                            </div>
+                            <div class="fsni-main-line fsni-line2">
+
+                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                            </div>
+                            <div class="fsni-main-line fsni-line3">
+                                <div class="fsni-timetag">timeTag</div>
+                            </div>
+                            <div class="fsni-img-wrapper">
+                                <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fsn-item fsn-comment" data-uid="1" data-mid="2">
+                        <div class="fsni-avater-wrapper">
+                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                        </div>
+                        <div class="fsni-main-wrapper">
+                            <div class="fsni-main-line fsni-line1">
+                                <div class="fsni-alias"> alias</div>
+
+                            </div>
+                            <div class="fsni-main-line fsni-line2">
+                                <div class="fsni-comment-words">
+                                    不错不错
+                                </div>
+                            </div>
+                            <div class="fsni-main-line fsni-line3">
+                                <div class="fsni-timetag">2018-10-01</div>
+                            </div>
+                            <div class="fsni-img-wrapper">
+                                <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fsn-item fsn-comment" data-uid="' + moment.uid + '" data-mid="' + moment.mid + '">
+                        <div class="fsni-avater-wrapper">
+                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                        </div>
+                        <div class="fsni-main-wrapper">
+                            <div class="fsni-main-line fsni-line1">
+                                <div class="fsni-alias">夏德康</div>
+                                评论了你
+                            </div>
+                            <div class="fsni-main-line fsni-line2">
+                                <div class="fsni-comment-words">
+                                    sliceName(words, 20)
+                                </div>
+                            </div>
+                            <div class="fsni-main-line fsni-line3">
+                                <div class="fsni-timetag">' + timeTag + '</div>
+                            </div>
+                        </div>
+                    </div>-->
+
                 </div>
-                <div class="friend-space-container">
-                    <div class="fs-common-con fs-list">
-                    <div class="fs-send-new-item fs-send-photos hide">
+            </div>
+
+            <div class="fs-my-notation-container" id="my_space_messages">
+                <div class="fs-my-notation-list">
+
+                    <div class="fsn-item fsn-up" data-uid="1" data-mid="s" style="width: 100%; max-height: 300px">
+                        <div class="fsni-avater-wrapper">
+                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
+                        </div>
+                        <div class="fsni-main-wrapper" style="width: 249px;">
+                            <div class="fsni-main-line fsni-line1">
+                                <div class="fsni-alias">夏德康</div>
+                            </div>
+                            <div class="fsni-main-line fsni-line2" style="overflow: hidden;height:20px;">
+                                <div class="fsni-timetag">评论了你</div>
+                            </div>
+                            <div class="fsni-main-line fsni-line3" style="margin-bottom: 10px">
+                                <div class="fsni-timetag" style="margin-bottom: 10px">一天前</div>
+                            </div>
+                        </div>
+                        <div style="float:left;width:90px;height:76px;overflow:hidden;text-align:center;">
+                             <div style="width:100%;height: 100%;background-color:gainsboro">sdkddkdkdkdk</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="friend-space-container hide" id="friend_space_container">
+                <div class="fs-common-con fs-list">
+                    <div class="fs-send-new-item fs-send-photos">
                         <textarea class="fs-new-item-text clear" rows="30" cols="10" id="fs-new-item-text" placeholder="说点什么吧..."></textarea>
                         <div class="transported-moment-layout hide" id="transported-moment-layout">
 
@@ -666,10 +737,10 @@
                         <div class="fs-send-area clear">
                             <div class="fs-photo-area">
                                 <div class="fs-send-photo-wrapper" id="fs-add-photo">
-                                    <img src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/friend_space/button_photo.png" class="fs-photo-for-send">
+                                    <img src="images/button_photo.png" class="fs-photo-for-send">
                                 </div>
                             </div>
-                            <button class="btn-send fs-send-new-item-btn" id="fs-send-new-item-btn">发送</button>
+                            <button class="btn-send fs-send-new-item-btn" id="fs-send-new-item-btn" data-type="">发送</button>
 
                         </div>
                         <!-- moment item access areas -->
@@ -688,63 +759,66 @@
                                 <div class="mai-text">谁可以看</div>
                                 <div class="mai-down-arrow"></div>
                             </div>
-                            <div class="mai-select-area">
-                                    <div class="mai-option cur" data-value="0" ><p>公开</p></div>
-                                    <div class="mai-option" data-value="1" ><p>仅自己可见</p></div>
-                                    <div class="mai-option" data-value="2" ><p>选中的朋友可见</p> <span class="mai-option-arrow" id="select-to-show-arrow"></span></div>
-                                    <div class="mai-group-area" id="show-group">
-                                        <div class="create-group" id="create-show-group">
-                                            创建标签
-                                        </div>
-                                        <div class="group-list-container" id="show-list-container">
-                                            <!--<div class="mai-group-item">-->
-                                                <!--<div class="mgi-check-item"></div>-->
-                                                <!--<div class="mgi-group-main">-->
-                      <!--<div class="mgi-group-title">风轮科技</div>-->
-                                                    <!--<div class="mgi-group-members">风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技</div>-->
-                                                <!--</div>-->
-                                                <!--<div class="mgi-add-member">-->
-
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        </div>
+                           <!-- <div class="mai-select-area">
+                                <div class="mai-option cur" data-value="0"><p>公开</p></div>
+                                <div class="mai-option" data-value="1"><p>仅自己可见</p></div>
+                                <div class="mai-option" data-value="2"><p>选中的朋友可见</p> <span class="mai-option-arrow" id="select-to-show-arrow"></span></div>
+                                <div class="mai-group-area" id="show-group">
+                                    <div class="create-group" id="create-show-group">
+                                        创建标签
                                     </div>
-                                    <div class="mai-option" data-value="3" ><p>选中的朋友不可见</p> <span class="mai-option-arrow" id="select-to-hide-arrow"></span></div>
-                                    <div class="mai-group-area" id="hide-group">
-                                        <div class="create-group" id="create-hide-group">
-                                            创建标签
-                                        </div>
-                                        <div class="group-list-container" id="hide-list-container">
+                                    <div class="group-list-container" id="show-list-container">
+                                        &lt;!&ndash;<div class="mai-group-item">&ndash;&gt;
+                                        &lt;!&ndash;<div class="mgi-check-item"></div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="mgi-group-main">&ndash;&gt;
+                                        &lt;!&ndash;<div class="mgi-group-title">风轮科技</div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="mgi-group-members">风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技</div>&ndash;&gt;
+                                        &lt;!&ndash;</div>&ndash;&gt;
+                                        &lt;!&ndash;<div class="mgi-add-member">&ndash;&gt;
 
-                                        </div>
+                                        &lt;!&ndash;</div>&ndash;&gt;
+                                        &lt;!&ndash;</div>&ndash;&gt;
                                     </div>
-
                                 </div>
+                                <div class="mai-option" data-value="3"><p>选中的朋友不可见</p> <span class="mai-option-arrow" id="select-to-hide-arrow"></span></div>
+                                <div class="mai-group-area" id="hide-group">
+                                    <div class="create-group" id="create-hide-group">
+                                        创建标签
+                                    </div>
+                                    <div class="group-list-container" id="hide-list-container">
+
+                                    </div>
+                                </div>
+
+                            </div>-->
                         </div>
 
                     </div>
 
 
-
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- address book -->
-        <div class="chat--layout clear hide" id="find-back-wrapper">
-            <div class="find-back-title">
-                <em>手机找回</em>
-            </div>
-            <div id="test-map"></div>
+    </div>
+    <!-- address book -->
+    <div class="chat--layout clear hide" id="find-back-wrapper">
+        <div class="find-back-title">
+            <em>手机找回</em>
         </div>
-
+        <div id="test-map"></div>
     </div>
 
+</div>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-     <script type="text/javascript" src="js/dkjs/util.js"></script>
-     <script type="text/javascript" src="js/dkjs/main.js"></script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dkjs/util.js"></script>
+<script type="text/javascript" src="js/dkjs/main.js"></script>
+<script type="text/javascript" src="js/dkjs/Friends.js"></script>
+<script type="text/javascript" src="js/dkjs/Messages.js"></script>
 <script type="text/javascript" src="js/dkjs/websocketUtil.js"></script>
+<script type="text/javascript" src="js/dkjs/space.js"></script>
+<script type="text/javascript" src="js/dkjs/setting.js"></script>
 
 </body>
 </html>
