@@ -126,5 +126,5 @@ function chatHint(content) {
     var html="<p class=\"u-notice tc item\" data-time=\"1524147029530\" data-id=\"0106d7d1-320a-4892-ba67-b278c3845dd3\" data-idserver=\"29321917085253634\">" +
         "<span class=\"radius5px\">"+content+"</span>" +
         "</p>";
-    $("#chat-content").append(html);
+    return html;
 }

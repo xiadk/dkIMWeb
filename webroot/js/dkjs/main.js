@@ -6,11 +6,14 @@ $(function () {
     sendAjaxNotData("get", "/user", function (msg) {
         $("#avatar_img").attr("src", msg.photo);
         $("#nickname-layout-span").text(msg.name);
+        $("#nickname-layout-span").attr("data-id",msg.uid);
     });
     session();
 
     ws = new WebSocket("ws://localhost:8001");
     wsocket(ws);
+
+    ['张三','李四','王五'].sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', {sensitivity: 'accent'}))
 
 })
 
@@ -66,9 +69,12 @@ function session() {
             var photo = contacts[i].photo;
             var alias = contacts[i].alias;
             var new_content = contacts[i].new_content;
-            if (new_content.length > 7) {
+            if(contacts[i].type==TYPE_PHOTO) {
+                new_content=getContactImg(new_content);
+            } else if (new_content.length > 7){
                 new_content = new_content.substr(0, 7) + "......";
             }
+
             var fid = contacts[i].fid;
             var ope = contacts[i].ope;
             var unread = contacts[i].unread;
@@ -149,4 +155,11 @@ function rightChatInit() {
     $("#team-setting").attr("data-id","-2");
     $("#chat-content").empty();
 }
+
+//联系人最新消息图片样式
+function getContactImg(src) {
+    return "<img src="+src+" style=\"width: 20px; height: 20px;top: -15px; right:25px;position: relative\">";
+}
+
+
 

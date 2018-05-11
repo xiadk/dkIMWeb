@@ -62,7 +62,7 @@ $("#address-book").click(function () {
 });
 
 
-//显示好友信息
+//显示请求添加好友详细信息
 function friendApply(message) {
     var data = {"mid": message.mid};
     sendAjax("post", "/messages/read", data, function (msg) {
@@ -71,7 +71,7 @@ function friendApply(message) {
             $("#sure-tb-name-user-name").text(message.name);
             $("#sure-friend-verify-tab").show();
             //发送确认添加好友请求
-            $("#sure-submit").click(function () {
+            $("#sure-submit").unbind("click").click(function () {
                 var data = {"uid": message.uid, "uidname": message.name, "fidname": $("#nickname-layout-span").text()};
                 sendAjax("post", "/friend", data, function (msg) {
                     $("#sure-friend-verify-tab").hide();
@@ -127,6 +127,8 @@ $("#apply-submit").click(function () {
 $("#tel-for-search").focus(function () {
     $("#search-person-tab").find("p").hide();
 });
+
+//查找好友
 $("#sp-submit").click(function () {
     var data = {"condition": $("#tel-for-search").val()};
     sendAjax("get", "/friend", data, function (msg) {

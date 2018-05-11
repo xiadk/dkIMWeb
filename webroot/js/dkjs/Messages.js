@@ -27,15 +27,24 @@ function comment(fid, alias) {
         }
         for (var i = 0; i < msg.messages.length; i++) {
 
-            if (fid == msg.messages[i].uid) {
+            if (msg.messages[i].type == TYPE_GROUP_HINT) {
+                $("#moreMsg").after(chatHint(msg.messages[i].body));
+            } else if (fid == msg.messages[i].uid) {
                 //好友发的
                 var contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo);
+                if (msg.messages[i].type == TYPE_PHOTO) {
+                    contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo, 1);
+                }
                 $("#moreMsg").after(contentHtml);
             } else {
                 //自己发的
                 var contentHtml = chat_content_append(msg.messages[i].body, 1);
+                if (msg.messages[i].type == TYPE_PHOTO) {
+                    contentHtml = chat_content_append(msg.messages[i].body, 1, -1, 1);
+                }
                 $("#moreMsg").after(contentHtml);
             }
+            $("#chat-content").scrollTop = $("#chat-content").scrollHeight;
         }
         var id = "#new_friend_hint" + fid;
         $(id).find("span").addClass("hide");
@@ -87,7 +96,7 @@ $("#statrt_chat").click(function () {
         });
 
         //确认发起聊天
-        $("#cc_submit").click(function () {
+        $("#cc_submit").unbind('click').click(function () {
             var fids = [];
             $.each($(".cc-tl-friend-item>.selected"), function (i, n) {
                 var fid = $(n).attr("data-id");
@@ -103,7 +112,7 @@ $("#statrt_chat").click(function () {
                 //获取联系人列表
                 session();
                 menuToggle($("#tab_layout"));
-                menuToggle($("#add_team_member"));
+                $("#add_team_member").removeClass("hide");
             })
         });
 
@@ -115,13 +124,12 @@ $("#statrt_chat").click(function () {
 $("#add_team_member").click(function () {
 
     if ($("#team-member-layout").hasClass("an0")) {
+        $("#team-member-layout").empty();
         classToggle($("#team-member-layout"), "an0", "an1");
         $("#team-member-layout").css("height", "90px");
         var gid = $("#team-setting").attr("data-id");
         var data = {"gid": gid};
         sendAjax("get", "/group/members", data, function (msg) {
-
-            $("#team-member-layout").empty();
             var add_del_html = "<img src=\"images/button_add.png\" class=\"member-item\" id=\"add-item\">\n" +
                 "            <img src=\"images/button_delete.png\" class=\"member-item\" id=\"delete-member-item\">";
             $("#team-member-layout").append(add_del_html);
@@ -186,19 +194,27 @@ $("#add_team_member").click(function () {
                     //确定删除的成员
                     $("#dm-submit").click(function () {
                         var fids = [];
+                        var chatHintName = $("#nickname-layout-span").text() + "将";//群消息提示
                         $.each($(".dm-friend-item>.selected"), function (i, n) {
                             var fid = $(n).attr("data-id");
                             fids.push(fid);
+                            chatHintName = chatHintName + $(n).parent().children(".tb-item-alias").text() + ",";
                         });
-                        console.log(fids);
+                        chatHintName = chatHintName.substring(0, chatHintName.length - 1) + "踢出群";
                         var members = JSON.stringify(fids);
                         var gid = $("#team-setting").attr("data-id");
                         var data = {"members": members, "gid": gid};
-                        sendAjax("post", "/group/delmembers", data, function () {
+                        sendAjax("post", "/group/delmembers", data, function (msg) {
 
                             $("#delete-member-tab").addClass("hide");
                             closeTeamLayout();
-                            hint("删除成功");
+                            $("#chat-content").append(chatHint(chatHintName));
+                            var token = readCookie("token");
+                            var fid = $("#team-setting").attr("data-id");
+                            var id = "#new_friend_hint" + fid;
+                            var ope = $(id).attr("data-ope");
+                            var message = new form(token, ope, fid, TYPE_GROUP_HINT, chatHintName);
+                            wsSend(message);
                         })
                     });
 
@@ -236,18 +252,27 @@ $("#add_team_member").click(function () {
                     //确定要添加的成员
                     $("#am-submit").unbind('click').click(function () {
                         var fids = [];
+                        var chatHintName = $("#nickname-layout-span").text() + "将";//群消息提示
                         $.each($(".am-friend-item>.selected"), function (i, n) {
                             var fid = $(n).attr("data-id");
                             fids.push(fid);
+                            chatHintName = chatHintName + $(n).parent().children(".tb-item-alias").text() + ",";
                         });
+                        chatHintName = chatHintName.substring(0, chatHintName.length - 1) + "拉入群中";
                         var members = JSON.stringify(fids);
                         var gid = $("#team-setting").attr("data-id");
                         var data = {"members": members, "gid": gid};
-                        sendAjax("post", "/group/addMembers", data, function () {
+                        sendAjax("post", "/group/addMembers", data, function (msg) {
 
                             $("#add-member-tab").addClass("hide");
                             closeTeamLayout();
-                            hint("添加成功");
+                            $("#chat-content").append(chatHint(chatHintName));
+                            var token = readCookie("token");
+                            var fid = $("#team-setting").attr("data-id");
+                            var id = "#new_friend_hint" + fid;
+                            var ope = $(id).attr("data-ope");
+                            var message = new form(token, ope, fid, TYPE_GROUP_HINT, chatHintName);
+                            wsSend(message);
                         })
                     });
 
@@ -272,7 +297,7 @@ $("#cc-close").click(function () {
 
 
 //点击发送消息
-$("#send").click(function () {
+$("#send").unbind("click").click(function () {
     var content = $("#send-text").val();
     var token = readCookie("token");
     var fid = $("#team-setting").attr("data-id");
@@ -291,6 +316,36 @@ $("#send").click(function () {
 
 });
 
+//显示表情
+$("#showEmoji").click(function (e) {
+
+    e.stopPropagation();
+    $("#emojiTag").children(".m-emoji-wrapper").css("display", "block");
+});
+
+//点击表情
+$(".m-emoji-picCol-ul").children("span").click(function (e) {
+    // e.stopPropagation();
+    var image = $(this).attr("id");
+    var te = $("#send-text").val();
+    $("#send-text").val(te + image);
+});
+
+//从文本消息筛选出表情包并更换
+function getEmoij(str) {
+    var arr = str.split("[");
+    for (var i = 0; i < arr.length; i++) {
+
+        if (arr[i].indexOf("]") > 0) {
+            var emoijId = "\\[" + arr[i].substring(0, arr[i].indexOf("]")) + "\\]";
+            var src = $("#" + emoijId).children().attr("src");
+            var img = "<img class=\"emoji\" src=\"" + src + "\">";
+            var emoijStr = "[" + arr[i].substring(0, arr[i].indexOf("]")) + "]";
+            str = str.replace(emoijStr, img);
+        }
+    }
+    return str;
+}
 
 //fm=1自己发，fm=2别人发 type=0文本消息，1为图片,默认文本
 function chat_content_append(body, fm, src, type) {
@@ -305,9 +360,11 @@ function chat_content_append(body, fm, src, type) {
             "                        <div class=\"box\">\n" +
             "                            <div class=\"cnt\">";
         if (type == 0) {
+            //分离出表情包
+            body = getEmoij(body);
             content = content + " <div class=\"f-maxWid\">" + body + "</div>";
         } else {
-            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + src + "></div>";
+            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + body + "></div>";
         }
 
         content = content + "         </div>\n" +
@@ -322,9 +379,11 @@ function chat_content_append(body, fm, src, type) {
             "                        <div class=\"box\">\n" +
             "                            <div class=\"cnt\">";
         if (type == 0) {
+            //分离出表情包
+            body = getEmoij(body);
             content = content + " <div class=\"f-maxWid\">" + body + "</div>";
         } else {
-            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + src + "></div>";
+            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + body + "></div>";
         }
 
         content = content + "         </div>\n" +
@@ -350,7 +409,7 @@ function StartChatInit(fid, alias, ope) {
     $(".session-item").removeClass("cur");
     $(id).addClass("cur");
     $("#nick-name").text(alias);
-    $("#chat-content").append(" <p class='u-msgTime'>- - - - -&nbsp;2018-04-19 00:52&nbsp;- &#45;&#45; - -</p>\n");
+    // $("#chat-content").append(" <p class='u-msgTime'>- - - - -&nbsp;2018-04-19 00:52&nbsp;- &#45;&#45; - -</p>\n");
     $(".item").remove();//清空聊天内容
     $("#moreMsg").attr("data-page", "1");//初始化消息页数
     $(".tab").removeClass("cur");
@@ -389,31 +448,26 @@ function selectedAndCancle($obj) {
     }
 }
 
-//显示表情
-$("#showEmoji").click(function (e) {
-
-    e.stopPropagation();
-    $("#emojiTag").children(".m-emoji-wrapper").css("display", "block");
-    /*sendAjaxNotData("post","/messages/downFile",function (msg) {
-        console.log(msg);
-    })*/
-});
-
-//点击发送表情
-$(".m-emoji-picCol-ul").children("span").click(function (e) {
-    e.stopPropagation();
-    var image = $(this).children("img").attr("src");
-
-    chat_content_append(image,1,-1,1);
-});
-
 
 //上传文件弹框
 $("#chooseFileBtn").click(function () {
-    $("#upload").click();
+    $("#uploadForm").click();
 });
 
-$("#upload").change(function () {
+$("#uploadForm").change(function () {
+    var observable = qiniu.upload(file, key, token, putExtra, config);
+    var observer = {
+        next(res) {
+            console.log("本次上传的总量控制信息:"+res.total.total);
+        },
+        error(err) {
+            console.log("上传失败");
+        },
+        complete(res) {
+            console.log("上传成功");
+        }
+    }
+    var subscription = observable.subscribe(observer);
     $.ajax({
         type: "post",
         url: "/messages/upload",

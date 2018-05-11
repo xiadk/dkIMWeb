@@ -7,6 +7,7 @@ var CLOSED = 3;//表示连接已经关闭，或者打开连接失败
 var TYPE_TEXT = 0;//文本消息请求
 var TYPE_PHOTO = 1;//图片消息请求
 var TYPE_ADD_FRIEND = 2;//添加好友请求
+var TYPE_GROUP_HINT = 3;//群消息提示
 
 /*ope类型*/
 var OPE_PERSONAL = 0;//个人消息
@@ -57,19 +58,26 @@ function wsocket(ws) {
                 var message = body[i];
                 var type = message.type;
                 switch (type) {
+                    case 1:
                     //普通文本消息
                     case 0:
                         var fid = $("#team-setting").attr("data-id");
-                        var id = "#new_friend_hint" + fid;
-                        var content =message.body;
-                        if(message.body.length>7){
-                            content = message.body.substr(0,7)+"......";
-
+                        var id = "#new_friend_hint" + message.uid;
+                        var content = message.body;
+                        if (type == TYPE_PHOTO) {
+                            $(id).find(".last-msg").html(getContactImg(content));
+                        } else {
+                            if (message.body.length > 7) {
+                                content = message.body.substr(0, 7) + "......";
+                            }
+                            $(id).find(".last-msg").text(content);
                         }
-                        $(id).find(".last-msg").text(content);
                         if (fid == message.uid) {
                             //正在聊天中
-                            var contentHtml = chat_content_append(message.body, 2,message.photo);
+                            var contentHtml = chat_content_append(message.body, 2, message.photo);
+                            if (type == TYPE_PHOTO) {
+                                contentHtml = chat_content_append(messag.body, 2, message.photo, 1);
+                            }
                             $("#chat-content").append(contentHtml);
 
                             //信息更新为已读状态
@@ -78,17 +86,12 @@ function wsocket(ws) {
                             });
                         } else {
                             //未聊天
-                            var id = "#new_friend_hint" + message.uid;
                             var new_friend_hint_span = $(id).find("span");
                             var messages_length = parseInt(new_friend_hint_span.text()) + 1;
                             new_friend_hint_span.text(messages_length);
                             new_friend_hint_span.removeClass("hide");
-                            $(id).find(".last-msg").text(message.body);
                         }
 
-                        break;
-                    case 1:
-                        ws.send(JSON.stringify(message));
                         break;
                     case 2:
                         // 个人加好友请求
@@ -101,7 +104,24 @@ function wsocket(ws) {
                         }
                         break;
                     case 3:
-                        // do something
+                        var fid = $("#team-setting").attr("data-id");
+                        var id = "#new_friend_hint" + message.uid;
+                        var content = message.body;
+                        if (fid == message.uid) {
+                            //正在聊天中
+                            $("#chat-content").append(chatHint(content));
+
+                            //信息更新为已读状态
+                            var data = {mid: message.mid};
+                            sendAjax("post", "/messages/read", data, function (msg) {
+                            });
+                        } else {
+                            //未聊天
+                            var new_friend_hint_span = $(id).find("span");
+                            var messages_length = parseInt(new_friend_hint_span.text()) + 1;
+                            new_friend_hint_span.text(messages_length);
+                            new_friend_hint_span.removeClass("hide");
+                        }
                         break;
                     default:
                         // this never happens

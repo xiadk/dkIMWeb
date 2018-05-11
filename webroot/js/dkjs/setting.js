@@ -17,7 +17,7 @@ $("#quit_team").click(function () {
     var data = {"gid": gid};
     sendAjax("post", "/group/exitGroup", data, function () {
         // session();
-        var id = "#new_friend_hint" + fid;
+        var id = "#new_friend_hint" + gid;
         $(id).remove();
         rightChatInit();
     })
@@ -39,7 +39,7 @@ $("#change_team_name").click(function () {
         var data = {"gid": gid,"gname":new_team_name};
         sendAjax("post", "/group/updateGroupName", data, function (msg) {
             $("#nick-name").text(new_team_name);
-            chatHint(msg.msg);
+            $("#chat-content").append(chatHint(msg.msg));
             $("#edit-team-name-ipt").addClass("hide");
             var id="#new_friend_hint"+gid;
             $(id).children(".to-name").text(new_team_name);
