@@ -6,8 +6,10 @@ var REQUEST_EXIST = "1501"; // 请求保存的数据已存在
 var PWD_ERROR = "1406";//密码错误
 var REQUEST_NOT_EXIST = "1502"; // 请求数据不存在
 var AUTH_ERROR = "0555"; // token 失效
+var IMAGE_TYPE ="jpg,png";//图片类型
+var kodoUrl = "http://p8go9rpgo.bkt.clouddn.com/";//第三方域名
 function sendAjax(type, url, data, successCall) {
-    console.log("发送消息");
+    // console.log("发送消息");
     console.log(data);
     $.ajax({
         type: type,
@@ -18,7 +20,7 @@ function sendAjax(type, url, data, successCall) {
         },
         data: data,
         success: function (msg) {
-            console.log("响应消息");
+            // console.log("响应消息");
             console.log(msg);
             if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
                 alert(msg.message);
@@ -32,16 +34,18 @@ function sendAjax(type, url, data, successCall) {
 }
 
 function sendAjaxNotData(type, url, successCall) {
-    console.log("发送消息");
+    // console.log("发送消息");
+    // hint("数据加载中，请稍后");
     $.ajax({
         type: type,
         url: url,
         dataType: "json",
         headers: {
-            "token": readCookie("token")
+            "token": readCookie("token"),
         },
         success: function (msg) {
-            console.log("响应消息");
+            // $("#usual-alert-tab").hide();
+            // console.log("响应消息");
             console.log(msg);
             if (msg.msgId == PARAM_ERROR || msg.msgId == FAIL || msg.msgId == SERVER_FAIL) {
                 alert(msg.message);

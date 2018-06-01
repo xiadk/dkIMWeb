@@ -8,6 +8,7 @@ var TYPE_TEXT = 0;//文本消息请求
 var TYPE_PHOTO = 1;//图片消息请求
 var TYPE_ADD_FRIEND = 2;//添加好友请求
 var TYPE_GROUP_HINT = 3;//群消息提示
+var TYPE_FILE = 4;//文件信息
 
 /*ope类型*/
 var OPE_PERSONAL = 0;//个人消息
@@ -46,26 +47,30 @@ function wsocket(ws) {
     }
 
     ws.onmessage = function (event) {
-        console.log(event.data.valueOf());
+        // console.log(event.data.valueOf());
         var res = jQuery.parseJSON(event.data.valueOf());
         if (res.msgId == AUTH_ERROR) {
             window.location.href = "login.html";
-        } else if (res.msgId != "0200") {
+        } else if (res.msgId != "0200" && res.msgId !="0201") {
             hint(res.message);
-        } else {
+        } else if(res.msgId == "0200"){
             var body = res.body;
+            //提示音
+            if($("#close_sound").attr("data-of") == "on") {
+                document.getElementById("controls").play();
+            }
             for (var i = 0, j = body.length; i < j; i++) {
                 var message = body[i];
                 var type = message.type;
                 switch (type) {
-                    case 1:
-                    //普通文本消息
-                    case 0:
+                    case 4://文件信息
+                    case 1://图片信息
+                    case 0://普通文本消息
                         var fid = $("#team-setting").attr("data-id");
                         var id = "#new_friend_hint" + message.uid;
                         var content = message.body;
-                        if (type == TYPE_PHOTO) {
-                            $(id).find(".last-msg").html(getContactImg(content));
+                        if (type == TYPE_PHOTO || type == TYPE_FILE) {
+                            $(id).find(".last-msg").text("");
                         } else {
                             if (message.body.length > 7) {
                                 content = message.body.substr(0, 7) + "......";
@@ -76,9 +81,15 @@ function wsocket(ws) {
                             //正在聊天中
                             var contentHtml = chat_content_append(message.body, 2, message.photo);
                             if (type == TYPE_PHOTO) {
-                                contentHtml = chat_content_append(messag.body, 2, message.photo, 1);
+                                //图片
+                                contentHtml = chat_content_append(message.body, 2, message.photo, 1);
+                            } else if(type == TYPE_FILE){
+                                //文件
+                                var contentHtml = chat_content_append(message.body, 2, message.photo, 4);
                             }
                             $("#chat-content").append(contentHtml);
+                            //滚动条置底
+                            $("#chat-content")[0].scrollTop = $("#chat-content")[0].scrollHeight;
 
                             //信息更新为已读状态
                             var data = {mid: message.mid};
@@ -103,13 +114,15 @@ function wsocket(ws) {
                             add_messages[messages_length - 1] = message;
                         }
                         break;
-                    case 3:
+                    case 3://群提示信息
                         var fid = $("#team-setting").attr("data-id");
                         var id = "#new_friend_hint" + message.uid;
                         var content = message.body;
                         if (fid == message.uid) {
                             //正在聊天中
                             $("#chat-content").append(chatHint(content));
+                            //滚动条置底
+                            $("#chat-content")[0].scrollTop = $("#chat-content")[0].scrollHeight;
 
                             //信息更新为已读状态
                             var data = {mid: message.mid};
@@ -122,7 +135,7 @@ function wsocket(ws) {
                             new_friend_hint_span.text(messages_length);
                             new_friend_hint_span.removeClass("hide");
                         }
-                        break;
+                        break
                     default:
                         // this never happens
                         break;
@@ -131,38 +144,6 @@ function wsocket(ws) {
         }
     }
 }
-
-/*function c() {
-    var commit = $("#commit").val();
-    if (Socket.readyState == 1) {
-        var message = new form(1, 0, 2, 1, commit);
-        Socket.send(JSON.stringify(message));
-    }
-
-    Socket.onmessage = function (event) {
-        console.log('send后面的'+event.data.valueOf())
-        $("#commit2").val(event.data.valueOf());
-    }
-}
-
-function e() {
-    Socket.close();
-}
-
-function d() {
-    var commit = $("#commit2").val();
-    var Socket = new WebSocket("ws://localhost:8001");
-    Socket.onopen = function () {
-        if (Socket.readyState == 1) {
-            var message = new form(1, 0, 2, 1, commit);
-            Socket.send(JSON.stringify(message));
-        }
-    }
-    Socket.close();
-    Socket.onmessage = function (event) {
-        $("#commit2").val(event.data.valueOf());
-    }
-}*/
 
 //消息格式
 function form(token, ope, fid, type, body) {

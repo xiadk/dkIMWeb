@@ -36,13 +36,23 @@ $("#change_team_name").click(function () {
     $("#edit-team-name-ipt").blur(function () {
         var gid = $("#team-setting").attr("data-id");
         var new_team_name = $("#edit-team-name-ipt").val();
-        var data = {"gid": gid,"gname":new_team_name};
+        var data = {"gid": gid, "gname": new_team_name};
         sendAjax("post", "/group/updateGroupName", data, function (msg) {
             $("#nick-name").text(new_team_name);
-            $("#chat-content").append(chatHint(msg.msg));
             $("#edit-team-name-ipt").addClass("hide");
-            var id="#new_friend_hint"+gid;
+            var id = "#new_friend_hint" + gid;
             $(id).children(".to-name").text(new_team_name);
+
+            //提示消息
+            var chatHintName = $("#nickname-layout-span").text() + "更新群名为" +new_team_name;//群消息提示
+            $("#chat-content").append(chatHint(chatHintName));
+            //发送通知
+            var token = readCookie("token");
+            var fid = $("#team-setting").attr("data-id");
+            var id = "#new_friend_hint" + fid;
+            var ope = $(id).attr("data-ope");
+            var message = new form(token, ope, fid, TYPE_GROUP_HINT, chatHintName);
+            wsSend(message);
         });
     });
 
@@ -60,11 +70,11 @@ $("#change_friend_alias").click(function () {
     $("#edit-team-name-ipt").blur(function () {
         var fid = $("#team-setting").attr("data-id");
         var alias = $("#edit-team-name-ipt").val();
-        var data = {"fid": fid,"alias":alias};
+        var data = {"fid": fid, "alias": alias};
         sendAjax("post", "/friend/alias", data, function (msg) {
             $("#nick-name").text(alias);
             $("#edit-team-name-ipt").addClass("hide");
-            var id="#new_friend_hint"+fid;
+            var id = "#new_friend_hint" + fid;
             $(id).children(".to-name").text(alias);
         });
     });
@@ -101,7 +111,7 @@ function delChat() {
     var data = {"fid": fid};
     sendAjax("get", "/messages/delMessage", data, function () {
         $("#chat-content").empty();
-        var id="#new_friend_hint"+fid;
+        var id = "#new_friend_hint" + fid;
         $(id).children(".last-msg").text("");
     })
 }

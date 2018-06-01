@@ -6,14 +6,12 @@ $(function () {
     sendAjaxNotData("get", "/user", function (msg) {
         $("#avatar_img").attr("src", msg.photo);
         $("#nickname-layout-span").text(msg.name);
-        $("#nickname-layout-span").attr("data-id",msg.uid);
+        $("#nickname-layout-span").attr("data-id", msg.uid);
     });
     session();
 
     ws = new WebSocket("ws://localhost:8001");
     wsocket(ws);
-
-    ['张三','李四','王五'].sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', {sensitivity: 'accent'}))
 
 })
 
@@ -36,6 +34,36 @@ $("#login_out").click(function () {
             delCookie("token");
         }
     })
+});
+
+//查看个人资料
+$("#avatar_img").click(function () {
+    sendAjaxNotData("get", "/user/userInfo", function (msg) {
+
+        $(".chat--layout").addClass("hide");
+        $("#address-book-wrapper").removeClass("hide");
+        $("#info-de-send").text("编辑");
+        $("#change-friend-alias").hide();
+
+        var photo = msg.photo;
+        var fid = msg.uid;
+        var name = msg.name;
+        var address = msg.address;
+        var sex = "男";
+        var autograph = msg.autograph;
+        $("#info-de-avatar").attr("src", photo);
+        $("#info-de-alias").children("em").html(name);
+        $("#info-de-nick").children("em").html(name);
+        $("#info-de-area").children("em").html(address);
+        if (msg.sex == 1) {
+            sex = "女";
+        }
+        $("#info-de-sex").children("em").html(sex);
+        $("#info-de-autograph").children("em").html(autograph);
+        $("#delete-friend").addClass("hide");
+        $("#info-content").show();
+    })
+
 });
 
 
@@ -61,17 +89,17 @@ $(".tab").click(function (event) {
 
 //获取联系人及未读消息
 function session() {
-    $("#session-list").empty();
-    $("#session-list").append("<div class='session-item' data-scene='p2p'  data-id='-1' data-unread='0' id='new_friend_hint'><div class=\"team-avatar\">友</div> <span class='unread hide'>0</span> <div class='to-name'>好友信息</div> <div class='last-msg'>有新朋友</div> </div>");
     sendAjaxNotData("get", "/friend/getcontacts", function (msg) {
+        $("#session-list").empty();
+        $("#session-list").append("<div class='session-item' data-scene='p2p'  data-id='-1' data-unread='0' id='new_friend_hint'><div class=\"team-avatar\">友</div> <span class='unread hide'>0</span> <div class='to-name'>好友信息</div> <div class='last-msg'>有新朋友</div> </div>");
         var contacts = msg.contacts;
         for (var i = 0, j = contacts.length; i < j; i++) {
             var photo = contacts[i].photo;
             var alias = contacts[i].alias;
             var new_content = contacts[i].new_content;
-            if(contacts[i].type==TYPE_PHOTO) {
-                new_content=getContactImg(new_content);
-            } else if (new_content.length > 7){
+            if (contacts[i].type == TYPE_PHOTO) {
+                new_content = "";
+            } else if (new_content.length > 7) {
                 new_content = new_content.substr(0, 7) + "......";
             }
 
@@ -79,14 +107,14 @@ function session() {
             var ope = contacts[i].ope;
             var unread = contacts[i].unread;
             var html = " <div class='session-item' data-ope='" + ope + "'  data-id='" + fid + "' data-unread='0' id='new_friend_hint" + fid + "'> ";
-            if(photo!="") {
-                html+="<div class='session-avatar-container'>" +
-                "<img src='" + photo + "' alt='' class='session-avatar vertical-middle'>" +
-                "</div> ";
+            if (photo != "") {
+                html += "<div class='session-avatar-container'>" +
+                    "<img src='" + photo + "' alt='' class='session-avatar vertical-middle'>" +
+                    "</div> ";
             } else {
-                html+="<div class=\"team-avatar\">"+alias.substring(0,1)+"</div>";
+                html += "<div class=\"team-avatar\">" + alias.substring(0, 1) + "</div>";
             }
-                html+="<span class='unread hide'>" + unread + "</span> " +
+            html += "<span class='unread hide'>" + unread + "</span> " +
                 "<div class='to-name'>" + alias + "</div> " +
                 "<div class='last-msg'>" + new_content + "</div> " +
                 "</div>";
@@ -106,7 +134,7 @@ function session() {
                 var fid = $(this).attr("data-id");
                 var alias = $(this).find(".to-name").text();
                 var ope = $(this).attr("data-ope");
-                StartChatInit(fid,alias,parseInt(ope));
+                StartChatInit(fid, alias, parseInt(ope));
                 comment(fid, alias);
             }
         });
@@ -140,25 +168,39 @@ function session() {
 }
 
 //点击任意处消失
-$(document).click(function(){
-       $("#team_setting_menu_layout").addClass("hide");
-       $("#p2p_setting_menu_layout").addClass("hide");
-       $("#menu_list").addClass("hide");
-       $("#emojiTag").children(".m-emoji-wrapper").css("display","none");
+$(document).click(function () {
+    $("#team_setting_menu_layout").addClass("hide");
+    $("#p2p_setting_menu_layout").addClass("hide");
+    $("#menu_list").addClass("hide");
+    $("#emojiTag").children(".m-emoji-wrapper").css("display", "none");
 });
 
+//关闭声音/打开声音
+$("#close_sound").click(function () {
+    if ($(this).attr("data-of") == "off") {
+        //打开声音
+        $(this).attr("data-of", "on");
+        $(this).removeClass("open");
+        $(this).text("关闭声音");
+    } else {
+        //关闭声音
+        $(this).text("打开声音");
+        $(this).attr("data-of", "off");
+        $(this).addClass("open");
+    }
+});
 
 //最右侧页面初始化
 function rightChatInit() {
     $("#team-setting").addClass("hide");
     $("#nick-name").text("未选择聊天对象");
-    $("#team-setting").attr("data-id","-2");
+    $("#team-setting").attr("data-id", "-2");
     $("#chat-content").empty();
 }
 
 //联系人最新消息图片样式
 function getContactImg(src) {
-    return "<img src="+src+" style=\"width: 20px; height: 20px;top: -15px; right:25px;position: relative\">";
+    return "<img src=" + src + " style=\"width: 20px; height: 20px;top: -15px; right:25px;position: relative\">";
 }
 
 

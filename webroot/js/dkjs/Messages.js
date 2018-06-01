@@ -1,14 +1,3 @@
-//对好友发起聊天
-$("#info-de-send").click(function () {
-    var fid = $("#delete-friend").attr("data-id");
-    var alias = $("#info-de-alias").children("em").text();
-    var data = {"fid": fid};
-    sendAjax("post", "/friend/addcontact", data, function () {
-    });
-    StartChatInit(fid, alias, 0);
-    session();
-});
-
 //获取聊天信息
 function comment(fid, alias) {
     //隐藏更多消息链接
@@ -34,6 +23,8 @@ function comment(fid, alias) {
                 var contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo);
                 if (msg.messages[i].type == TYPE_PHOTO) {
                     contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo, 1);
+                } else if(msg.messages[i].type == TYPE_FILE) {
+                    contentHtml = chat_content_append(msg.messages[i].body, 2, msg.messages[i].photo, 4);
                 }
                 $("#moreMsg").after(contentHtml);
             } else {
@@ -41,10 +32,13 @@ function comment(fid, alias) {
                 var contentHtml = chat_content_append(msg.messages[i].body, 1);
                 if (msg.messages[i].type == TYPE_PHOTO) {
                     contentHtml = chat_content_append(msg.messages[i].body, 1, -1, 1);
+                } else if(msg.messages[i].type == TYPE_FILE) {
+                    contentHtml = chat_content_append(msg.messages[i].body, 1, -1, 4);
                 }
                 $("#moreMsg").after(contentHtml);
             }
-            $("#chat-content").scrollTop = $("#chat-content").scrollHeight;
+            //滚动条置底
+            $("#chat-content")[0].scrollTop = $("#chat-content")[0].scrollHeight;
         }
         var id = "#new_friend_hint" + fid;
         $(id).find("span").addClass("hide");
@@ -70,6 +64,26 @@ $("#moreMsg").click(function () {
 $("#statrt_chat").click(function () {
     menuToggle($("#tab_layout"));
 
+    statrt_chat_friend();
+    //发起好友聊天
+    $("#cc-tab-friend").click(function () {
+        //界面初始化
+        statrt_chat_friend();
+    });
+    //发起群聊天
+    $("#cc-tab-team").click(function () {
+        //界面初始化
+        statrt_chat_team();
+    });
+
+});
+
+//和好友发起聊天
+function statrt_chat_friend() {
+    $("#cc-tl-friend-list").removeClass("hide");
+    $("#cc-tl-team-list").addClass("hide");
+    $("#cc-tab-friend").addClass("cur");
+    $("#cc-tab-team").removeClass("cur");
     //获取通讯录
     sendAjaxNotData("get", "/friend/findFriends", function (msg) {
         var friedns = msg.friends;
@@ -107,10 +121,10 @@ $("#statrt_chat").click(function () {
             sendAjax("post", "/group/create", data, function (msg) {
                 var gid = msg.gid;
                 var gname = msg.gname;
-                //页面初始化
-                StartChatInit(gid, gname, 1);
                 //获取联系人列表
                 session();
+                //页面初始化
+                StartChatInit(gid, gname, 1);
                 menuToggle($("#tab_layout"));
                 $("#add_team_member").removeClass("hide");
             })
@@ -118,7 +132,59 @@ $("#statrt_chat").click(function () {
 
 
     })
-});
+}
+
+//发起群聊天
+function statrt_chat_team() {
+    $("#cc-tab-friend").removeClass("cur");
+    $("#cc-tab-team").addClass("cur");
+    $("#cc-tl-friend-list").addClass("hide");
+    $("#cc-tl-team-list").removeClass("hide");
+    //获取群
+    sendAjaxNotData("get", "/group", function (msg) {
+        var groups = msg.groups;
+        $("#cc-tl-team-list").empty();
+        for (var i = 0, j = groups.length; i < j; i++) {
+            var photo = groups[i].photo;
+            var gname = groups[i].gname;
+            var gid = groups[i].gid;
+            var html = "<div class=\"cc-tl-item cc-tl-team-item\" data-id=" + gid + ">" +
+                "<span class=\"cc-item-circle\" data-id=" + gid + "></span>";
+            if (photo == "") {
+                html = html + "<div class=\"cc-item-heading\">" + gname.substring(0, 1) + "</div>";
+            } else {
+                html = html + "<div class=\"cc-item-avatar-container\">\n" +
+                    "                <img src=\"" + photo + "\" alt=\"\" class=\"cc-item-avatar horizontal-middle\">\n" +
+                    "                </div>";
+            }
+            html = html + "<div class=\"cc-item-alias\">" + gname + "</div>" +
+                "</div>";
+            //当前用cur
+            $("#cc-tl-team-list").append(html);
+        }
+
+        //选择发起聊天对象
+        $(".cc-tl-team-item").click(function () {
+            $(".cc-tl-team-item").children("span").removeClass("selected");
+            $(this).children("span").addClass("selected");
+        });
+
+        //确认发起聊天
+        $("#cc_submit").unbind('click').click(function () {
+            var gid = $(".cc-tl-team-item>.selected").attr("data-id");
+            var gname = $(".cc-tl-team-item>.selected").nextAll(".cc-item-alias").text();
+            //获取联系人列表
+            session();
+            //页面初始化
+            StartChatInit(gid, gname, 1);
+            menuToggle($("#tab_layout"));
+            comment(gid, gname);
+            $("#add_team_member").removeClass("hide");
+        });
+
+
+    })
+}
 
 //查看群聊成员
 $("#add_team_member").click(function () {
@@ -261,7 +327,8 @@ $("#add_team_member").click(function () {
                         chatHintName = chatHintName.substring(0, chatHintName.length - 1) + "拉入群中";
                         var members = JSON.stringify(fids);
                         var gid = $("#team-setting").attr("data-id");
-                        var data = {"members": members, "gid": gid};
+                        var gname = $("#nick-name").text();
+                        var data = {"members": members, "gid": gid,"gname":gname};
                         sendAjax("post", "/group/addMembers", data, function (msg) {
 
                             $("#add-member-tab").addClass("hide");
@@ -309,6 +376,9 @@ $("#send").unbind("click").click(function () {
     var contentHtml = chat_content_append(content, 1);
     $("#chat-content").append(contentHtml);
 
+    //滚动条置底
+    $("#chat-content")[0].scrollTop = $("#chat-content")[0].scrollHeight;
+
     if (content.length > 7) {
         content = content.substr(0, 7) + "......";
     }
@@ -347,7 +417,7 @@ function getEmoij(str) {
     return str;
 }
 
-//fm=1自己发，fm=2别人发 type=0文本消息，1为图片,默认文本
+//fm=1自己发，fm=2别人发 type=0文本消息，1为图片,4为文件。默认文本
 function chat_content_append(body, fm, src, type) {
     if (type == undefined) {
         type = 0;
@@ -363,8 +433,11 @@ function chat_content_append(body, fm, src, type) {
             //分离出表情包
             body = getEmoij(body);
             content = content + " <div class=\"f-maxWid\">" + body + "</div>";
+        } else if (type == 4) {
+            content = content + "<span class=\"icon icon-file2\"></span><span>" + body + "</span>"+
+            "<a href=\"" + kodoUrl + body + "\" target=\"_blank\">下载</a>";
         } else {
-            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + body + "></div>";
+            content = content + " <a download=\"\" href=\"" + kodoUrl + body + "\" target=\"_blank\"><img  data-src=\"\" src=\"http://p8go9rpgo.bkt.clouddn.com/" + body + "\" style='height: 150px;width: 150px'></a>";
         }
 
         content = content + "         </div>\n" +
@@ -382,8 +455,11 @@ function chat_content_append(body, fm, src, type) {
             //分离出表情包
             body = getEmoij(body);
             content = content + " <div class=\"f-maxWid\">" + body + "</div>";
-        } else {
-            content = content + " <div class=\"f-maxWid\"><img class=\"emoji\" src=" + body + "></div>";
+        } else if (type == 4) {
+            content = content + "<span class=\"icon icon-file2\"></span><span>" + body + "</span> "+
+            "<a download=\"\" href=\"" + kodoUrl + body + "\" target=\"_blank\">下载 </a>";
+        } else if (type == 1) {
+            content = content + " <a href=\"" + kodoUrl + body + "\" target=\"_blank\"><img  data-src=\"\" src=\"http://p8go9rpgo.bkt.clouddn.com/" + body + "\" style='height: 150px;width: 150px'></a>";
         }
 
         content = content + "         </div>\n" +
@@ -451,41 +527,63 @@ function selectedAndCancle($obj) {
 
 //上传文件弹框
 $("#chooseFileBtn").click(function () {
-    $("#uploadForm").click();
+    $("#file").click();
 });
 
-$("#uploadForm").change(function () {
-    var observable = qiniu.upload(file, key, token, putExtra, config);
-    var observer = {
-        next(res) {
-            console.log("本次上传的总量控制信息:"+res.total.total);
-        },
-        error(err) {
-            console.log("上传失败");
-        },
-        complete(res) {
-            console.log("上传成功");
+function processFile(files) {
+    var file = files[0];
+    var key = file.name;
+    sendAjaxNotData("get", "/file/uploadToken", function (msg) {
+        var uploadToken = msg.uploadToken;
+        var config = {
+            region: qiniu.region.z2
+        };
+        var putExtra = {
+            fname: key,
+            mimeType: [] || null
+        };
+        var observable = qiniu.upload(file, key, uploadToken, putExtra, config);
+        var observer = {
+            next(res) {
+                var total = res.total;
+                $("#upload-percentage-tab").removeClass("hide");
+                $("#percentage").text(parseInt(total.percent) + "%");
+            },
+            error(err) {
+                $("#upload-percentage-tab").addClass("hide");
+            },
+            complete(res) {
+                $("#upload-percentage-tab").addClass("hide");
+                var contentHtml = "";
+                //发送消息
+                if (IMAGE_TYPE.indexOf(key.split(".")[1]) != -1) {
+                    contentHtml = chat_content_append(key, 1, -1, 1);
+                } else {
+                    contentHtml = chat_content_append(key, 1, -1, 4);
+                }
+                $("#chat-content").append(contentHtml);
+                //滚动条置底
+                $("#chat-content")[0].scrollTop = $("#chat-content")[0].scrollHeight;
+
+                var token = readCookie("token");
+                var fid = $("#team-setting").attr("data-id");
+                var id = "#new_friend_hint" + fid;
+                var ope = $(id).attr("data-ope");
+                var message = new form(token, ope, fid, TYPE_FILE, key);
+                wsSend(message);
+            }
         }
-    }
-    var subscription = observable.subscribe(observer);
-    $.ajax({
-        type: "post",
-        url: "/messages/upload",
-        data: new FormData($('#uploadForm')[0]),
-        cache: false,
-        processData: false, // 不要对data参数进行序列化处理，默认为true
-        contentType: false, // 不要设置Content-Type请求头，因为文件数据是以 multipart/form-data 来编码
-        headers: {
-            'token': readCookie("token")
-        },
-        success: function (msg) {
-            console.log("响应消息");
-            console.log(msg);
-        }
+        var subscription = observable.subscribe(observer);
     });
-    // handlerFiles(test);
-});
+}
 
+//下载文件
+function fileDown(url) {
+    console.log(url);
+    sendAjaxNotData("get",url,function (msg) {
+        console.log(msg);
+    });
+}
 /*$("#text_container").dragenter(function (e) {
     e.stopPropagation();
   e.preventDefault();
@@ -506,42 +604,3 @@ $("#text_container").drop(function (e) {
 
   handleFiles(files[0]);
 });*/
-
-function handlerFiles(files) {
-    var formData = new FormData();
-    formData.append("file", files);
-    // formData.append("token", token_value);
-    $.ajax({
-        url: "/upload",
-        type: "POST",
-        data: formData,
-        processData: false, // 不要对data参数进行序列化处理，默认为true
-        contentType: false, // 不要设置Content-Type请求头，因为文件数据是以 multipart/form-data 来编码
-        xhr: function () {
-            myXhr = $.ajaxSettings.xhr();
-            if (myXhr.upload) {
-                myXhr.upload.addEventListener('progress', function (e) {
-                    if (e.lengthComputable) {
-                        var percent = Math.floor(e.loaded / e.total * 100);
-                        if (percent <= 100) {
-                            $("#J_progress_bar").progress('set progress', percent);
-                            $("#J_progress_label").html('已上传：' + percent + '%');
-                        }
-                        if (percent >= 100) {
-                            $("#J_progress_label").html('文件上传完毕，请等待...');
-                            $("#J_progress_label").addClass('success');
-                        }
-                    }
-                }, false);
-            }
-            return myXhr;
-        },
-        success: function (res) {
-            // 请求成功
-        },
-        error: function (res) {
-            // 请求失败
-            console.log(res);
-        }
-    });
-}

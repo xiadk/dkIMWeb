@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./css/debugPlugin.css">
     <link rel="stylesheet" href="./css/version1.css">
     <link rel="stylesheet" href="./css/new_version_main.css">-->
-     <link rel="stylesheet" href="./css/uEmBZriLePloWTATAEwo.css">
+    <link rel="stylesheet" href="./css/uEmBZriLePloWTATAEwo.css">
 
 </head>
 <body>
@@ -68,7 +68,7 @@
 
         <p class="tb-tip-text tip-text">移除后该好友将在您的通讯录列表中消失，您将无法再接收到此人的任何消息。</p>
         <div class="tb-avatar dfv-user-avatar">
-            <img class="tb-avatar-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/background.png" alt="">
+            <img class="tb-avatar-img" src="" alt="">
         </div>
         <div class="tb-name team-name" id="delete_friend-name">真善美</div>
 
@@ -303,13 +303,13 @@
     <div class="user-layout">
         <div class="user-msg clear">
             <div class="avatar">
-                <img src="" alt="" id="avatar_img"/>
+                <img src="" alt="" id="avatar_img" style="cursor:pointer"/>
             </div>
             <div class="nickname-layout">
                 <span id="nickname-layout-span" data-id="" style="width: 200px;overflow: hidden;word-break: keep-all;text-overflow: ellipsis;white-space: nowrap;display: block;"></span>
             </div>
             <div class="menu clear" id="menu">
-                <img class="comment_cls" src="images/more2.png"  style="height:25px;width:25px;cursor: pointer;">
+                <img class="comment_cls" src="images/more2.png" style="height:25px;width:25px;cursor: pointer;">
             </div>
 
             <!-- main menu -->
@@ -320,12 +320,16 @@
                 <div class="menu-item add-friend" data-id="4" id="add_friend">
                     添加好友
                 </div>
-                <div class="menu-item desktop-notification close" data-id="1" data-of="off">
+                <!--<div class="menu-item desktop-notification close" data-id="1" data-of="off">
                     关闭桌面通知
-                </div>
-                <div class="menu-item sound close" data-id="2" data-of="off">
+                </div>-->
+                <div class="menu-item sound close" data-id="2" data-of="on" id="close_sound">
                     关闭声音
                 </div>
+                <!--音频-->
+                <audio id="controls">
+                    <source src="audio/audio_end_tip.wav" type="audio/wav">
+                </audio>
                 <div class="menu-item quit" data-id="3" id="login_out">
                     退出
                 </div>
@@ -352,7 +356,7 @@
             <div class="tab" id="address-book" data-id="address-book">
             </div>
 
-           <!-- <div class="tab" id="find-back" data-id="find-back"></div>-->
+            <!-- <div class="tab" id="find-back" data-id="find-back"></div>-->
 
             <div class="tab" id="friend-space" data-id="friend-space">
                 <span class="tip-circle fs-tip-friend-space hide"></span>
@@ -443,19 +447,19 @@
     <div class="chat--layout clear" id="chatting-area-wrapper" data-id="session">
         <!-- 名片卡 -->
         <div id="info-box" class="info-box hide" style="top: 112px; left: 234.125px;">
-                <div class="info-avatar-container" id="info_avatar_container">
-                    <img src="" alt="" class="info-avatar vertical-middle" id="info-avatar">
-                </div>
+            <div class="info-avatar-container" id="info_avatar_container">
+                <img src="" alt="" class="info-avatar vertical-middle" id="info-avatar">
+            </div>
 
-                <div class="info-alias" id="info-alias"></div>
-                <img src="" alt="" class="info-gender" id="info-gender">
-                <div class="info-layout">
-                    <span>昵称：</span><em id="info-name"></em>
-                </div>
-                <div class="info-layout">
-                    <span>地区：</span><em id="info-area"></em>
-                </div>
-                <button class="apply-friend-btn" id="apply-friend-in-team" data-account="">添加好友</button>
+            <div class="info-alias" id="info-alias"></div>
+            <img src="" alt="" class="info-gender" id="info-gender">
+            <div class="info-layout">
+                <span>昵称：</span><em id="info-name"></em>
+            </div>
+            <div class="info-layout">
+                <span>地区：</span><em id="info-area"></em>
+            </div>
+            <button class="apply-friend-btn" id="apply-friend-in-team" data-account="">添加好友</button>
         </div>
 
         <div class="chat-title" id="nick-name-layout" data-show="0">
@@ -492,7 +496,9 @@
 
         <div class="chat-view chat-content" id="chat-content">
 
+
             <!--<div data-time="1525277668989" data-id="395d9a9aef08ed88291067659371b551" id="395d9a9aef08ed88291067659371b551" data-idserver="14912542702" class="clear item item-me"><div class="j-img-container"><img class="img j-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div><div class="msg msg-text j-msg"><div class="box"><div class="cnt"><a href="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTI3NzY2ODI0NV9lZmQ2YWZiNC1hNWYzLTQwZmMtYmYwYy1lNDdlZTNjZmUxZmE=?imageView" target="_blank"><img onload="loadImg()" data-src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTI3NzY2ODI0NV9lZmQ2YWZiNC1hNWYzLTQwZmMtYmYwYy1lNDdlZTNjZmUxZmE=" src="https://nos.netease.com/nim/NDI2OTgyNA==/bmltYV83NzQ2MzU2MjlfMTUyNTI3NzY2ODI0NV9lZmQ2YWZiNC1hNWYzLTQwZmMtYmYwYy1lNDdlZTNjZmUxZmE=?imageView&amp;thumbnail=200x0&amp;quality=85"></a></div></div></div></div>-->
+
             <p class='u-msgTime hide' id='moreMsg' data-page="1" style="cursor: pointer">- - - - -&nbsp;加载更多&nbsp;- &#45;&#45; - -</p>
             <!--<p class="u-msgTime">- - - - -&nbsp;03-26 19:52&nbsp;- &#45;&#45; - -</p>
 
@@ -548,6 +554,19 @@
                 </div>
             </div>
 
+<div data-time="1526521267778" data-id="5bcd16561bbcef10d1cc78667ed6d595" id="5bcd16561bbcef10d1cc78667ed6d595" data-idserver="25645073396" class="clear item item-me">
+                <div class="j-img-container"><img class="img j-img" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/headings/default/4.jpg?x-oss-process=image/format,webp" data-account="100326"></div>
+                <div class="msg msg-text j-msg">
+                    <div class="box">
+                        <div class="cnt">
+                                <span class="icon icon-file2"></span>
+                                <span> 优化sdkjflajsdfkljaldfjaklsjskdfjlasdf.txt</span>
+                            <a href="#"> 浏览</a>
+                            <a href="#"> 下载</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             &lt;!&ndash;对方发送图片&ndash;&gt;
             <div data-time="1522328280934" data-id="dbbea052059d4429ac4eb9ea2dc09e76" id="dbbea052059d4429ac4eb9ea2dc09e76" data-idserver="12997048436" class="clear item item-you">
@@ -560,7 +579,6 @@
                     </div>
                 </div>
             </div>-->
-
 
 
         </div>
@@ -612,8 +630,8 @@
             <div class="send-container">
                 <button id="send">发送</button>
                 <span id="ctrl">按下ctrl+enter键换行</span>
-                <form action="#" id="uploadForm">
-                    <input multiple="multiple" type="file" name="file" id="uploadFile" class="hide"/>
+                <form action="http://upload-z2.qiniup.com" id="uploadForm">
+                    <input multiple="multiple" type="file" name="file" id="file" class="hide" onchange="processFile(this.files)"/>
                 </form>
             </div>
         </div>
@@ -625,12 +643,17 @@
 
             <div class="delete-friend" id="delete-friend" data-id="p2p-100255">移除好友</div>
             <div class="info-de-avatar-container"><img class="info-de-avatar vertical-middle" id="info-de-avatar" src="https://cdn.mitures.com/headings/default/1.jpg?x-oss-process=image/format,webp" alt=""></div>
+            <div class="info-de-alias info-de-info hide" id="info-de-photo" style="cursor: pointer"><em>上传头像</em></div>
             <div class="info-de-alias info-de-info" id="info-de-alias"><em>万鹏</em><input type="text" class="alias-edit-ipt hide" id="alias-edit-ipt" data-id="p2p-100255"><span class="change-friend-alias" id="change-friend-alias"></span></div>
-            <div class="info-de-nick info-de-info" id="info-de-nick"><span>昵称:</span><em>🙄</em></div>
-            <div class="info-de-area  info-de-info" id="info-de-area"><span>地区:</span><em>中国</em></div>
+            <div class="info-de-nick info-de-info" id="info-de-nick"><span>昵称:</span><em>🙄</em><input type="text" class="alias-edit-ipt hide" id="name-edit-ipt" data-id="p2p-100255"></div>
+            <div class="info-de-area  info-de-info" id="info-de-area"><span>地区:</span><em>中国</em><input type="text" class="alias-edit-ipt hide" id="address-edit-ipt" data-id="p2p-100255"></div>
+            <div class="info-de-area  info-de-info" id="info-de-sex"><span>性别:</span><em>中国</em><input type="text" class="alias-edit-ipt hide" id="sex-edit-ipt" data-id="p2p-100255"></div>
             <div class="info-btn-container">
                 <button class="info-btn info-de-send" id="info-de-send" data-id="p2p-100255">发消息</button>
             </div>
+            <form action="http://upload-z2.qiniup.com" id="upload_info_photo_form">
+                <input multiple="multiple" type="file" name="upload_info_photo" id="upload_info_photo" class="hide" onchange="uploadPhoto(this.files)"/>
+            </form>
 
         </div>
     </div>
@@ -638,110 +661,54 @@
     <div class="chat--layout clear chat--layout-friend-space hide" id="friend-space-wrapper" data-id="friend-space">
         <div class="friend-space-layout">
             <div class="friend-space-title">
-                <em class="fst-discribe">朋友圈</em>
+                <em class="fst-discribe">秘圈</em>
                 <div class="fst-refresh"></div>
             </div>
             <div class="fs-my-notation-container" id="fs_my_notation_container">
                 <div class="fs-my-notation-list">
+                    <!-- 朋友圈内容 -->
 
-                    <!--<div class="fsn-item fsn-up" data-uid="1" data-mid="s" style="width: 100%; max-height: 300px">
-                        <div class="fsni-avater-wrapper">
-                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                        </div>
-                        <div class="fsni-main-wrapper">
-                            <div class="fsni-main-line fsni-line1">
-                                <div class="fsni-alias">夏德康</div>
-                            </div>
-                            <div class="fsni-main-line fsni-line2" style="overflow: hidden;height:60px;">
-                                <div class="fsni-timetag">今天我很开心,我吃了发给你圣诞节分的说法大地方安德森啊手动阀的撒范德萨范德萨范德萨的房贷首付安抚厘卡撒飞机螺丝sdfa dfs dsfdas fas的说法范德萨都市钉解放老师付了首付了发生的收到</div>
-                            </div>
-                            <div class="fsni-main-line fsni-line3">
-                                <div class="fsni-timetag">一天前</div>
-                            </div>
-                            <div class="fsni-main-line fsni-line4">
-                                <img class="good_cls" src="images/good.png"  style="height:25px;width:25px;cursor: pointer;">
-                                <img class="comment_cls" src="images/comment.png"  style="height:25px;width:25px;cursor: pointer;">
-                            </div>
-                                <div style="width: 100%;background-color: #dbdbdb;border-bottom: 1px #e6e6e6 solid;">
-                                    <span style="border-bottom: 5px">好友1</span>
-                                </div>
-                            <div style="width: 100%;background-color: #dbdbdb">
-                                <p>小王:<span>sssss</span></p>
-                            </div>
-                        </div>
-                    </div>-->
+                    <!-- <div class="fsn-item fsn-up" data-uid="1" data-mid="s" style="width: 100%; max-height: 300px">
+                                            <div class="fsni-avater-wrapper">
+                                                <img src="images/pic7.jpg" class="fsni-avatar">
+                                            </div>
+                                            <div class="fsni-main-wrapper">
+                                                <div class="fsni-main-line fsni-line1">
+                                                    <div class="fsni-alias">夏德康</div>
+                                                </div>
+                                                <div class="fsni-main-line fsni-line2" style="overflow: hidden;height:60px;">
+                                                    <div class="fsni-timetag">今天我很开士大夫士大夫立刻大师傅开始的JFK了结束了附件卡死了几分设计分客流数据分类基督教 考虑心,我吃了发给你圣诞节分的说法大地方安德森啊手动阀的撒范德萨范德萨范德萨的房贷首付安抚厘卡撒飞机螺丝sdfa dfs dsfdas fas的说法范德萨都市钉解放老师付了首付了发生的收到</div>
+                                                </div>
+                                                <div class="fsni-main-line fsni-line2" style="overflow: hidden;height:60px;">
+                                                    <a href="http://p8go9rpgo.bkt.clouddn.com/address.png" target="_blank"><img src="http://p8go9rpgo.bkt.clouddn.com/address.png" style="height: 60px;width: 60px;"></a>
+                                                </div>
 
-                    <!--<div class="fsn-item fsn-up" data-uid="1" data-mid="s">
-                        <div class="fsni-avater-wrapper">
-                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                        </div>
-                        <div class="fsni-main-wrapper">
-                            <div class="fsni-main-line fsni-line1">
-                                <div class="fsni-alias">alias</div>
-                                赞了你
-                            </div>
-                            <div class="fsni-main-line fsni-line2">
 
-                                <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                            </div>
-                            <div class="fsni-main-line fsni-line3">
-                                <div class="fsni-timetag">timeTag</div>
-                            </div>
-                            <div class="fsni-img-wrapper">
-                                <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fsn-item fsn-comment" data-uid="1" data-mid="2">
-                        <div class="fsni-avater-wrapper">
-                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                        </div>
-                        <div class="fsni-main-wrapper">
-                            <div class="fsni-main-line fsni-line1">
-                                <div class="fsni-alias"> alias</div>
-
-                            </div>
-                            <div class="fsni-main-line fsni-line2">
-                                <div class="fsni-comment-words">
-                                    不错不错
-                                </div>
-                            </div>
-                            <div class="fsni-main-line fsni-line3">
-                                <div class="fsni-timetag">2018-10-01</div>
-                            </div>
-                            <div class="fsni-img-wrapper">
-                                <img class="fsni-img" src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fsn-item fsn-comment" data-uid="' + moment.uid + '" data-mid="' + moment.mid + '">
-                        <div class="fsni-avater-wrapper">
-                            <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
-                        </div>
-                        <div class="fsni-main-wrapper">
-                            <div class="fsni-main-line fsni-line1">
-                                <div class="fsni-alias">夏德康</div>
-                                评论了你
-                            </div>
-                            <div class="fsni-main-line fsni-line2">
-                                <div class="fsni-comment-words">
-                                    sliceName(words, 20)
-                                </div>
-                            </div>
-                            <div class="fsni-main-line fsni-line3">
-                                <div class="fsni-timetag">' + timeTag + '</div>
-                            </div>
-                        </div>
-                    </div>-->
-
+                                                <div class="fsni-main-line fsni-line3">
+                                                    <div class="fsni-timetag">一天前</div>
+                                                </div>
+                                                <div class="fsni-main-line fsni-line4">
+                                                    <img class="good_cls" src="images/good.png"  style="height:25px;width:25px;cursor: pointer;">
+                                                    <img class="comment_cls" src="images/comment.png"  style="height:25px;width:25px;cursor: pointer;">
+                                                </div>
+                                                    <div style="width: 100%;background-color: #dbdbdb;border-bottom: 1px #e6e6e6 solid;">
+                                                        <span style="border-bottom: 5px">好友1</span>
+                                                    </div>
+                                                <div style="width: 100%;background-color: #dbdbdb">
+                                                    <p>小王:<span>sssss</span></p>
+                                                    <p>小王:<span>sssss</span></p>
+                                                    <p>小王:<span>sssss</span></p>
+                                                    <p>小王:<span>sssss</span></p>
+                                                    <p>小王:<span>sssss</span></p>
+                                                </div>
+                                            </div>
+                                        </div>-->
                 </div>
             </div>
 
             <div class="fs-my-notation-container hide" id="my_space_messages">
                 <div class="fs-my-notation-list">
-
+                    <!-- 我的消息 -->
                     <!--<div class="fsn-item fsn-up" data-uid="1" data-mid="s" style="width: 100%; max-height: 300px">
                         <div class="fsni-avater-wrapper">
                             <img src="https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp" class="fsni-avatar">
@@ -771,7 +738,6 @@
                     </div>-->
 
 
-
                 </div>
             </div>
 
@@ -794,6 +760,9 @@
                                 <div class="fs-send-photo-wrapper" id="fs-add-photo">
                                     <img src="images/button_photo.png" class="fs-photo-for-send">
                                 </div>
+                                <form action="http://upload-z2.qiniup.com" id="uploadForm2">
+                                    <input multiple="multiple" type="file" name="add_photo" id="add_photo" class="hide" onchange="addPhoto(this.files)"/>
+                                </form>
                             </div>
                             <button class="btn-send fs-send-new-item-btn" id="fs-send-new-item-btn" data-type="">发送</button>
 
@@ -814,38 +783,7 @@
                                 <div class="mai-text">谁可以看</div>
                                 <div class="mai-down-arrow"></div>
                             </div>
-                           <!-- <div class="mai-select-area">
-                                <div class="mai-option cur" data-value="0"><p>公开</p></div>
-                                <div class="mai-option" data-value="1"><p>仅自己可见</p></div>
-                                <div class="mai-option" data-value="2"><p>选中的朋友可见</p> <span class="mai-option-arrow" id="select-to-show-arrow"></span></div>
-                                <div class="mai-group-area" id="show-group">
-                                    <div class="create-group" id="create-show-group">
-                                        创建标签
-                                    </div>
-                                    <div class="group-list-container" id="show-list-container">
-                                        &lt;!&ndash;<div class="mai-group-item">&ndash;&gt;
-                                        &lt;!&ndash;<div class="mgi-check-item"></div>&ndash;&gt;
-                                        &lt;!&ndash;<div class="mgi-group-main">&ndash;&gt;
-                                        &lt;!&ndash;<div class="mgi-group-title">风轮科技</div>&ndash;&gt;
-                                        &lt;!&ndash;<div class="mgi-group-members">风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技、风轮科技</div>&ndash;&gt;
-                                        &lt;!&ndash;</div>&ndash;&gt;
-                                        &lt;!&ndash;<div class="mgi-add-member">&ndash;&gt;
 
-                                        &lt;!&ndash;</div>&ndash;&gt;
-                                        &lt;!&ndash;</div>&ndash;&gt;
-                                    </div>
-                                </div>
-                                <div class="mai-option" data-value="3"><p>选中的朋友不可见</p> <span class="mai-option-arrow" id="select-to-hide-arrow"></span></div>
-                                <div class="mai-group-area" id="hide-group">
-                                    <div class="create-group" id="create-hide-group">
-                                        创建标签
-                                    </div>
-                                    <div class="group-list-container" id="hide-list-container">
-
-                                    </div>
-                                </div>
-
-                            </div>-->
                         </div>
 
                     </div>
@@ -874,7 +812,7 @@
 <script type="text/javascript" src="js/dkjs/websocketUtil.js"></script>
 <script type="text/javascript" src="js/dkjs/space.js"></script>
 <script type="text/javascript" src="js/dkjs/setting.js"></script>
-<script type="text/javascript" src="https://unpkg.com/qiniu-js7.1.5/dist/qiniu.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/qiniu-js@2.2.2/dist/qiniu.min.js"></script>
 
 </body>
 </html>

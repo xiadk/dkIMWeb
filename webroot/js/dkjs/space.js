@@ -3,12 +3,61 @@ $("#fs-send-new-item-btn").click(function () {
 
     var content = $("#fs-new-item-text").val();
     var type = $("#fs-send-new-item-btn").attr("data-type");
-    var data = {"content": content, "type": type};
+    var imgs = [];
+    if (type == 1) {
+        //发送图片说说
+        $.each($(".fs-send-photo-wrapper").children("a").children("img"), function (i, n) {
+            var img = $(n).attr("src");
+            imgs.push(img);
+            console.log(img);
+        });
+    }
+    var images = JSON.stringify(imgs);
+    var data = {"content": content, "type": type,"images":images};
     sendAjax("post", "/space/add", data, function (msg) {
-        hint("发布成功");
-        mySpace();
+            hint("发布成功");
+            mySpace();
     });
 });
+
+$("#fs-add-photo").click(function () {
+    $("#add_photo").click();
+});
+
+function addPhoto(files) {
+    var file = files[0];
+    var key = file.name;
+    sendAjaxNotData("get", "/file/uploadToken", function (msg) {
+        var uploadToken = msg.uploadToken;
+        var config = {
+            region: qiniu.region.z2
+        };
+        var putExtra = {
+            fname: key,
+            mimeType: [] || null
+        };
+        var observable = qiniu.upload(file, key, uploadToken, putExtra, config);
+        var observer = {
+            next(res) {
+                var total = res.total;
+                $("#upload-percentage-tab").removeClass("hide");
+                $("#percentage").text(parseInt(total.percent) + "%");
+            },
+            error(err) {
+                $("#upload-percentage-tab").addClass("hide");
+            },
+            complete(res) {
+                $("#upload-percentage-tab").addClass("hide");
+                //显示图片
+                var spaceImage = "<div class=\"fs-send-photo-wrapper\">\n" +
+                    "                 <a href=\"" + kodoUrl + key + "\" target=\"_blank\"><img src=\"" + kodoUrl + key + "\" class=\"fs-photo-for-send\"></a>\n" +
+                    "             </div>";
+                $("#fs-add-photo").before(spaceImage);
+            }
+        }
+        var subscription = observable.subscribe(observer);
+    });
+}
 
 //我的朋友圈
 function mySpace() {
@@ -18,7 +67,7 @@ function mySpace() {
     $("#fs-add-photo").addClass("hide");
     $("#fs_my_notation_Details").addClass("hide");
     sendAjaxNotData("post", "/space/getSpace", function (msg) {
-        spaces($("#fs_my_notation_container"),msg);
+        spaces($("#fs_my_notation_container"), msg);
 
         //点赞
         $(".good_cls").click(function () {
@@ -152,9 +201,10 @@ function myMessage() {
                     "                        </div>";
 
             } else if (messages[i].stp == 1) {
+                var image = messages[i].image;
                 //图片
                 messageHtml = messageHtml + "<div class=\"my-space-message-img\">\n" +
-                    "                            <img src=\"https://cdn.mitures.com/headings/default/4.jpg?x-oss-process=image/format,webp\">\n" +
+                    "                            <img src=\""+image+"\">\n" +
                     "                        </div>";
 
             }
@@ -165,16 +215,15 @@ function myMessage() {
             //查看说说详情
             $("#my_space_messages").children(".fs-my-notation-list").children(".fsn-up").unbind("click").click(function () {
                 var sid = $(this).attr("data-sid");
-                console.log(sid);
 
                 $("#friend_space_container").addClass("hide");
                 $("#fs_my_notation_container").addClass("hide");
                 $("#my_space_messages").addClass("hide");
                 $("#fs-add-photo").addClass("hide");
                 $("#fs_my_notation_Details").removeClass("hide");
-                var data = {"sid":sid};
-                sendAjax("post", "/space/detail",data, function (msg) {
-                    spaces($("#fs_my_notation_Details"),msg);
+                var data = {"sid": sid};
+                sendAjax("post", "/space/detail", data, function (msg) {
+                    spaces($("#fs_my_notation_Details"), msg);
                 });
 
 
@@ -188,6 +237,8 @@ function myMessage() {
 }
 
 function sendText() {
+    //清空图片内容
+    $("#fs-add-photo").prevAll().remove();
     $("#friend_space_container").removeClass("hide");
     $("#fs_my_notation_container").addClass("hide");
     $("#my_space_messages").addClass("hide");
@@ -197,6 +248,8 @@ function sendText() {
 }
 
 function sendImg() {
+    //清空图片内容
+    $("#fs-add-photo").prevAll().remove();
     $("#friend_space_container").removeClass("hide");
     $("#fs_my_notation_container").addClass("hide");
     $("#my_space_messages").addClass("hide");
@@ -206,7 +259,7 @@ function sendImg() {
 }
 
 //朋友圈内容拼接
-function spaces($obj,msg) {
+function spaces($obj, msg) {
     $($obj).children(".fs-my-notation-list").empty();
     var spaces = msg.spaces;
     for (var i = 0, j = spaces.length; i < j; i++) {
@@ -231,8 +284,22 @@ function spaces($obj,msg) {
 
         var delSpaceImg = "";
         //判断是否是自己发的说说
-        if($("#nickname-layout-span").attr("data-id")==fid){
-             delSpaceImg = "<img src=\"images/icon_delete.png\" onclick=\"delSpace(this)\"  style=\"height:25px;width:25px;cursor: pointer;\">";
+        if ($("#nickname-layout-span").attr("data-id") == fid) {
+            delSpaceImg = "<img src=\"images/icon_delete.png\" onclick=\"delSpace(this)\"  style=\"height:25px;width:25px;cursor: pointer;\">";
+        }
+
+        var addSpaceimg = "";
+        //判断是否是图片说说
+        if(type == 1) {
+            //显示图片
+            addSpaceimg = "<div class=\"fsni-main-line fsni-line2\" style=\"overflow: hidden;height:60px;\">";
+            var images = spaces[i].images;
+            for(var z=0,m=images.length;z<m;z++) {
+                var url = images[z].url;
+                addSpaceimg = addSpaceimg +"<a href=\""+url+"\" target=\"_blank\"><img src=\""+url+"\" style=\"height: 60px;width: 70px;\"></a>";
+            }
+            addSpaceimg = addSpaceimg + "</div>";
+
         }
 
         var html = "<div class=\"fsn-item fsn-up\" data-uid=" + fid + " data-sid=" + sid + " date-type=" + type + " style=\"width: 100%;\">\n" +
@@ -247,13 +314,14 @@ function spaces($obj,msg) {
             "                                <div class=\"fsni-timetag\">" + content + "\n" +
             "                                </div>\n" +
             "                            </div>\n" +
+            addSpaceimg+
             "                            <div class=\"fsni-main-line fsni-line3\">\n" +
             "                                <div class=\"fsni-timetag\">" + create_time + "</div>\n" +
             "                            </div>\n" +
             "                            <div class=\"fsni-main-line fsni-line4\">\n" +
             "                                <img class=\"good_cls\" src=" + goodSrc + "  style=\"height:25px;width:25px;cursor: pointer;\">\n" +
             "                                <img class=\"comment_cls\" src=\"images/comment.png\"  style=\"height:25px;width:25px;cursor: pointer;\">\n" +
-            delSpaceImg+
+            delSpaceImg +
             "                            </div>" +
             "                            <div style='margin-bottom: 10px;color: grey;border: 5px;'>\n" +
             "                                <div style=\"width: 100%;background-color: #e6e6e6;border-bottom: 5px;border-bottom: 1px #F5F5F5 solid;\">\n" +
@@ -270,11 +338,12 @@ function spaces($obj,msg) {
     }
 }
 
+//删除朋友圈
 function delSpace(obj) {
     var sid = $(obj).parent().parent().parent().attr("data-sid");
-    var data = {"sid":sid};
-    sendAjax("post","/space/delSpace",data,function (msg) {
-       hint("删除成功");
-       mySpace();
+    var data = {"sid": sid};
+    sendAjax("post", "/space/delSpace", data, function (msg) {
+        hint("删除成功");
+        mySpace();
     });
 }
